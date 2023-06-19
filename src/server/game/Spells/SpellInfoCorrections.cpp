@@ -41,7 +41,7 @@ void SpellMgr::LoadSpellInfoCorrections()
     uint32 oldMSTime = getMSTime();
 
     ApplySpellFix({
-        467,    // Thorns (Rank 1)
+        467,    // Thorns (Rank 1) 
         782,    // Thorns (Rank 2)
         1075,   // Thorns (Rank 3)
         8914,   // Thorns (Rank 4)
