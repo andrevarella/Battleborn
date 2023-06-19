@@ -45,6 +45,7 @@ EndScriptData */
 #include "Tokenize.h"
 #include "WardenCheckMgr.h"
 #include "WaypointMgr.h"
+#include "../../../modules/mod-spell-regulator/src/SpellRegulator.h"
 
 using namespace Acore::ChatCommands;
 
@@ -164,6 +165,7 @@ public:
             { "spell_target_position",         HandleReloadSpellTargetPositionCommand,        SEC_ADMINISTRATOR, Console::Yes },
             { "spell_threats",                 HandleReloadSpellThreatsCommand,               SEC_ADMINISTRATOR, Console::Yes },
             { "spell_group_stack_rules",       HandleReloadSpellGroupStackRulesCommand,       SEC_ADMINISTRATOR, Console::Yes },
+            { "spell_regulator",			   HandleReloadSpellRegulator,                    SEC_ADMINISTRATOR, Console::Yes },
             { "player_loot_template",          HandleReloadLootTemplatesPlayerCommand,        SEC_ADMINISTRATOR, Console::Yes },
             { "acore_string",                  HandleReloadAcoreStringCommand,                SEC_ADMINISTRATOR, Console::Yes },
             { "warden_action",                 HandleReloadWardenactionCommand,               SEC_ADMINISTRATOR, Console::Yes },
@@ -217,6 +219,7 @@ public:
         HandleReloadMotdCommand(handler);
         HandleReloadBroadcastTextCommand(handler);
         HandleReloadBattlegroundTemplate(handler);
+        HandleReloadSpellRegulator(handler);
         return true;
     }
 
@@ -921,6 +924,15 @@ public:
         LOG_INFO("server.loading", "Re-Loading Spell Group Stack Rules...");
         sSpellMgr->LoadSpellGroupStackRules();
         handler->SendGlobalGMSysMessage("DB table `spell_group_stack_rules` (spell stacking definitions) reloaded.");
+        return true;
+    }
+
+    static bool HandleReloadSpellRegulator(ChatHandler* handler)
+    {
+        #define sSpellRegulator SpellRegulator::instance()
+
+        sSpellRegulator->LoadFromDB();
+        handler->SendGlobalGMSysMessage("DB table `spell_regulator` reloaded.");
         return true;
     }
 
