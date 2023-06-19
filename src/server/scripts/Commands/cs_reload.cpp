@@ -929,7 +929,7 @@ public:
 
     static bool HandleReloadSpellRegulator(ChatHandler* handler)
     {
-        #define sSpellRegulator SpellRegulator::instance()
+        #define sSpellRegulator SpellRegulator::instance() 
 
         sSpellRegulator->LoadFromDB();
         handler->SendGlobalGMSysMessage("DB table `spell_regulator` reloaded.");
