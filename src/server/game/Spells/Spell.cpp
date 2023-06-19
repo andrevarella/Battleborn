@@ -6863,8 +6863,6 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     {
     case 11578: // Warrior - Charge
     case 7922: // Charge Stun
-    case 20252: // Warrior - Intercept
-    case 20253: // Warrior - Intercept
     case 65929: // Warrior - Charge triggered
     case 47996: // Warlock - Pet - Felguard's intercept
     case 47995: // Warlock - Pet - Felguard intercept trigg.
@@ -6876,6 +6874,8 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     case 27006: // Pounce R4
     case 49803: // Pounce R5
         return delayForOpenerStuns;
+    case 20252: // Warrior - Intercept
+    case 20253: // Warrior - Intercept
     case 12809: // Warrior - Concussion Blow
     case 46968: // Warrior - Shockwave
     case 853:   // Paladin - Hammer of Justice
@@ -6928,6 +6928,8 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     case 1330:  // Rogue - Garote silence
     case 15487: // Priest - Silence
     case 47476: // DK - Strangulate
+    //case 24259: // Warlock - Pet - Spell Lock - Silenced
+    case 18469: // Mage - Talent - Improved Counter spell silence
         return delayForSilences;
     case 20066: // Paladin - Repentance
     case 19503: // Hunter - Scatter Shot
@@ -7004,8 +7006,8 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     case 710: // Warlock - Banish
     case 18647:
     case 33786: // Druid - Cyclone
-        return delayForBanishes;
     case 605: // Priest - Mind Control
+        return delayForBanishes;
     case 3355: // Freezing trap
     case 14308:
     case 14309: // Freezing Trap Effect R3
