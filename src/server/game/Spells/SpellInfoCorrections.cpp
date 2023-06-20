@@ -3884,6 +3884,24 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx7 |= SPELL_ATTR7_RESET_SWING_TIMER_AT_SPELL_START;
     });
 
+    // Spells que nao dao miss
+    ApplySpellFix({
+        20549, // War Stomp
+        49576, // Death Grip
+        56222, // Taunt DK 
+        6795,  // Taunt Bear Form
+        5209,  // Taunt Bear Form AoE
+        3600,  // Earthbind slow
+        30449, // Spellsteal
+        988,   // Dispel Magic
+        32375, // Mass Dispel
+        10890, // psychic Scream rank 4/4
+        355    // Taunt Warrior
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
+    });
+
     ApplySpellFix({
         71646,  // Item - Bauble of True Blood 10m
         71607,  // Item - Bauble of True Blood 25m
