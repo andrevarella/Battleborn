@@ -942,6 +942,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->RangeEntry = sSpellRangeStore.LookupEntry(5); // 40yd
     });
 
+    // Damage Shield (prot) 
+    ApplySpellFix({ 59653 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->SpellLevel = 0;
+        spellInfo->DmgClass = SPELL_DAMAGE_CLASS_MELEE;
+    });
+
     // Earth Shield
     ApplySpellFix({ 379 }, [](SpellInfo* spellInfo)
     {
