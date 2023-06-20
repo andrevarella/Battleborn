@@ -1490,6 +1490,35 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                         caster->CastCustomSpell(target, 64801, &basepoints0, nullptr, nullptr, true, nullptr, GetEffect(0));
                     }
                 }
+                switch (GetId())
+                {
+                   case 83029: // Skull Bash (Cat) Old Code - not working ATM
+                    if (!caster)
+                        break;
+                    if (caster->GetShapeshiftForm() != FORM_CAT && caster->GetShapeshiftForm() != FORM_DIREBEAR)
+                    {
+                        caster->CastSpell(caster, 768, true);
+                    }
+                    break;
+
+                   case 83214: // Stampeding Roar (Cat) 
+                    if (!caster)
+                        break;
+                    if (caster->GetShapeshiftForm() != FORM_CAT && caster->GetShapeshiftForm() != FORM_DIREBEAR)
+                    {
+                        caster->CastSpell(caster, 768, true);
+                    }
+                    break;
+
+                   case 33357: // Dash (casta Cat Form se nao tiver em Cat ao usar Dash) 
+                    if (!caster)
+                        break;
+                    if (caster->GetShapeshiftForm() != FORM_CAT)
+                    {
+                        caster->CastSpell(caster, 768, true); // Aqui o ID da forma de gato é passado diretamente para a função CastSpell()
+                    }
+                    break;
+                }
                 break;
             case SPELLFAMILY_PRIEST:
                 if (!caster)
