@@ -681,6 +681,12 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx4 |= SPELL_ATTR4_IGNORE_DEFAULT_ARENA_RESTRICTIONS;
     });
 
+    // Food (Fish Feast/Well Fed) nao sai ao morrer
+    ApplySpellFix({ 57399 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx3 |= SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD;
+    });
+
     // Chimera Shot - Serpent trigger
     ApplySpellFix({ 53353 }, [](SpellInfo* spellInfo)
     {
