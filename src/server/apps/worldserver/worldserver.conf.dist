@@ -69,7 +69,7 @@ RealmID = 1
 #        Example:     "@prefix@\home\youruser\azerothcore\data"
 #        Default:     "."
 
-DataDir = "."
+DataDir = "G:/.AzerothCore/AzerothBuild/bin/RelWithDebInfo/data"
 
 #
 #    LogsDir
@@ -79,7 +79,7 @@ DataDir = "."
 #        Example:     "/home/youruser/azerothcore/logs"
 #        Default:     "" - (Log files will be stored in the current path)
 
-LogsDir = ""
+LogsDir = "G:/.AzerothCore/AzerothBuild/bin/RelWithDebInfo/Logs/World"
 
 #
 #    TempDir
@@ -106,9 +106,9 @@ TempDir = ""
 #                     "127.0.0.1;3306;acore;acore;acore_world"      - (WorldDatabaseInfo)
 #                     "127.0.0.1;3306;acore;acore;acore_characters" - (CharacterDatabaseInfo)
 
-LoginDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_auth"
-WorldDatabaseInfo     = "127.0.0.1;3306;acore;acore;acore_world"
-CharacterDatabaseInfo = "127.0.0.1;3306;acore;acore;acore_characters"
+LoginDatabaseInfo     = "127.0.0.1;3306;root;adrx123;acore_auth"
+WorldDatabaseInfo     = "127.0.0.1;3306;root;adrx123;acore_world"
+CharacterDatabaseInfo = "127.0.0.1;3306;root;adrx123;acore_characters"
 
 #
 #    Database.Reconnect.Seconds
@@ -188,7 +188,7 @@ CMakeCommand = ""
 #        Example:     "../AzerothCore"
 #        Default:     ""
 
-BuildDirectory = ""
+BuildDirectory = "G:/.AzerothCore/AzerothBuild"
 
 #
 #    SourceDirectory
@@ -197,7 +197,7 @@ BuildDirectory = ""
 #        Example:     "../AzerothCore"
 #        Default:     ""
 
-SourceDirectory = ""
+SourceDirectory = "G:/.AzerothCore/AzerothCore"
 
 #
 #    MySQLExecutable
@@ -349,23 +349,23 @@ MinWorldUpdateTime = 1
 #
 #    MapUpdateInterval
 #        Description: Time (milliseconds) for map update interval.
-#        Default:     10 - (0.01 second)
+#        Default:     10 - (0.01 second) - tava 100 na core antiga (ano passado)
 
 MapUpdateInterval = 10
 
 #
 #    ChangeWeatherInterval
 #        Description: Time (in milliseconds) for weather update interval.
-#        Default:     600000 - (10 min)
+#        Default:     600000 - (10 min) - Mudar ?
 
 ChangeWeatherInterval = 600000
 
 #
 #    PlayerSaveInterval
 #        Description: Time (in milliseconds) for player save interval.
-#        Default:     900000 - (15 min)
+#        Default:     900000 - (15 min), 300.000 = 5min, 60.000 = 1min, 30.000 = 30s 
 
-PlayerSaveInterval = 900000
+PlayerSaveInterval = 45000
 
 #
 #    PlayerSave.Stats.MinLevel
@@ -378,7 +378,7 @@ PlayerSave.Stats.MinLevel = 0
 #
 #    PlayerSave.Stats.SaveOnlyOnLogout
 #        Description: Save player stats only on logout.
-#        Default:     1 - (Enabled, Only save on logout)
+#        Default:     1 - (Enabled, Only save on logout) - mudar p 0 ?
 #                     0 - (Disabled, Save on every player save)
 
 PlayerSave.Stats.SaveOnlyOnLogout = 1
@@ -404,10 +404,10 @@ vmap.petLOS = 1
 
 #    vmap.BlizzlikePvPLOS
 #        Description: Check line of sight for battleground and arena gameobjects and other doodads (such as WSG treestumps).
-#        Default:     1 - (Enabled, players will be able to fire spells through treestumps and other objects).
+#        Default:     1 - (Enabled, players will be able to fire spells through treestumps and other objects). gross.
 #                     0 - (Disabled, players will NOT be able to fire spells through treestumps and other objects).
 
-vmap.BlizzlikePvPLOS = 1
+vmap.BlizzlikePvPLOS = 0
 
 #
 #    vmap.enableIndoorCheck
@@ -641,7 +641,7 @@ World.RealmAvailability = 1
 #       Default:     1 - Enabled
 #                    0 - Disabled
 
-StrictNames.Reserved = 1
+StrictNames.Reserved = 0
 
 #
 #   StrictNames.Profanity
@@ -732,7 +732,7 @@ Expansion = 2
 #    MinPlayerName
 #        Description: Minimal player name length.
 #        Range:       1-12
-#        Default:     2
+#        Default:     2 hmm
 
 MinPlayerName = 2
 
@@ -740,7 +740,7 @@ MinPlayerName = 2
 #    MinCharterName
 #        Description: Minimal charter name length.
 #        Range:       1-24
-#        Default:     2
+#        Default:     2 hmm
 
 MinCharterName = 2
 
@@ -748,7 +748,7 @@ MinCharterName = 2
 #    MinPetName
 #        Description: Minimal pet name length.
 #        Range:       1-12
-#        Default:     2
+#        Default:     2 hmm
 
 MinPetName = 2
 
@@ -759,14 +759,14 @@ MinPetName = 2
 #    ArenaTeam.CharterCost.5v5
 #        Description: Amount of money (in Copper) the petitions costs.
 #        Default:     1000 - (10 Silver)
-#                     800000 - (80 Gold)
+#                     800000 - (80 Gold) - 100000 (10 Gold)
 #                     1200000 - (120 Gold)
 #                     2000000 - (200 Gold)
 
 Guild.CharterCost = 1000
-ArenaTeam.CharterCost.2v2 = 800000
-ArenaTeam.CharterCost.3v3 = 1200000
-ArenaTeam.CharterCost.5v5 = 2000000
+ArenaTeam.CharterCost.2v2 = 100000
+ArenaTeam.CharterCost.3v3 = 150000
+ArenaTeam.CharterCost.5v5 = 200000
 
 #
 #    MaxWhoListReturns
@@ -842,7 +842,7 @@ CharactersPerRealm = 10
 #        Range:       1-10
 #        Default:     1
 
-HeroicCharactersPerRealm = 1
+HeroicCharactersPerRealm = 10
 
 #
 #    CharacterCreating.MinLevelForHeroicCharacter
@@ -862,7 +862,7 @@ CharacterCreating.MinLevelForHeroicCharacter = 55
 #                     1 - (Show intro only for first character of selected race)
 #                     2 - (Disable intro for all classes)
 
-SkipCinematics = 0
+SkipCinematics = 1
 
 #
 #    MaxPlayerLevel
@@ -900,24 +900,24 @@ StartHeroicPlayerLevel = 55
 #    StartPlayerMoney
 #        Description: Amount of money (in Copper) that a character has after creation.
 #        Default:     0
-#                     100 - (1 Silver)
+#                     100 - (1 Silver), 10000 = 1g, 100000 = 10g 
 
-StartPlayerMoney = 0
+StartPlayerMoney = 100000
 
 #
 #    StartHeroicPlayerMoney
 #        Description: Amount of money (in Copper) that heroic class characters have after creation.
 #        Default:     2000
-#                     2000 - (20 Silver)
+#                     2000 - (20 Silver), 100000 = 10g
 
-StartHeroicPlayerMoney = 2000
+StartHeroicPlayerMoney = 100000
 
 #
 #    MaxHonorPoints
 #        Description: Maximum honor points a character can have.
 #        Default:     75000
 
-MaxHonorPoints = 75000
+MaxHonorPoints = 150000
 
 #
 #    MaxHonorPointsMoneyPerPoint
@@ -939,7 +939,7 @@ StartHonorPoints = 0
 #        Description: Maximum arena points a character can have.
 #        Default:     10000
 
-MaxArenaPoints = 10000
+MaxArenaPoints = 20000
 
 #
 #    StartArenaPoints
@@ -952,9 +952,9 @@ StartArenaPoints = 0
 #    RecruitAFriend.MaxLevel
 #        Description: Highest level up to which a character can benefit from the Recruit-A-Friend
 #                     experience multiplier.
-#        Default:     60
+#        Default:     60 ?
 
-RecruitAFriend.MaxLevel = 60
+RecruitAFriend.MaxLevel = 79
 
 #
 #    RecruitAFriend.MaxDifference
@@ -962,7 +962,7 @@ RecruitAFriend.MaxLevel = 60
 #                     the Recruit-A-Friend experience multiplier.
 #        Default:     4
 
-RecruitAFriend.MaxDifference = 4
+RecruitAFriend.MaxDifference = 6
 
 #
 #    InstantLogout
@@ -974,7 +974,7 @@ RecruitAFriend.MaxDifference = 4
 #                     3  - (Enabled, Admins)
 #                     4  - (Disabled)
 
-InstantLogout = 1
+InstantLogout = 0
 
 #
 #    PreventAFKLogout
@@ -1002,7 +1002,7 @@ DisableWaterBreath = 4
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllFlightPaths = 0
+AllFlightPaths = 1
 
 #
 #    InstantFlightPaths
@@ -1021,7 +1021,7 @@ InstantFlightPaths = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AlwaysMaxSkillForLevel = 0
+AlwaysMaxSkillForLevel = 1
 
 #
 #    ActivateWeather
@@ -1059,7 +1059,7 @@ Instance.IgnoreRaid = 0
 #
 #    Instance.GMSummonPlayer
 #        Description: Allow GM to summon players or only other GM accounts inside instances.
-#        Default:     0 - (Disabled, Only GM accounts can be summoned by GM)
+#        Default:     0 - (Disabled, Only GM accounts can be summoned by GM) Mudar ?
 #                     1 - (Enabled, GM and Player accounts can be summoned by GM)
 
 Instance.GMSummonPlayer = 0
@@ -1070,7 +1070,7 @@ Instance.GMSummonPlayer = 0
 #        Range:       0-23
 #        Default:     4 - (04:00 AM)
 
-Instance.ResetTimeHour = 4
+Instance.ResetTimeHour = 6
 
 #
 #    Instance.UnloadDelay
@@ -1116,7 +1116,7 @@ Quests.HighLevelHideDiff = 7
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Quests.IgnoreRaid = 0
+Quests.IgnoreRaid = 1
 
 #
 #    Quests.IgnoreAutoAccept
@@ -1183,7 +1183,7 @@ MaxPrimaryTradeSkill = 2
 #        Range:       0-9
 #        Default:     9
 
-MinPetitionSigns = 9
+MinPetitionSigns = 0
 
 #
 #    MaxGroupXPDistance
@@ -1204,9 +1204,9 @@ MaxRecruitAFriendBonusDistance = 100
 #
 #    MailDeliveryDelay
 #        Description: Time (in seconds) mail delivery is delayed when sending items.
-#        Default:     3600 - (1 hour)
+#        Default:     3600 - (1 hour), 360 = 6 min, 5 = 5 seconds
 
-MailDeliveryDelay = 3600
+MailDeliveryDelay = 5
 
 #
 #    SkillChance.Prospecting
@@ -1244,7 +1244,7 @@ ClientCacheVersion = 0
 #
 #    Event.Announce
 #        Description: Announce events.
-#        Default:     0 - (Disabled)
+#        Default:     0 - (Disabled) ?
 #                     1 - (Enabled)
 
 Event.Announce = 0
@@ -1263,7 +1263,7 @@ BeepAtStart = 1
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-FlashAtStart = 1
+FlashAtStart = 0
 
 #
 #    Server.LoginInfo
@@ -1300,17 +1300,17 @@ DeletedCharacterTicketTrace = 0
 #
 #   DBC.EnforceItemAttributes
 #        Disallow overriding item attributes stored in DBC files with values from the database
-#        Default: 0 - Off, Use DB values
+#        Default: 0 - Off, Use DB values 
 #                 1 - On, Enforce DBC Values (default)
 
-DBC.EnforceItemAttributes = 1
+DBC.EnforceItemAttributes = 0
 
 #
 #   AccountInstancesPerHour
 #        Description: Controls the max amount of different instances player can enter within hour
 #        Default:     5
 
-AccountInstancesPerHour = 5
+AccountInstancesPerHour = 7
 
 #
 #   BirthdayTime
@@ -1379,7 +1379,7 @@ TOTPMasterSecret =
 #                     4  - (Enable world only)
 #                     0  - (All disabled)
 
-Updates.EnableDatabases = 7
+Updates.EnableDatabases = 0
 
 #
 #    Updates.AutoSetup
@@ -1469,9 +1469,9 @@ Warden.NumOtherChecks = 7
 #    Warden.ClientResponseDelay
 #        Description: Time (in seconds) before client is getting disconnecting for not responding.
 #        Default:     600 - (10 Minutes)
-#                     0 - (Disabled, client won't be kicked)
+#                     0 - (Disabled, client won't be kicked) - Da DC pra quem fica AFK(acho q AFK), mudei p 0
 
-Warden.ClientResponseDelay = 600
+Warden.ClientResponseDelay = 0
 
 #
 #    Warden.ClientCheckHoldOff
@@ -1491,14 +1491,14 @@ Warden.ClientCheckHoldOff = 30
 #                     1 - (Kick)
 #                     2 - (Ban)
 
-Warden.ClientCheckFailAction = 0
+Warden.ClientCheckFailAction = 1
 
 #
 #    Warden.BanDuration
 #        Description: Time (in seconds) an account will be banned if ClientCheckFailAction is set
 #                     to ban.
-#        Default:     86400 - (24 hours)
-#                     0     - (Permanent ban)
+#        Default:     86400 - (24 hours), 259200 = 72 Hours (3 Dias)
+#                     0     - (Permanent ban) 
 
 Warden.BanDuration = 259200
 
@@ -1521,7 +1521,7 @@ AllowTwoSide.Accounts = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Calendar = 0
+AllowTwoSide.Interaction.Calendar = 1
 
 #
 #    AllowTwoSide.Interaction.Chat
@@ -1529,7 +1529,7 @@ AllowTwoSide.Interaction.Calendar = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Chat = 0
+AllowTwoSide.Interaction.Chat = 1
 
 #
 #    AllowTwoSide.Interaction.Emote
@@ -1537,7 +1537,7 @@ AllowTwoSide.Interaction.Chat = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Emote = 0
+AllowTwoSide.Interaction.Emote = 1
 
 #
 #    AllowTwoSide.Interaction.Channel
@@ -1545,7 +1545,7 @@ AllowTwoSide.Interaction.Emote = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Channel = 0
+AllowTwoSide.Interaction.Channel = 1
 
 #
 #    AllowTwoSide.Interaction.Group
@@ -1553,7 +1553,7 @@ AllowTwoSide.Interaction.Channel = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Group = 0
+AllowTwoSide.Interaction.Group = 1
 
 #
 #    AllowTwoSide.Interaction.Guild
@@ -1561,7 +1561,7 @@ AllowTwoSide.Interaction.Group = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Guild = 0
+AllowTwoSide.Interaction.Guild = 1
 
 #
 #    AllowTwoSide.Interaction.Auction
@@ -1569,7 +1569,7 @@ AllowTwoSide.Interaction.Guild = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Auction = 0
+AllowTwoSide.Interaction.Auction = 1
 
 #
 #    AllowTwoSide.Interaction.Mail
@@ -1577,7 +1577,7 @@ AllowTwoSide.Interaction.Auction = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Mail = 0
+AllowTwoSide.Interaction.Mail = 1
 
 #
 #    AllowTwoSide.WhoList
@@ -1585,7 +1585,7 @@ AllowTwoSide.Interaction.Mail = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.WhoList = 0
+AllowTwoSide.WhoList = 1
 
 #
 #    AllowTwoSide.AddFriend
@@ -1593,7 +1593,7 @@ AllowTwoSide.WhoList = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.AddFriend = 0
+AllowTwoSide.AddFriend = 1
 
 #
 #    AllowTwoSide.Trade
@@ -1601,7 +1601,7 @@ AllowTwoSide.AddFriend = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Trade = 0
+AllowTwoSide.Trade = 1
 
 #
 #    TalentsInspecting
@@ -1887,7 +1887,7 @@ ChatStrictLinkChecking.Kick = 0
 #        Default:     10 - (Enabled)
 #                     0  - (Disabled)
 
-ChatFlood.MessageCount = 10
+ChatFlood.MessageCount = 12
 
 #
 #    ChatFlood.MessageDelay
@@ -1916,13 +1916,13 @@ ChatFlood.AddonMessageDelay = 1
 #        Description: Time (in seconds) characters get muted for violating ChatFlood.MessageCount / ChatFlood.AddonMessageCount.
 #        Default:     10
 
-ChatFlood.MuteTime = 10
+ChatFlood.MuteTime = 6
 
 #
 #    Chat.MuteFirstLogin
 #        Description: Speaking is allowed after playing for Chat.MuteTimeFirstLogin minutes. You may use party and guild chat.
 #        Default:     0 - (Disabled)
-#                     1 - (Enabled)
+#                     1 - (Enabled) ?
 
 Chat.MuteFirstLogin = 0
 
@@ -1939,7 +1939,7 @@ Chat.MuteTimeFirstLogin = 120
 #        Default:     1 - (Enabled, Allow join to channel only if registered in LFG)
 #                     0 - (Disabled, Allow join to channel in any time)
 
-Channel.RestrictedLfg = 1
+Channel.RestrictedLfg = 0
 
 #
 #    Channel.SilentlyGMJoin
@@ -1948,7 +1948,7 @@ Channel.RestrictedLfg = 1
 #        Default:     0 - (Disabled, Join with announcement)
 #                     1 - (Enabled, Join without announcement)
 
-Channel.SilentlyGMJoin = 0
+Channel.SilentlyGMJoin = 1
 
 #    Channel.ModerationGMLevel
 #        Min GM account security level required for executing moderator in-game commands in the channels
@@ -2038,7 +2038,7 @@ GM.LoginState = 2
 #                     0 - (Invisible)
 #                     1 - (Visible)
 
-GM.Visible = 2
+GM.Visible = 0
 
 #
 #    GM.Chat
@@ -2056,7 +2056,7 @@ GM.Chat = 2
 #                     0 - (Disable)
 #                     1 - (Enable)
 
-GM.WhisperingTo = 2
+GM.WhisperingTo = 0
 
 #
 #    GM.InGMList.Level
@@ -2220,7 +2220,7 @@ Rate.Loyalty           = 1
 #
 #    Rate.Skill.Discovery
 #        Description: Multiplier for skill discovery.
-#        Default:     1
+#        Default:     1 ?
 
 Rate.Skill.Discovery = 1
 
@@ -2247,17 +2247,17 @@ Rate.Skill.Discovery = 1
 
 Rate.Drop.Item.Poor             = 1
 Rate.Drop.Item.Normal           = 1
-Rate.Drop.Item.Uncommon         = 1
-Rate.Drop.Item.Rare             = 1
-Rate.Drop.Item.Epic             = 1
-Rate.Drop.Item.Legendary        = 1
+Rate.Drop.Item.Uncommon         = 1.3
+Rate.Drop.Item.Rare             = 1.5
+Rate.Drop.Item.Epic             = 1.3
+Rate.Drop.Item.Legendary        = 1.2
 Rate.Drop.Item.Artifact         = 1
 Rate.Drop.Item.Referenced       = 1
 Rate.Drop.Money                 = 1
 
 #    Rate.Drop.Item.ReferencedAmount
 #        Description: Multiplier for referenced loot amount. Makes many raid bosses (and others) drop additional loot.
-#        Default:     1
+#        Default:     1 - ? test later
 
 Rate.Drop.Item.ReferencedAmount = 1
 
@@ -2344,11 +2344,11 @@ Rate.BuyValue.Item.Heirloom         = 1
 #                     1 - (Rate.XP.Explore)
 #                     1 - (Rate.XP.Pet)
 
-Rate.XP.Kill      = 1
-Rate.XP.Quest     = 1
-Rate.XP.Quest.DF  = 1
-Rate.XP.Explore   = 1
-Rate.XP.Pet       = 1
+Rate.XP.Kill      = 2
+Rate.XP.Quest     = 9
+Rate.XP.Quest.DF  = 6
+Rate.XP.Explore   = 4
+Rate.XP.Pet       = 4
 
 #
 #    Rate.XP.BattlegroundKill...
@@ -2356,12 +2356,12 @@ Rate.XP.Pet       = 1
 #                     Only works if Battleground.GiveXPForKills = 1
 #        Default:     1
 
-Rate.XP.BattlegroundKillAV   = 1
-Rate.XP.BattlegroundKillWSG  = 1
-Rate.XP.BattlegroundKillAB   = 1
-Rate.XP.BattlegroundKillEOTS = 1
-Rate.XP.BattlegroundKillSOTA = 1
-Rate.XP.BattlegroundKillIC   = 1
+Rate.XP.BattlegroundKillAV   = 9
+Rate.XP.BattlegroundKillWSG  = 9
+Rate.XP.BattlegroundKillAB   = 9
+Rate.XP.BattlegroundKillEOTS = 9
+Rate.XP.BattlegroundKillSOTA = 9
+Rate.XP.BattlegroundKillIC   = 9
 
 #
 #    Rate.RepairCost
@@ -2379,9 +2379,9 @@ Rate.RepairCost = 1
 #                     1 - (Rate.Rest.Offline.InTavernOrCity)
 #                     1 - (Rate.Rest.Offline.InWilderness)
 
-Rate.Rest.InGame                 = 1
-Rate.Rest.Offline.InTavernOrCity = 1
-Rate.Rest.Offline.InWilderness   = 1
+Rate.Rest.InGame                 = 2
+Rate.Rest.Offline.InTavernOrCity = 2
+Rate.Rest.Offline.InWilderness   = 2
 
 #
 #    Rate.Damage.Fall
@@ -2400,23 +2400,23 @@ Rate.Damage.Fall = 1
 #                     1 - (Rate.Auction.Deposit)
 #                     1 - (Rate.Auction.Cut)
 
-Rate.Auction.Time    = 1
-Rate.Auction.Deposit = 1
-Rate.Auction.Cut     = 1
+Rate.Auction.Time    = 0.5
+Rate.Auction.Deposit = 0.5
+Rate.Auction.Cut     = 0.5
 
 #
 #    Rate.Honor
 #        Description: Honor gain rate.
 #        Default:     1
 
-Rate.Honor = 1
+Rate.Honor = 3
 
 #
 #    Rate.ArenaPoints
 #        Description: Arena points gain rate.
 #        Default:     1
 
-Rate.ArenaPoints = 1
+Rate.ArenaPoints = 1.25
 
 #
 #    Rate.Talent
@@ -2430,21 +2430,21 @@ Rate.Talent = 1
 #        Description: Reputation gain rate.
 #        Default:     1
 
-Rate.Reputation.Gain = 1
+Rate.Reputation.Gain = 1.5
 
 #
 #    Rate.Reputation.LowLevel.Kill
 #        Description: Reputation gain from killing low level (grey) creatures.
 #        Default:     1
 
-Rate.Reputation.LowLevel.Kill = 1
+Rate.Reputation.LowLevel.Kill = 1.25
 
 #
 #    Rate.Reputation.LowLevel.Quest
 #        Description: Reputation gain rate.
 #        Default:     1
 
-Rate.Reputation.LowLevel.Quest = 1
+Rate.Reputation.LowLevel.Quest = 1.25
 
 #
 #    Rate.Reputation.RecruitAFriendBonus
@@ -2474,10 +2474,10 @@ Rate.InstanceResetTime = 1
 #    Rate.Pet.LevelXP
 #        Description: Modifies the amount of experience required to level up a pet.
 #       The lower the rate the less experience is required.
-#        Default:     0.05
+#        Default:     0.05 - 0.025 é metade de 0.05
 #
 
-Rate.Pet.LevelXP = 0.05
+Rate.Pet.LevelXP = 0.025
 
 #
 #    WaterBreath.Timer
@@ -2508,9 +2508,9 @@ EnableLowLevelRegenBoost = 1
 #                     1 - (SkillGain.Weapon)
 
 SkillGain.Crafting  = 1
-SkillGain.Defense   = 1
+SkillGain.Defense   = 100
 SkillGain.Gathering = 1
-SkillGain.Weapon    = 1
+SkillGain.Weapon    = 100
 
 #
 #    SkillChance.Orange
@@ -2524,8 +2524,8 @@ SkillGain.Weapon    = 1
 #                     0   - (SkillChance.Grey)
 
 SkillChance.Orange = 100
-SkillChance.Yellow = 75
-SkillChance.Green  = 25
+SkillChance.Yellow = 80
+SkillChance.Green  = 30
 SkillChance.Grey   = 0
 
 #
@@ -2552,14 +2552,14 @@ DurabilityLoss.InPvP = 0
 #        Note:        On 3.3.5 client always shows log message "Your items have lost 10% durability"
 #        Default:     10
 
-DurabilityLoss.OnDeath = 10
+DurabilityLoss.OnDeath = 5
 
 #
 #    DurabilityLossChance.Damage
 #        Description: Chance to lose durability on one equipped item from damage.
 #        Default:     0.5 - (100/0.5 = 200, Each 200 damage one equipped item will use durability)
 
-DurabilityLossChance.Damage = 0.5
+DurabilityLossChance.Damage = 0.4
 
 #
 #    DurabilityLossChance.Absorb
@@ -2567,7 +2567,7 @@ DurabilityLossChance.Damage = 0.5
 #        Default:     0.5 - (100/0.5 = 200, Each 200 absorbed damage one equipped item will lose
 #                           durability)
 
-DurabilityLossChance.Absorb = 0.5
+DurabilityLossChance.Absorb = 0.4
 
 #
 #    DurabilityLossChance.Parry
@@ -2575,7 +2575,7 @@ DurabilityLossChance.Absorb = 0.5
 #        Default:     0.05 - (100/0.05 = 2000, Each 2000 parried damage the main weapon will lose
 #                            durability)
 
-DurabilityLossChance.Parry = 0.05
+DurabilityLossChance.Parry = 0.04
 
 #
 #    DurabilityLossChance.Block
@@ -2583,7 +2583,7 @@ DurabilityLossChance.Parry = 0.05
 #        Default:     0.05 - (100/0.05 = 2000, Each 2000 blocked damage the shield will lose
 #                            durability)
 
-DurabilityLossChance.Block = 0.05
+DurabilityLossChance.Block = 0.04
 
 #
 #    Death.SicknessLevel
@@ -2648,7 +2648,7 @@ Die.Command.Mode = 1
 #
 
 Rate.MissChanceMultiplier.TargetCreature = 11
-Rate.MissChanceMultiplier.TargetPlayer = 7
+Rate.MissChanceMultiplier.TargetPlayer = 0
 Rate.MissChanceMultiplier.OnlyAffectsPlayer = 0
 
 #
@@ -2683,9 +2683,9 @@ Stats.Limits.Crit  = 95.0
 #    AutoBroadcast.On
 #        Description: Enable auto broadcast.
 #        Default:     0 - (Disabled)
-#                     1 - (Enabled)
+#                     1 - (Enabled) ? Teste
 
-AutoBroadcast.On = 0
+AutoBroadcast.On = 1
 
 #
 #    AutoBroadcast.Center
@@ -2729,7 +2729,7 @@ Battleground.CastDeserter = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.QueueAnnouncer.Enable = 0
+Battleground.QueueAnnouncer.Enable = 1
 
 #
 #    Battleground.QueueAnnouncer.Limit.MinLevel
@@ -2757,7 +2757,7 @@ Battleground.QueueAnnouncer.Limit.MinPlayers = 3
 #        Default:     30
 #
 
-Battleground.QueueAnnouncer.SpamProtection.Delay = 30
+Battleground.QueueAnnouncer.SpamProtection.Delay = 15
 
 #
 #    Battleground.QueueAnnouncer.PlayerOnly
@@ -2782,25 +2782,25 @@ Battleground.QueueAnnouncer.Timed = 0
 #        Default:     30000 (30 sec)
 #
 
-Battleground.QueueAnnouncer.Timer = 30000
+Battleground.QueueAnnouncer.Timer = 15000
 
 #
 #    Battleground.PrematureFinishTimer
 #        Description: Time (in milliseconds) before battleground will end prematurely if there are
 #                     not enough players on one team. (Values defined in battleground template)
-#        Default:     300000 - (Enabled, 5 minutes)
+#        Default:     300000 - (Enabled, 5 minutes) , 180.000 = 3 min
 #                     0      - (Disabled, Not recommended)
 
-Battleground.PrematureFinishTimer = 300000
+Battleground.PrematureFinishTimer = 180000
 
 #
 #    Battleground.PremadeGroupWaitForMatch
 #        Description: Time (in milliseconds) a pre-made group has to wait for matching group of the
 #                     other faction.
-#        Default:     1800000 - (Enabled, 30 minutes)
+#        Default:     1800000 - (Enabled, 30 minutes) - 900.000 = 15 min, 300.000 = 5 min, 60.000 = 1 min
 #                     0       - (Disabled, Not recommended)
 
-Battleground.PremadeGroupWaitForMatch = 1800000
+Battleground.PremadeGroupWaitForMatch = 60000
 
 #
 #    Battleground.GiveXPForKills
@@ -2808,7 +2808,7 @@ Battleground.PremadeGroupWaitForMatch = 1800000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.GiveXPForKills = 0
+Battleground.GiveXPForKills = 1
 
 #
 #    Battleground.Random.ResetHour
@@ -2848,7 +2848,7 @@ Battleground.InvitationType = 0
 #         Description: After a few minutes that battle started you can report the player.
 #         Default:     4
 
-Battleground.ReportAFK.Timer = 4
+Battleground.ReportAFK.Timer = 2
 
 #
 #    Battleground.ReportAFK
@@ -2863,7 +2863,7 @@ Battleground.ReportAFK = 3
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.DisableQuestShareInBG = 0
+Battleground.DisableQuestShareInBG = 1
 
 #
 #    Battleground.DisableReadyCheckInBG
@@ -2871,7 +2871,7 @@ Battleground.DisableQuestShareInBG = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.DisableReadyCheckInBG = 0
+Battleground.DisableReadyCheckInBG = 1
 
 #
 #     Battleground.RewardWinnerHonorFirst
@@ -2908,7 +2908,7 @@ Battleground.PlayerRespawn = 30
 #        Description: Battleground restoration buff respawn time (in seconds).
 #        Default:     20 (Recommended 10+)
 
-Battleground.RestorationBuffRespawn = 20
+Battleground.RestorationBuffRespawn = 75
 
 #
 #    Battleground.BerserkingBuffRespawn
@@ -2992,24 +2992,24 @@ Wintergrasp.CrashRestartTimer = 10
 #        Default:     150 - (Enabled)
 #                     0   - (Disabled)
 
-Arena.MaxRatingDifference = 150
+Arena.MaxRatingDifference = 250
 
 #
 #    Arena.RatingDiscardTimer
 #        Description: Time (in milliseconds) after which rating differences are ignored when
 #                     setting up matches.
-#        Default:     600000 - (Enabled, 10 minutes)
+#        Default:     600000 - (Enabled, 10 minutes), 120000 = 120 seg (2 minutes)
 #                     0      - (Disabled)
 
-Arena.RatingDiscardTimer = 600000
+Arena.RatingDiscardTimer = 120000
 
 #
 #    Arena.PreviousOpponentsDiscardTimer
 #        Description: Time (in milliseconds) after which the previous opponents will be ignored.
-#        Default:     120000 - (Enabled, 2 minutes - Blizzlike)
+#        Default:     120000 - (Enabled, 2 minutes - Blizzlike), - 60000 = 60 sec, 25000 = 25 sec
 #                     0      - (Disabled)
 
-Arena.PreviousOpponentsDiscardTimer = 120000
+Arena.PreviousOpponentsDiscardTimer = 60000
 
 #
 #    Arena.AutoDistributePoints
@@ -3017,7 +3017,7 @@ Arena.PreviousOpponentsDiscardTimer = 120000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Arena.AutoDistributePoints = 0
+Arena.AutoDistributePoints = 1
 
 #
 #    Arena.AutoDistributeInterval
@@ -3032,7 +3032,7 @@ Arena.AutoDistributeInterval = 7
 #        Description: Number of arena matches teams must participate in to be eligible for arena point distribution.
 #        Default:     10
 
-Arena.GamesRequired = 10
+Arena.GamesRequired = 8
 
 #
 #    Arena.QueueAnnouncer.Enable
@@ -3040,7 +3040,7 @@ Arena.GamesRequired = 10
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Arena.QueueAnnouncer.Enable = 0
+Arena.QueueAnnouncer.Enable = 1
 
 #
 #    Battleground.QueueAnnouncer.PlayerOnly
@@ -3071,14 +3071,14 @@ Arena.ArenaSeason.InProgress = 1
 #        Description: Start rating for new arena teams.
 #        Default:     0
 
-Arena.ArenaStartRating = 0
+Arena.ArenaStartRating = 1000
 
 #
 #    Arena.ArenaStartPersonalRating
 #        Description: Start personal rating when joining a team.
 #        Default:     0
 
-Arena.ArenaStartPersonalRating = 0
+Arena.ArenaStartPersonalRating = 1000
 
 #
 #    Arena.ArenaStartMatchmakerRating
@@ -3094,7 +3094,7 @@ Arena.ArenaStartMatchmakerRating = 1500
 #                     (increasing this value will give more rating)
 #        Default:     48
 
-Arena.ArenaWinRatingModifier1 = 48
+Arena.ArenaWinRatingModifier1 = 96
 
 #
 #    Arena.ArenaWinRatingModifier2
@@ -3102,7 +3102,7 @@ Arena.ArenaWinRatingModifier1 = 48
 #                     (increasing this value will give more rating)
 #        Default:     24
 
-Arena.ArenaWinRatingModifier2 = 24
+Arena.ArenaWinRatingModifier2 = 48
 
 #
 #    Arena.ArenaLoseRatingModifier
@@ -3327,7 +3327,7 @@ PlayerStart.CustomSpells = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-PlayerStart.MapsExplored = 0
+PlayerStart.MapsExplored = 1
 
 #
 #    HonorPointsAfterDuel
@@ -3344,7 +3344,7 @@ HonorPointsAfterDuel = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AlwaysMaxWeaponSkill = 0
+AlwaysMaxWeaponSkill = 1
 
 #
 #    PvPToken.Enable
@@ -3353,7 +3353,7 @@ AlwaysMaxWeaponSkill = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-PvPToken.Enable = 0
+PvPToken.Enable = 1
 
 #
 #    PvPToken.MapAllowType
@@ -3363,20 +3363,20 @@ PvPToken.Enable = 0
 #                     2 - (FFA areas only like Gurubashi arena)
 #                     1 - (Battlegrounds and FFA areas)
 
-PvPToken.MapAllowType = 4
+PvPToken.MapAllowType = 3
 
 #
 #    PvPToken.ItemID
 #        Description: Item characters will receive after defeating another character if PvP Token
 #                     system is enabled.
-#        Default:     29434 - (Badge of justice)
+#        Default:     29434 - (Badge of justice), 20558 = Transmog Token, trocar pro novo token depois (? teste)
 
-PvPToken.ItemID = 29434
+PvPToken.ItemID = 20558
 
 #
 #    PvPToken.ItemCount
 #        Description: Number of tokens a character will receive.
-#        Default:     1
+#        Default:     1 - 1 ou 2 ?
 
 PvPToken.ItemCount = 1
 
@@ -3386,7 +3386,7 @@ PvPToken.ItemCount = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-NoResetTalentsCost = 0
+NoResetTalentsCost = 1
 
 #
 #    ToggleXP.Cost
@@ -3411,7 +3411,7 @@ Guild.AllowMultipleGuildMaster = 0
 #        Default:     0   (no tabs given for free)
 #                     1-6 (amount of tabs of the guild bank at guild creation)
 
-Guild.BankInitialTabs = 0
+Guild.BankInitialTabs = 1
 
 #
 #     Guild.BankTabCost0-5
@@ -3437,7 +3437,7 @@ Guild.BankTabCost5 = 50000000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-ShowKickInWorld = 0
+ShowKickInWorld = 1
 
 #
 #     ShowMuteInWorld
@@ -3455,7 +3455,7 @@ ShowMuteInWorld = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-ShowBanInWorld = 0
+ShowBanInWorld = 1
 
 #
 #     RecordUpdateTimeDiffInterval
@@ -3560,7 +3560,7 @@ StrictChannelNames = 0
 #      0 - Disable
 #
 
-Instance.SharedNormalHeroicId = 1
+Instance.SharedNormalHeroicId = 0
 
 #
 #     Instance.ResetTimeRelativeTimestamp
@@ -3595,7 +3595,7 @@ TeleportTimeoutFar = 45
 #                     Eg. if max achieved MMR for a character was 2400, with default setting (MaxAllowedMMRDrop = 500) the character can't get below 1900 MMR no matter what.
 #        Default:     500
 
-MaxAllowedMMRDrop = 500
+MaxAllowedMMRDrop = 750
 
 #
 #     EnableLoginAfterDC
@@ -3689,7 +3689,7 @@ DungeonFinder.OptionsMask = 5
 #                 1 - Enable
 #
 
-LFG.Location.All = 0
+LFG.Location.All = 1
 
 #
 #    DungeonAccessRequirements.PrintMode
@@ -3799,7 +3799,7 @@ LFG.KickPreventionTimer = 900
 #        Default:     0 - Disabled
 #                     1 - Enabled
 
-EnablePlayerSettings = 0
+EnablePlayerSettings = 1
 
 #
 #     JoinBGAndLFG.Enable
@@ -3807,7 +3807,7 @@ EnablePlayerSettings = 0
 #        Default:     0 - Disabled
 #                     1 - Enabled
 
-JoinBGAndLFG.Enable = 0
+JoinBGAndLFG.Enable = 1
 
 #
 #   LeaveGroupOnLogout.Enabled
@@ -3816,7 +3816,7 @@ JoinBGAndLFG.Enable = 0
 #
 #        Default:     1 - (Enabled)
 
-LeaveGroupOnLogout.Enabled = 1
+LeaveGroupOnLogout.Enabled = 0
 
 #
 #   QuestPOI.Enabled
@@ -3831,9 +3831,9 @@ QuestPOI.Enabled = 1
 #        Description: Maximum amount of gold allowed on the character to perform a faction change.
 #        Default:     0 - Disabled
 #                     > 0 - Enabled (money in copper)
-#        Example:     If set to 10000, the maximum amount of money allowed on the character would be 1 gold.
+#        Example:     If set to 10000, the maximum amount of money allowed on the character would be 1 gold. - 2200000000 = 220k (214k é o limite)
 
-ChangeFaction.MaxMoney = 0
+ChangeFaction.MaxMoney = 2200000000
 
 #
 #     Pet.RankMod.Health
