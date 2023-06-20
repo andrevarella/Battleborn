@@ -4149,7 +4149,8 @@ void SpellMgr::LoadSpellInfoCorrections()
         17925, // Warlock - Death Coil (Rank 2)
         17926, // Warlock - Death Coil (Rank 3)
         27223, // Warlock - Death Coil (Rank 4)
-        47859, // Warlock - Death Coil (Rank 5)
+        // 47859, // Warlock - Death Coil (Rank 5)
+        31117, // Warlock - Dispel Unstable Affliction
         71838, // Drain Life - Bryntroll Normal
         71839  // Drain Life - Bryntroll Heroic
         }, [](SpellInfo* spellInfo)
