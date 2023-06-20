@@ -9067,6 +9067,9 @@ void Spell::TriggerGlobalCooldown()
             return;
     }
 
+    // Spells que reduzem o cast time (curse of tongues, mind numbing poison, fire breath etc)
+    // if (m_spellInfo->HasAura(SPELL_AURA_HASTE_SPELLS))
+
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
         if (m_caster->ToPlayer()->GetCommandStatus(CHEAT_COOLDOWN))
             return;
