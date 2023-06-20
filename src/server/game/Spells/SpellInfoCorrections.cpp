@@ -920,10 +920,11 @@ void SpellMgr::LoadSpellInfoCorrections()
     });
 
     // Piercing Howl e druid Demoralizing Roar e warr Demo Shout nao pode dar dodge ou miss 
-    ApplySpellFix({ 12323, 48560, 47437, 25203, 25202 }, [](SpellInfo* spellInfo)
+    ApplySpellFix({ 45334, 12323, 48560, 47437, 25203, 25202 }, [](SpellInfo* spellInfo)
     {
         spellInfo->AttributesEx |= SPELL_ATTR0_NO_ACTIVE_DEFENSE;
         spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
+        spellInfo->DmgClass = SPELL_DAMAGE_CLASS_MELEE;
     });
 
     // Tidal Force
