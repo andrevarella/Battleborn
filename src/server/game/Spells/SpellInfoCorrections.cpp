@@ -651,7 +651,7 @@ void SpellMgr::LoadSpellInfoCorrections()
     // Hunter's Mark
     ApplySpellFix({ 1130, 14323, 14324, 14325, 53338 }, [](SpellInfo* spellInfo)
     {
-        spellInfo->DmgClass = SPELL_DAMAGE_CLASS_MAGIC;
+        spellInfo->DmgClass = SPELL_DAMAGE_CLASS_MELEE;
         spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
     });
 
