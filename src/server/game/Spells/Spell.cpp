@@ -8256,6 +8256,31 @@ bool Spell::IsAutoActionResetSpell() const
         return false;
     }
 
+    // druid - spells melee + wrath e starfire ligam auto attack, todas as outras n (cyclone castado etc) - 48461 = Wrath, 48465 = Starfire
+    if (m_spellInfo->SpellFamilyName == SPELLFAMILY_DRUID && m_spellInfo->Id != 48461 && m_spellInfo->Id != 48465 && m_spellInfo->DmgClass != SPELL_DAMAGE_CLASS_MELEE)
+    {
+        return false;
+    }
+
+    // shaman - soh lightning bolt reseta melee swing/auto attack timer (!= significa diferente)
+    if (m_spellInfo->SpellFamilyName == SPELLFAMILY_SHAMAN && m_spellInfo->Id != 49238 && m_spellInfo->Id != 49237)
+    {
+        return false;
+    }
+
+    // pala - soh holy light reseta melee swing timer
+    if (m_spellInfo->SpellFamilyName == SPELLFAMILY_PALADIN && m_spellInfo->SpellIconID != 70)
+    {
+        return false;
+    }
+
+    // warlock - todas spells, menos incinerate, sbolt, soulfire e chaos bolt  
+    if (m_spellInfo->SpellFamilyName == SPELLFAMILY_WARLOCK && m_spellInfo->SpellIconID != 2128 && m_spellInfo->SpellIconID != 213
+        && m_spellInfo->SpellIconID != 184 && m_spellInfo->SpellIconID != 3178)
+    {
+        return false;
+    }
+
     return true;
 }
 
