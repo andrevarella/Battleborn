@@ -3877,6 +3877,12 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx3 |= SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD;
     });
 
+    // Cat Form reset swing timer -- add no patch tbm (acho q n funciona mas w/e)
+    ApplySpellFix({ 768 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx7 |= SPELL_ATTR7_RESET_SWING_TIMER_AT_SPELL_START;
+    });
+
     ApplySpellFix({
         71646,  // Item - Bauble of True Blood 10m
         71607,  // Item - Bauble of True Blood 25m
