@@ -919,6 +919,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_1].MiscValue = SPELLMOD_DAMAGE;
     });
 
+    // Piercing Howl e druid Demoralizing Roar e warr Demo Shout nao pode dar dodge ou miss 
+    ApplySpellFix({ 12323, 48560, 47437, 25203, 25202 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx |= SPELL_ATTR0_NO_ACTIVE_DEFENSE;
+        spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
+    });
+
     // Tidal Force
     ApplySpellFix({ 55166, 55198 }, [](SpellInfo* spellInfo)
     {
