@@ -4018,6 +4018,121 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx4 |= SPELL_ATTR4_NO_CAST_LOG;
     });
 
+    // Sem Delay Auto Attack ao castar essas spells (nao ativa o timer de auto attack)
+    ApplySpellFix({
+    48463, // Moonfire - 
+    33786, // Cyc
+    18658, // hibernate
+    53308, // Roots
+    53312, // natures grasp
+    22812, // Bark
+    48378, // healing touch
+    48443, // Regrowth
+    48441, // rejuv
+    48451, // lifebloom
+    50464, // nourish
+    48469, // mark of the wild
+    53307, // thorns 
+    8921,  // MF rank1
+    2893,  // abolish poison
+    48470, // gift of the wild
+    48477, // rebirth
+    768,   // cat form
+    9634,  // bear
+    783,   // travel
+    24858, // moonkin
+    48468, // insect swarm
+    33831, // force of nature
+    53201, // starfall
+    61384, // typhoon 
+    53251, // wild growth
+    61384, // typhoon
+    51533, // Feral Spirit
+    8012,  // purge
+    49273, // healing wave
+    49238, // lightning bolt
+    49271, // chain lightning
+    59159, // thunderstorm
+    61301, // riptide
+    49236, // frost shock
+    51514, // hex
+    59547, // gift of the naaru 
+    2782,  // remove curse Druid
+    19506, // trueshot aura
+    5384,  // feign death
+    48068,  // renew
+    48173,  // desperate prayer
+    48078,  // holy nova
+    552,   // abolish
+    48066, // power word shield
+    586,   // fade
+    48158, // SWD
+    48125, // SWPain
+    48300, // devouring pain
+    988,   // dispel magic
+    6346,  // fear ward
+    48168, // inner fire
+    33206, // Pain Supp
+    53007, // penance
+    48089, // circle of healing 
+    45529, // blood tap
+    59514, // haunt
+    17928, // howl
+    6215,  // fear
+    57946, // life tap
+    1455,  // life tap rank 2
+    47843, // UA
+    47847, // shadowfury
+    47241, // Metamorphosis
+    47813, // corruption
+    47864, // agony
+    18223, // exhaustion
+    47865, // elements
+    11719, // tongues
+    47860, // coil
+    47857, // drain life
+    5138,  // drain mana
+    47855, // drain soul 
+    47809, // sbolt
+    61290, // shadowflame
+    47815, // searing pain
+    17847, // banish
+    47889, // demon armor
+    47893, // fel armor
+    45529, // detect inv
+    45529, // shadow ward
+    691,   // summon felhunter
+    48785, // flash of light
+    48801, // exorcism
+    53563, // beacon of light 
+    1953,  // blink
+    44781, // arcane barrage
+    31589, // slow
+    30449, // spellsteal
+    12826, // poly
+    2139,  // cs
+    130,   // slow fall
+    12043, // POM
+    2139,  // cs
+    42921,  // arcane explosion
+    42873,  // fire blast
+    42917,  // frost nova
+    42931,  // cone of cold
+    12472,  // icy veins
+    31687,  // summon water ele
+    42914, // ice lance
+    43020, // mana shield
+    55360, // living bomb
+    42950, // dragons breath
+    475, // dispel curse
+    59542, // racial draenei 
+    20594, // stoneform
+    58984  // shadowmeld - add outras raciais purge etc
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx6 |= SPELL_ATTR6_DOESNT_RESET_SWING_TIMER_IF_INSTANT;
+    });
+
     ApplySpellFix({
         71646,  // Item - Bauble of True Blood 10m
         71607,  // Item - Bauble of True Blood 25m
