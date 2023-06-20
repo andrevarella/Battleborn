@@ -674,6 +674,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx4 |= SPELL_ATTR4_ALLOW_ENETRING_ARENA;
     });
 
+    // Ultrasafe Toshley Station - reseta cd ao entrar em arena 
+    ApplySpellFix({ 36941, 36897 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx4 |= SPELL_ATTR4_ALLOW_ENETRING_ARENA;
+        spellInfo->AttributesEx4 |= SPELL_ATTR4_IGNORE_DEFAULT_ARENA_RESTRICTIONS;
+    });
+
     // Chimera Shot - Serpent trigger
     ApplySpellFix({ 53353 }, [](SpellInfo* spellInfo)
     {
