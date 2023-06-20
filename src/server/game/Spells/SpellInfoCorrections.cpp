@@ -4350,7 +4350,7 @@ void SpellMgr::LoadSpellInfoCorrections()
     // Flare activation speed
     ApplySpellFix({ 1543 }, [](SpellInfo* spellInfo)
     {
-        spellInfo->Speed = 0.0f;
+        spellInfo->Speed = 10.0f;
     });
 
     // Light's Beacon
