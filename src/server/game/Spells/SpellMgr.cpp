@@ -78,6 +78,15 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 // Gnaw
                 else if (spellproto->Id == 47481)
                     return DIMINISHING_CONTROLLED_STUN;
+                // Mortal Wound (Felguard lock demo) - Limit to 10 seconds in PvP
+                else if (spellproto->Id == 25646)
+                    return DIMINISHING_LIMITONLY;
+                // Snake Trap Mind Numbing Poison (12s > 10s in PvP)
+                else if (spellproto->Id == 25810)
+                    return DIMINISHING_LIMITONLY;
+                // Snake Trap Crippling Poison (12s > 10s in PvP)
+                else if (spellproto->Id == 30981)
+                    return DIMINISHING_LIMITONLY;
                 // Screams of the Past
                 else if (spellproto->Id == 7074)
                     return DIMINISHING_NONE;
@@ -97,6 +106,9 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 // Deep Freeze
                 else if (spellproto->SpellIconID == 2939 && spellproto->SpellVisual[0] == 9963)
                     return DIMINISHING_CONTROLLED_STUN;
+                // Slow - limit duration to 10s in PvP .
+                else if (spellproto->Id == 31589)
+                    return DIMINISHING_LIMITONLY;
                 // Frost Nova / Freeze (Water Elemental)
                 else if (spellproto->SpellIconID == 193)
                     return DIMINISHING_CONTROLLED_ROOT;
@@ -123,6 +135,9 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 // Curses/etc
                 if ((spellproto->SpellFamilyFlags[0] & 0x80000000) || (spellproto->SpellFamilyFlags[1] & 0x200))
                     return DIMINISHING_LIMITONLY;
+                // Unstable Affliction Silence (sem DR)
+                else if (spellproto->Id == 31117)
+                    return DIMINISHING_NONE;
                 // Seduction
                 else if (spellproto->SpellFamilyFlags[1] & 0x10000000)
                     return DIMINISHING_FEAR;
@@ -156,6 +171,9 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 // Blind
                 else if (spellproto->SpellFamilyFlags[0] & 0x1000000)
                     return DIMINISHING_FEAR;
+                // Wound Poison - Limit to 10 seconds in PvP 
+                else if (spellproto->SpellIconID == 1496)
+                    return DIMINISHING_LIMITONLY;
                 // Cheap Shot
                 else if (spellproto->SpellFamilyFlags[0] & 0x400)
                     return DIMINISHING_OPENING_STUN;
@@ -3257,7 +3275,6 @@ void SpellMgr::LoadSpellInfoCustomAttributes()
             case 45150: // Meteor Slash
             case 64688: // Sonic Screech
             case 72373: // Shared Suffering
-            case 71904: // Chaos Bane
             case 70492: // Ooze Eruption
             case 72505: // Ooze Eruption
             case 72624: // Ooze Eruption
@@ -3268,6 +3285,12 @@ void SpellMgr::LoadSpellInfoCustomAttributes()
             case 66765: // Meteor Fists
             case 67333: // Meteor Fists
                 spellInfo->AttributesCu |= SPELL_ATTR0_CU_SHARE_DAMAGE;
+                spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
+                break;
+            case 71904: // Chaos Bane
+                spellInfo->AttributesCu |= SPELL_ATTR0_CU_SHARE_DAMAGE;
+                spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
+                spellInfo->AttributesCu |= SPELL_ATTR0_CU_DONT_BREAK_STEALTH;
                 break;
             case 18500: // Wing Buffet
             case 33086: // Wild Bite
