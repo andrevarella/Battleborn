@@ -5949,7 +5949,7 @@ SpellCastResult Spell::CheckCast(bool strict)
     }
     // Spell casted only on battleground
     if (m_spellInfo->HasAttribute(SPELL_ATTR3_ONLY_BATTLEGROUNDS) &&  m_caster->GetTypeId() == TYPEID_PLAYER)
-        if (!m_caster->ToPlayer()->InBattleground())
+        if (!m_caster->ToPlayer()->InBattleground() && !m_caster->ToPlayer()->InBattleground())
             return SPELL_FAILED_ONLY_BATTLEGROUNDS;
 
     // do not allow spells to be cast in arenas
@@ -6202,10 +6202,28 @@ SpellCastResult Spell::CheckCast(bool strict)
                     if (m_caster->HasUnitState(UNIT_STATE_ROOT))
                     {
                         // Exception for Master's Call
-                        if (m_spellInfo->Id != 54216)
+                        if (m_spellInfo->Id == 54216)
                         {
-                            return SPELL_FAILED_ROOTED;
+                            return SPELL_CAST_OK;
                         }
+
+                        // Skull Bash - castavel sob roots caso esteja a 1.25 yard do target (melee range)
+                        if (m_caster->GetTypeId() == TYPEID_PLAYER && m_spellInfo->Id == 83029)
+                        {
+                            if (Unit* target = m_targets.GetUnitTarget())
+                            {
+                                if (m_caster->GetDistance(target) < 1.25f)
+                                {
+                                    return SPELL_CAST_OK;
+                                }
+                                else
+                                {
+                                    return SPELL_FAILED_OUT_OF_RANGE;
+                                }
+                            }
+                        }
+
+                        return SPELL_FAILED_ROOTED;
                     }
                     if (m_caster->GetTypeId() == TYPEID_PLAYER)
                         if (Unit* target = m_targets.GetUnitTarget())
