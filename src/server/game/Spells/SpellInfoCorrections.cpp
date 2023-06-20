@@ -1301,6 +1301,28 @@ void SpellMgr::LoadSpellInfoCorrections()
     });
 
     ApplySpellFix({
+        48266, // Blood presen -- add o prevention type none no patch.dbc nessas spells tambem
+        48266, // Blood presen 
+        48263, // frost presence
+        48265, // uh presence
+        45529, // blood tap
+        20594, // stoneform
+        26297, // berserking
+        20572, // blood fury
+        20589, // escape artist
+        22842, // frenzied regen
+        52610, // savage roar
+        871,   // shield wall
+        71,    // def stance
+        2458,  // berserker stance
+        2457,  // battle stance
+        11305  // Sprint
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->PreventionType = SPELL_PREVENTION_TYPE_NONE;
+    });
+
+    ApplySpellFix({
         770,    // Faerie Fire
         16857   // Faerie Fire (Feral)
         }, [](SpellInfo* spellInfo)
