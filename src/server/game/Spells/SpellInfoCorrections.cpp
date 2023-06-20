@@ -3058,6 +3058,24 @@ void SpellMgr::LoadSpellInfoCorrections()
     });
 
     ApplySpellFix({
+        69832, // Unstable Ooze Explosion
+        69833, // Unstable Ooze Explosion
+        69839, // Unstable Ooze Explosion
+        71209, // Unstable Ooze Explosion
+        73029, // Unstable Ooze Explosion
+        73030, // Unstable Ooze Explosion
+        69832, // Unstable Ooze Explosion
+        69833, // Unstable Ooze Explosion
+        69839, // Unstable Ooze Explosion
+        71209, // Unstable Ooze Explosion
+        73029, // Unstable Ooze Explosion
+        73030  // Unstable Ooze Explosion
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
+    });
+
+    ApplySpellFix({
         71621,  // Create Concoction (Professor Putricide)
         72850,
         72851,
