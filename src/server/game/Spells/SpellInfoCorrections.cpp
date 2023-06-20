@@ -4269,6 +4269,17 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CHANGE_MAP;
     });
 
+    // Arena Dampening (-10% heal) (74410)
+    // Dampening/Dementia depois de 8m (83026)
+    // Dampening/Dementia a cada 8 seg (83027)
+    // Dementia +1% Dmg/Heal/stack (41406)
+    // Arena Prep Haste (83025)
+    // Battleground Prep Haste (83008)
+    ApplySpellFix({ 74410, 41406, 83026, 83027, 83025, 83008 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CHANGE_MAP;
+    });
+
     // Improved Blessing Protection (Nefarian Class Call)
     ApplySpellFix({ 23415 }, [](SpellInfo* spellInfo)
     {
