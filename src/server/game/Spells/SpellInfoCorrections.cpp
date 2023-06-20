@@ -4171,8 +4171,8 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_1].TargetB = SpellImplicitTargetInfo();
     });
 
-    // Savory Deviate Delight (transformations), allow to mount while transformed
-    ApplySpellFix({ 8219, 8220, 8221, 8222 }, [](SpellInfo* spellInfo)
+    // Savory Deviate Delight (transformations), allow to mount while transformed + item de transformar em caveira de tanaris
+    ApplySpellFix({ 8219, 8220, 8221, 8222, 16591 }, [](SpellInfo* spellInfo)
     {
         spellInfo->Attributes &= ~SPELL_ATTR0_NO_IMMUNITIES;
     });
