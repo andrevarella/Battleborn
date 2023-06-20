@@ -401,7 +401,8 @@ void SpellMgr::LoadSpellInfoCorrections()
 
     ApplySpellFix({
         8145,   // Tremor Totem (instant pulse)
-        6474    // Earthbind Totem (instant pulse)
+        6474,    // Earthbind Totem (instant pulse)
+        58736  // Magma Totem (rank 7) (instant pulse) 
         }, [](SpellInfo* spellInfo)
     {
         spellInfo->AttributesEx5 |= SPELL_ATTR5_EXTRA_INITIAL_PERIOD;
