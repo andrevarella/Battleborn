@@ -1083,7 +1083,7 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_0].ApplyAuraName = SPELL_AURA_MOD_CHARM;
     });
 
-    // Combustion, make this passive
+    // Combustion, make this passive -- ta certo isso? testar no classic
     ApplySpellFix({ 11129 }, [](SpellInfo* spellInfo)
     {
         spellInfo->Dispel = DISPEL_NONE;
