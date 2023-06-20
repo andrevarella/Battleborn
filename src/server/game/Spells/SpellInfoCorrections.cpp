@@ -3902,6 +3902,105 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
     });
 
+    // Spells que nao dao resist
+    ApplySpellFix({
+        64044, // psychic Horror
+        15487, // Silence 
+        605,   // Mind Control
+        32996, // Shadow word Death r2
+        48157, // Shadow word Death r3
+        48158, // Shadow word Death r4
+        8012,  // Purge
+        51514, // Hex
+        58799, // Frostbrand Weapon 
+        59159, // Thunderstorm
+        25457, // Flame Shock
+        49232, // Flame Shock
+        49233, // Flame Shock R9
+        25464, // Frost Shock r5 
+        49235, // Frost Shock r6
+        49236, // Frost Shock r7
+        60103, // Lava Lash
+        31589, // Slow (mage arcane) 
+        12826, // Polymorph
+        44572, // Deep Freeze
+        42945, // Blast Wave 
+        42950, // Dragon Breath
+        48819, // Consec 
+        48806, // Hammer of Wrath
+        25742, // Seal of Righteoussness Horda e Ally
+        20187, // Judg of righteousness Horda e Ally 
+        31803, // Seal of Vengeance DoT (ally)
+        42463, // Seal of Vengeance 5 Stack damage
+        31804, // Judgement of Vengeance
+        53739, // Seal of Corruption (horda) 5 stack damage
+        53733, // Judgement of Corruption
+        53742, // Seal of Corruption DoT
+        61411, // Shield of Righteousness
+        53595, // Hammer (prot)
+        48827, // Avenger's shield
+        48817, // Holy Wrath
+        57970, // Deadly Poison
+        57981, // Anesthetic 
+        5760,  // Mind Numbing
+        57975, // Wound Poison
+        3409,  // Crippling
+        58180, // Infected Wounds r2
+        58181, // Infected Wounds r3
+        9853,  // Root R6 
+        26989, // R7
+        53308, // R8
+        53312, // N grasp
+        53313, // N Grasp Root
+        27009, // N Grasp r7
+        27010, // N grasp root dot
+        18658, // Hibernate 
+        16857, // FFF
+        60089, // FFF dmg
+        8921,  // Moonfire r1
+        26988, // Mf 12
+        48462, // Mf 13
+        48463, // Mf r14 
+        48467, // Hurricane
+        48466, // Hurricane 2
+        116,   // Frostbolt r1
+        205,   // Fb r2
+        6215,  // Fear wlock
+        17928, // Howl r2 
+        5484,  // Howl r1
+        47847, // Sfury
+        5138,  // Drain Mana
+        27220, // Drain Life
+        47857, // Drain Life
+        22703, // Inferno stun 
+        30546, // Sburn r8
+        47826, // Sburn r9
+        54053, // Shadowbite
+        19647, // Spell Lock
+        2139,  // Counterspell
+        27217, // Drain Soul  
+        47855, // Drain Mana
+        48011, // Devour Magic
+        27228, // Elements
+        47865, // Elements 2
+        47897, // Sflame
+        47960, // Sflame DoT  
+        11719, // Tongues
+        18223, // Exhaustion
+        27218, // Agony
+        47863, // Agony 2/3
+        47864, // Agony rank 3/3
+        47812, // Corruption rank 9/r10 
+        51209, // Hungering Cold
+        45524, // Chains of Ice
+        47528, // Mind Freeze
+        48806, // Strangulate 
+        71904  // Chaos Bane
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx4 |= SPELL_ATTR4_NO_CAST_LOG;
+    });
+
     ApplySpellFix({
         71646,  // Item - Bauble of True Blood 10m
         71607,  // Item - Bauble of True Blood 25m
