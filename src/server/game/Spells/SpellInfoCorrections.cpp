@@ -4001,6 +4001,23 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx4 |= SPELL_ATTR4_NO_CAST_LOG;
     });
 
+    // Spells que nao dao miss e resist (caso tenha os 2 atributos, faz ignorar cloak of shadows, entao colocar apenas spells n essenciais tipo taunt, banish, etc 
+    ApplySpellFix({
+        28730, // Arcane Torrent racial 
+        67485, // Taunt pala
+        18647, // Banish 
+        30910, // Curse of Doom rank 1
+        47867, // Curse of Doom rank 2
+        453,   // Mind Soothe 
+        10909, // Mind Vision 
+        57994, // Wind Shear
+        73778  // Ice Pulse 25h  
+        }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->AttributesEx3 |= SPELL_ATTR3_ALWAYS_HIT;
+        spellInfo->AttributesEx4 |= SPELL_ATTR4_NO_CAST_LOG;
+    });
+
     ApplySpellFix({
         71646,  // Item - Bauble of True Blood 10m
         71607,  // Item - Bauble of True Blood 25m
