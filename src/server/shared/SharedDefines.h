@@ -3513,6 +3513,7 @@ enum SpellFamilyNames
     SPELLFAMILY_POTION      = 13,
     // 14 - unused
     SPELLFAMILY_DEATHKNIGHT = 15,
+    SPELLFAMILY_CUSTOM      = 26,
     // 16 - unused
     SPELLFAMILY_PET         = 17
 };
