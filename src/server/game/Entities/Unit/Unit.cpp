@@ -7150,6 +7150,26 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                             RemoveAura(dummySpell->Id);
                             return false;
                         }
+                    // Custom Rend (glyph ou bonus set) spell - ao usar mortal strike, aumenta duração do rend em 3s
+                    case 83266:
+                    {
+                        if (!target)
+                            return false;
+                        // try to find spell Rend on the target
+                        if (AuraEffect const* aurEff = target->GetAuraEffect(SPELL_AURA_PERIODIC_DAMAGE, SPELLFAMILY_WARRIOR, 0x20, 0x0, 0x0, GetGUID()))
+                        {
+                            Aura* rend = aurEff->GetBase();
+                            // int32 extraTime = 3 * aurEff->GetAmplitude();
+                            int32 extraTime = 3000; // 3 segundos em milissegundos
+                            rend->SetMaxDuration(rend->GetMaxDuration() + extraTime);
+                            rend->SetDuration(rend->GetDuration() + extraTime);
+
+                            return true;
+                        }
+                        // if not found Rend
+                        return false;
+                    }
+                    break;
                 }
 
                 // Second Wind
