@@ -612,7 +612,8 @@ void PetAI::DoAttack(Unit* target, bool chase)
 
             if (_canMeleeAttack())
             {
-                float angle = combatRange == 0.f && target->GetTypeId() != TYPEID_PLAYER && !target->IsPet() ? float(M_PI) : 0.f;
+                //float angle = combatRange == 0.f && target->GetTypeId() != TYPEID_PLAYER && !target->IsPet() ? float(M_PI) : 0.f;
+                float angle = combatRange == 0.f ? float(M_PI) : 0.f;
                 float tolerance = combatRange == 0.f ? float(M_PI_4) : float(M_PI * 2);
                 me->GetMotionMaster()->MoveChase(target, ChaseRange(0.f, combatRange), ChaseAngle(angle, tolerance));
             }
