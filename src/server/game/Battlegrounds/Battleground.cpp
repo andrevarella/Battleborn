@@ -561,6 +561,8 @@ inline void Battleground::_ProcessJoin(uint32 diff)
 
                     player->RemoveAurasDueToSpell(SPELL_ARENA_PREPARATION);
                     player->ResetAllPowers();
+                    player->ResetCooldownsPortaArena(); // Reset CDs ao começar a arena
+
                     // remove auras with duration lower than 30s
                     Unit::AuraApplicationMap& auraMap = player->GetAppliedAuras();
                     for (Unit::AuraApplicationMap::iterator iter = auraMap.begin(); iter != auraMap.end();)
@@ -614,6 +616,7 @@ inline void Battleground::_ProcessJoin(uint32 diff)
             {
                 itr->second->RemoveAurasDueToSpell(SPELL_PREPARATION);
                 itr->second->ResetAllPowers();
+                itr->second->ResetCooldownsPortaArena(); // Reset Cooldowns ao abrir a porta de BG
             }
 
             // Announce BG starting

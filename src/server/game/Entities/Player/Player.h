@@ -1766,6 +1766,7 @@ public:
 
     void RemoveCategoryCooldown(uint32 cat);
     void RemoveArenaSpellCooldowns(bool removeActivePetCooldowns = false);
+    void ResetCooldownsPortaArena(bool removeActivePetCooldowns = false);
     void RemoveAllSpellCooldown();
     void _LoadSpellCooldowns(PreparedQueryResult result);
     void _SaveSpellCooldowns(CharacterDatabaseTransaction trans, bool logout);

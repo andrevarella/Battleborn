@@ -3518,6 +3518,48 @@ void Player::RemoveArenaSpellCooldowns(bool removeActivePetCooldowns)
         }
 }
 
+void Player::ResetCooldownsPortaArena(bool removeActivePetCooldowns)
+{
+    // remove cooldowns on spells that have < 10 min CD
+    uint32 infTime = GameTime::GetGameTimeMS().count() + infinityCooldownDelayCheck;
+    SpellCooldowns::iterator itr, next;
+    for (itr = m_spellCooldowns.begin(); itr != m_spellCooldowns.end(); itr = next)
+    {
+        next = itr;
+        ++next;
+        SpellInfo const* spellInfo = sSpellMgr->CheckSpellInfo(itr->first);
+        if (!spellInfo)
+        {
+            continue;
+        }
+
+        if (spellInfo->HasAttribute(SPELL_ATTR4_IGNORE_DEFAULT_ARENA_RESTRICTIONS))
+            RemoveSpellCooldown(itr->first, true);
+        else if (spellInfo->RecoveryTime < 10 * MINUTE * IN_MILLISECONDS && spellInfo->CategoryRecoveryTime < 10 * MINUTE * IN_MILLISECONDS && itr->second.end < infTime
+            && itr->second.maxduration < 10 * MINUTE * IN_MILLISECONDS && spellInfo->Id != 51533 // Exceçoes: Feral Spirit
+            && spellInfo->Id != 33831 // Force of Nature (pet balance)
+            && spellInfo->Id != 53312 // Nature's Grasp
+            && spellInfo->Id != 31687 // Summon Water Elemental
+            && spellInfo->Id != 55342 // Mirror Image
+            && spellInfo->Id != 66 // Invisibility
+            && spellInfo->Id != 6346 // Fear Ward
+            && spellInfo->SpellIconID != 32) // Ice Barrier
+            RemoveSpellCooldown(itr->first, true);
+    }
+
+    // pet cooldowns
+    if (removeActivePetCooldowns)
+        if (Pet* pet = GetPet())
+        {
+            // notify player
+            for (CreatureSpellCooldowns::const_iterator itr2 = pet->m_CreatureSpellCooldowns.begin(); itr2 != pet->m_CreatureSpellCooldowns.end(); ++itr2)
+                SendClearCooldown(itr2->first, pet);
+
+            // actually clear cooldowns
+            pet->m_CreatureSpellCooldowns.clear();
+        }
+}
+
 void Player::RemoveAllSpellCooldown()
 {
     uint32 infTime = GameTime::GetGameTimeMS().count() + infinityCooldownDelayCheck;
