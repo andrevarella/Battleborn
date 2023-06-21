@@ -1185,6 +1185,12 @@ void World::LoadConfigSettings(bool reload)
     _float_configs[CONFIG_ARENA_WIN_RATING_MODIFIER_2]              = sConfigMgr->GetOption<float>("Arena.ArenaWinRatingModifier2", 24.0f);
     _float_configs[CONFIG_ARENA_LOSE_RATING_MODIFIER]               = sConfigMgr->GetOption<float>("Arena.ArenaLoseRatingModifier", 24.0f);
     _float_configs[CONFIG_ARENA_MATCHMAKER_RATING_MODIFIER]         = sConfigMgr->GetOption<float>("Arena.ArenaMatchmakerRatingModifier", 24.0f);
+
+    _float_configs[CONFIG_ARENA_2V2_MULTIPLIER]                     = sConfigMgr->GetOption<float>("Arena.2v2.ArenaPointsMulti", 1.00f);
+    _float_configs[CONFIG_ARENA_3V3_MULTIPLIER]                     = sConfigMgr->GetOption<float>("Arena.3v3.ArenaPointsMulti", 1.00f);
+    _float_configs[CONFIG_ARENA_5V5_MULTIPLIER]                     = sConfigMgr->GetOption<float>("Arena.5v5.ArenaPointsMulti", 1.00f);
+    //_float_configs[CONFIG_SOLO_3V3_ARENAPOINTS_MULTI] = sConfigMgr->GetOption<float>("Solo.3v3.ArenaPointsMulti", 0.64f);
+
     _bool_configs[CONFIG_ARENA_QUEUE_ANNOUNCER_ENABLE]              = sConfigMgr->GetOption<bool>("Arena.QueueAnnouncer.Enable", false);
     _bool_configs[CONFIG_ARENA_QUEUE_ANNOUNCER_PLAYERONLY]          = sConfigMgr->GetOption<bool>("Arena.QueueAnnouncer.PlayerOnly", false);
 

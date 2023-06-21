@@ -656,6 +656,7 @@ uint32 ArenaTeam::GetPoints(uint32 memberRating)
 
     uint32 rating = memberRating + 150 < Stats.Rating ? memberRating : Stats.Rating;
 
+    // Calculo Blizzlike de 2009
     if (rating <= 1500)
     {
         if (sWorld->getIntConfig(CONFIG_ARENA_SEASON_ID) < 6)
@@ -671,10 +672,20 @@ uint32 ArenaTeam::GetPoints(uint32 memberRating)
         points *= 0.76f;
     else if (Type == ARENA_TEAM_3v3)
         points *= 0.88f;
+    // else if (Type == ARENA_TEAM_5v5)
+    //     points *= sWorld->getFloatConfig(CONFIG_SOLO_3V3_ARENAPOINTS_MULTI); // Futuro Multiply p Solo 3v3
 
     sScriptMgr->OnGetArenaPoints(this, points);
 
     points *= sWorld->getRate(RATE_ARENA_POINTS);
+
+    // Multiplicador de Arena Points por Bracket
+        if (Type == ARENA_TEAM_2v2)
+            points *= sWorld->getFloatConfig(CONFIG_ARENA_2V2_MULTIPLIER);
+        else if (Type == ARENA_TEAM_3v3)
+            points *= sWorld->getFloatConfig(CONFIG_ARENA_3V3_MULTIPLIER);
+        else
+            points *= sWorld->getFloatConfig(CONFIG_ARENA_5V5_MULTIPLIER);
 
     return (uint32) points;
 }
