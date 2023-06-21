@@ -10371,7 +10371,7 @@ bool Unit::Attack(Unit* victim, bool meleeAttack)
         // should not let player enter combat by right clicking target - doesn't helps
         SetInCombatWith(victim);
         if (victim->GetTypeId() == TYPEID_PLAYER)
-            victim->SetInCombatWith(this);
+            //victim->SetInCombatWith(this);
         AddThreat(victim, 0.0f);
 
         creature->SendAIReaction(AI_REACTION_HOSTILE);
