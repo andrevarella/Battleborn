@@ -4618,6 +4618,22 @@ class spell_gen_remove_impairing_auras : public SpellScript
     }
 };
 
+// 83089 (Holy Priest PW:S remove slow)
+class spell_gen_remove_slow_impairing_auras : public SpellScript
+{
+    PrepareSpellScript(spell_gen_remove_slow_impairing_auras);
+
+    void HandleScriptEffect(SpellEffIndex /* effIndex */)
+    {
+        GetHitUnit()->RemoveSlowImpairingAuras(true);
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_gen_remove_slow_impairing_auras::HandleScriptEffect, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+    }
+};
+
 enum AQSpells
 {
     SPELL_CONSUME_LEECH_AQ20      = 25373,
