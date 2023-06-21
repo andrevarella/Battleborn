@@ -139,7 +139,23 @@ enum BattlegroundSpells
     SPELL_RECENTLY_DROPPED_FLAG     = 42792,                // Recently Dropped Flag
     SPELL_AURA_PLAYER_INACTIVE      = 43681,                // Inactive
     SPELL_HONORABLE_DEFENDER_25Y    = 68652,                // +50% honor when standing at a capture point that you control, 25yards radius (added in 3.2)
-    SPELL_HONORABLE_DEFENDER_60Y    = 66157                 // +50% honor when standing at a capture point that you control, 60yards radius (added in 3.2), probably for 40+ player battlegrounds
+    SPELL_HONORABLE_DEFENDER_60Y    = 66157,                // +50% honor when standing at a capture point that you control, 60yards radius (added in 3.2), probably for 40+ player battlegrounds
+
+    SPELL_ARENA_PREP_HASTE          = 83025,                // Preparation Haste 70s, 500% Haste + 50.000 Mana Regen + No reagent cost
+    SPELL_ARENA_PREP_HASTEBG        = 83008,                // Preparation BG Haste 40s, 50% Haste
+    SPELL_ARENA_BLOODLUST           = 2825,                 // Bloodlust
+    SPELL_ARENA_HEROISM             = 32182,                // Heroism
+    SPELL_ARENA_FORBEARANCE         = 25771,                // forbearance
+    SPELL_ARENA_FORBEARANCESERVERSIDE = 61998,              // forbearance serverside
+    SPELL_ARENA_AVENGINGSERVERSIDE  = 61987,                // Avenging Wrath Serverside
+    SPELL_ARENA_SATEDALLY           = 57723,                // Debuff Heroism (Exhaustion)
+    SPELL_ARENA_SATED               = 57724,                // Debuff Bloodlust (Sated)
+    SPELL_ARENA_HIPOTHERMIA         = 41425,                // Mage Hipothermia
+    SPELL_ARENA_WEAKENEDSOUL        = 6788,                 // Priest Weakened Soul
+    SPELL_ARENA_DEMENTIA8MIN        = 83026,                // Dementia/Dampening custom apply depois de 8min
+    SPELL_ARENA_DEMENTIA8SINTERVAL  = 83027,                // Dementia aplica 41406 a cada 8 seg (1 stack +1% dmg/heal)
+    SPELL_ARENA_DEMENTIA1PORCENTO   = 41406,                // Dementia +1% dmg/heal
+    SPELL_ARENA_DAMPENING           = 74410                 // Dampening -10% heal blizzlike - mudei p 5%
 };
 
 enum BattlegroundReputations

@@ -563,6 +563,18 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                     player->ResetAllPowers();
                     player->ResetCooldownsPortaArena(); // Reset CDs ao começar a arena
 
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTE); // Preparation Arena Haste
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
+                    player->CastSpell(player, SPELL_ARENA_DEMENTIA8MIN);  // Dampening/Dementia depois de 8 min
+
                     // remove auras with duration lower than 30s
                     Unit::AuraApplicationMap& auraMap = player->GetAppliedAuras();
                     for (Unit::AuraApplicationMap::iterator iter = auraMap.begin(); iter != auraMap.end();)
@@ -617,6 +629,16 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                 itr->second->RemoveAurasDueToSpell(SPELL_PREPARATION);
                 itr->second->ResetAllPowers();
                 itr->second->ResetCooldownsPortaArena(); // Reset Cooldowns ao abrir a porta de BG
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);  // remover Sated debuff em bg ao abrir a porta
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTEBG);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
             }
 
             // Announce BG starting
@@ -1116,6 +1138,7 @@ void Battleground::AddPlayer(Player* player)
         if (GetStatus() == STATUS_WAIT_JOIN)                 // not started yet
         {
             player->CastSpell(player, SPELL_ARENA_PREPARATION, true);
+            player->CastSpell(player, SPELL_ARENA_PREP_HASTE, true);   // reduces all mana cost of spells. Adicionado ao entrar em arena.
             player->ResetAllPowers();
         }
     }
