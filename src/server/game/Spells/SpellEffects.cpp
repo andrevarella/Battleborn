@@ -487,10 +487,10 @@ void Spell::EffectSchoolDMG(SpellEffIndex effIndex)
                         damage += int32(CalculatePct(m_caster->GetComboPoints() * ap, 7));
                     }
                     */
-                    // Ferocious Bite com Glyph of Ferocious Bite (83276)
+                    // Ferocious Bite com Glyph of Ferocious Bite (83285)
                     if (m_caster->GetTypeId() == TYPEID_PLAYER && (m_spellInfo->SpellFamilyFlags[0] & 0x000800000) && m_spellInfo->SpellVisual[0] == 6587)
                     {
-                        if (m_caster->HasSpell(83276))
+                        if (m_caster->HasSpell(83285))
                         {
                         // remove the additional energy damage bonus and cost
                             float ap = m_caster->GetTotalAttackPowerValue(BASE_ATTACK);
