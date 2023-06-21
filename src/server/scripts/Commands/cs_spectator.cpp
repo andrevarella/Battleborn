@@ -36,14 +36,17 @@ public:
         {
             { "version",  HandleSpectatorVersionCommand,  SEC_PLAYER, Console::No },
             { "reset",    HandleSpectatorResetCommand,    SEC_PLAYER, Console::No },
-            { "spectate", HandleSpectatorSpectateCommand, SEC_PLAYER, Console::No },
-            { "watch",    HandleSpectatorWatchCommand,    SEC_PLAYER, Console::No },
+            { "player",   HandleSpectatorSpectateCommand, SEC_PLAYER, Console::No },
+            { "pov",      HandleSpectatorWatchCommand,    SEC_PLAYER, Console::No },
             { "leave",    HandleSpectatorLeaveCommand,    SEC_PLAYER, Console::No },
             { "",         HandleSpectatorCommand,         SEC_PLAYER, Console::No }
         };
         static ChatCommandTable commandTable =
         {
-            { "spect", spectatorCommandTable }
+            //{ "spect", spectatorCommandTable }
+            { "spectate", spectatorCommandTable },
+            { "sp",    HandleSpectatorSpectateCommand, SEC_PLAYER, Console::No },
+            { "leave", HandleSpectatorLeaveCommand,    SEC_PLAYER, Console::No }
         };
         return commandTable;
     }
@@ -52,8 +55,11 @@ public:
     {
         handler->PSendSysMessage("Incorrect syntax.");
         handler->PSendSysMessage("Command has subcommands:");
-        handler->PSendSysMessage("   spectate");
-        handler->PSendSysMessage("   leave");
+        //handler->PSendSysMessage("   spectate");
+        //handler->PSendSysMessage("   leave");
+        handler->PSendSysMessage("Spectate player <name>");
+        handler->PSendSysMessage("Spectate pov <name>");
+        handler->PSendSysMessage("Spectate leave");
         return true;
     }
 
