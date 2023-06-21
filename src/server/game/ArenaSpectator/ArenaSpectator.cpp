@@ -89,11 +89,11 @@ bool ArenaSpectator::HandleSpectatorSpectateCommand(ChatHandler* handler, std::s
     if (player->isUsingLfg())
         errors.push_back("Can't spectate while using LFG system.");
 
-    if (player->InBattlegroundQueue())
-        errors.push_back("Can't be queued for arena or bg.");
+    //if (player->InBattlegroundQueue())
+    //    errors.push_back("Can't be queued for arena or bg.");
 
-    if (player->GetGroup())
-        errors.push_back("Can't be in a group.");
+    //if (player->GetGroup())
+    //    errors.push_back("Can't be in a group.");
 
     if (player->HasUnitState(UNIT_STATE_ISOLATED))
         errors.push_back("Can't be isolated.");
@@ -104,14 +104,14 @@ bool ArenaSpectator::HandleSpectatorSpectateCommand(ChatHandler* handler, std::s
     if (player->IsInFlight())
         errors.push_back("Can't be in flight.");
 
-    if (player->IsMounted())
-        errors.push_back("Dismount before spectating.");
+    //if (player->IsMounted())
+    //    errors.push_back("Dismount before spectating.");
 
     if (!player->IsAlive())
         errors.push_back("Must be alive.");
 
-    if (!player->m_Controlled.empty())
-        errors.push_back("Can't be controlling creatures.");
+    //if (!player->m_Controlled.empty())
+    //    errors.push_back("Can't be controlling creatures.");
 
     const Unit::VisibleAuraMap* va = player->GetVisibleAuras();
     for (auto itr = va->begin(); itr != va->end(); ++itr)
