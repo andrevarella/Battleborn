@@ -1300,15 +1300,17 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                             if (!pInfo)
                             {
                                 SetCreateMana(28 + 30 * petlevel);
-                                SetCreateHealth(28 + 10 * petlevel);
+                                //SetCreateHealth(28 + 10 * petlevel);
+                                SetCreateHealth(4500);
                             }
 
                             AddAura(SPELL_PET_AVOIDANCE, this);
-                            AddAura(SPELL_HUNTER_PET_SCALING_04, this);
+                            /*AddAura(SPELL_HUNTER_PET_SCALING_04, this);
                             AddAura(SPELL_MAGE_PET_SCALING_01, this);
                             AddAura(SPELL_MAGE_PET_SCALING_02, this);
                             AddAura(SPELL_MAGE_PET_SCALING_03, this);
                             AddAura(SPELL_MAGE_PET_SCALING_04, this);
+                            */
                             break;
                         }
                     case NPC_EBON_GARGOYLE: // Ebon Gargoyle
