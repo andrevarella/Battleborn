@@ -1142,8 +1142,9 @@ void BattlegroundQueue::SendJoinMessageArenaQueue(Player* leader, GroupQueueInfo
         uint8 ArenaType = ginfo->ArenaType;
         uint32 ArenaTeamRating = ginfo->ArenaTeamRating;
         std::string TeamName = team->GetName();
+        uint32 ArenaMatchmakerRating = ginfo->ArenaMatchmakerRating;
 
-        sWorld->SendWorldTextOptional(LANG_ARENA_QUEUE_ANNOUNCE_WORLD_JOIN, ANNOUNCER_FLAG_DISABLE_ARENA_QUEUE, TeamName.c_str(), ArenaType, ArenaType, ArenaTeamRating);
+        sWorld->SendWorldTextOptional(LANG_ARENA_QUEUE_ANNOUNCE_WORLD_JOIN, ANNOUNCER_FLAG_DISABLE_ARENA_QUEUE, TeamName.c_str(), ArenaType, ArenaType, ArenaTeamRating, ArenaMatchmakerRating);
     }
 }
 
@@ -1165,10 +1166,11 @@ void BattlegroundQueue::SendExitMessageArenaQueue(GroupQueueInfo* ginfo)
     uint8 ArenaType = ginfo->ArenaType;
     uint32 ArenaTeamRating = ginfo->ArenaTeamRating;
     std::string TeamName = team->GetName();
+    uint32 ArenaMatchmakerRating = ginfo->ArenaMatchmakerRating;
 
     if (ArenaType && ginfo->Players.empty())
     {
-        sWorld->SendWorldTextOptional(LANG_ARENA_QUEUE_ANNOUNCE_WORLD_EXIT, ANNOUNCER_FLAG_DISABLE_ARENA_QUEUE, TeamName.c_str(), ArenaType, ArenaType, ArenaTeamRating);
+        sWorld->SendWorldTextOptional(LANG_ARENA_QUEUE_ANNOUNCE_WORLD_EXIT, ANNOUNCER_FLAG_DISABLE_ARENA_QUEUE, TeamName.c_str(), ArenaType, ArenaType, ArenaTeamRating, ArenaMatchmakerRating);
     }
 }
 
