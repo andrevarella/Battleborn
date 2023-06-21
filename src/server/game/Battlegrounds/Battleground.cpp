@@ -1266,6 +1266,11 @@ void Battleground::ReadyMarkerClicked(Player* p)
     readyMarkerClickedSet.insert(p->GetGUID());
     uint32 count = readyMarkerClickedSet.size();
     uint32 req = ArenaTeam::GetReqPlayersForType(GetArenaType());
+    if (p->GetSession()->GetSecurity() >= SEC_GAMEMASTER)
+    {
+        // GMs of level MODERATOR or higher count as 3 players
+        count += 2;
+    }
     p->GetSession()->SendNotification("You are marked as ready %u/%u", count, req);
     if (count == req)
     {
