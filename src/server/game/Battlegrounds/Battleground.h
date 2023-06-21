@@ -147,6 +147,7 @@ enum BattlegroundSpells
     SPELL_ARENA_HEROISM             = 32182,                // Heroism
     SPELL_ARENA_FORBEARANCE         = 25771,                // forbearance
     SPELL_ARENA_FORBEARANCESERVERSIDE = 61998,              // forbearance serverside
+    SPELL_ARENA_AVENGINGFORBCUSTOM  = 79501,                // Avenging Wrath Custom (30s)
     SPELL_ARENA_AVENGINGSERVERSIDE  = 61987,                // Avenging Wrath Serverside
     SPELL_ARENA_SATEDALLY           = 57723,                // Debuff Heroism (Exhaustion)
     SPELL_ARENA_SATED               = 57724,                // Debuff Bloodlust (Sated)

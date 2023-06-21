@@ -573,6 +573,7 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                     player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
                     player->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
                     player->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
                     player->CastSpell(player, SPELL_ARENA_DEMENTIA8MIN);  // Dampening/Dementia depois de 8 min
 
                     // remove auras with duration lower than 30s
@@ -639,6 +640,7 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                 itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
                 itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
                 itr->second->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
+                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
             }
 
             // Announce BG starting
