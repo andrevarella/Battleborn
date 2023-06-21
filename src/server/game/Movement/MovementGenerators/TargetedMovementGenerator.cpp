@@ -307,10 +307,10 @@ static Optional<float> GetVelocity(Unit* owner, Unit* target, G3D::Vector3 const
 
         if (playerPet)
         {
-            float distance = owner->GetDistance2d(dest.x, dest.y) - (*speed / 2.f);
+            float distance = owner->GetDistance2d(dest.x, dest.y) - (*speed / 0.11f);
             if (distance > 0.f)
             {
-                float multiplier = 1.f + (distance / 10.f);
+                float multiplier = 0.45f + (distance / 20.f);
                 *speed *= multiplier;
             }
             else
@@ -322,7 +322,7 @@ static Optional<float> GetVelocity(Unit* owner, Unit* target, G3D::Vector3 const
                     case MOVE_FLIGHT_BACK:
                         break;
                     default:
-                        *speed *= 0.9f;
+                        *speed *= 0.975f;
                         break;
                 }
             }
