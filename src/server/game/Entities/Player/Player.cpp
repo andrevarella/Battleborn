@@ -11742,11 +11742,15 @@ void Player::ApplyEquipCooldown(Item* pItem)
         if (!spellData.SpellId)
             continue;
 
+        // exception for Shadowmourne stacks
+        if (spellData.SpellId == 71903)
+            continue;
+
         // xinef: apply hidden cooldown for procs
         if (spellData.SpellTrigger == ITEM_SPELLTRIGGER_ON_EQUIP)
         {
             // xinef: uint32(-1) special marker for proc cooldowns
-            AddSpellCooldown(spellData.SpellId, uint32(-1), 30 * IN_MILLISECONDS);
+            AddSpellCooldown(spellData.SpellId, uint32(-1), 15 * IN_MILLISECONDS);
             continue;
         }
 
@@ -11768,7 +11772,7 @@ void Player::ApplyEquipCooldown(Item* pItem)
         if (spellInfo && spellInfo->HasAttribute(SPELL_ATTR0_NOT_IN_COMBAT_ONLY_PEACEFUL))
             continue;
 
-        AddSpellCooldown(spellData.SpellId, pItem->GetEntry(), 30 * IN_MILLISECONDS, true, true);
+        AddSpellCooldown(spellData.SpellId, pItem->GetEntry(), 15 * IN_MILLISECONDS, true, true);
 
         WorldPacket data(SMSG_ITEM_COOLDOWN, 12);
         data << pItem->GetGUID();
