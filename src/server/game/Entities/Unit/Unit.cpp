@@ -19646,6 +19646,59 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                                 return 8571;
                         }
                 }
+                // Based on Skin color (Custom Troll Druid Forms)
+                else if (getRace() == RACE_TROLL)
+                {
+                    uint8 skinColor = GetByteValue(PLAYER_BYTES, 0);
+                    // Male
+                    if (getGender() == GENDER_MALE)
+                    {
+                        switch (skinColor)
+                        {
+                        case 12: // White
+                        case 13:
+                        case 14:
+                        case 18: // Completly White
+                            return 50591;
+                        case 9: // Light Brown (white)
+                        case 10:
+                        case 11:
+                            return 50594;
+                        case 6: // Brown (
+                        case 7:
+                        case 8:
+                            return 50592;
+                        case 0: // Dark
+                        case 1:
+                        case 2:
+                        case 3: // Dark Grey (red actually)
+                        case 4:
+                        case 5:
+                            return 50593;
+                        default: // original - Grey
+                            return 50595;
+                        }
+                    }
+                    // Female
+                    else switch (skinColor)
+                    {
+                    case 10: // White
+                        return 50591;
+                    case 6: // Light Brown
+                    case 7:
+                        return 50594;
+                    case 4: // Brown
+                    case 5:
+                        return 50592;
+                    case 0: // Dark
+                    case 1:
+                    case 2:
+                    case 3:
+                        return 50592;
+                    default: // original - Grey
+                        return 50593;
+                    }
+                }
                 else if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 892;
                 else
@@ -19725,17 +19778,80 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                                 return 2289;
                         }
                 }
+                // Based on Skin color (Troll Druid Bear Forms)
+                else if (getRace() == RACE_TROLL)
+                {
+                    uint8 skinColor = GetByteValue(PLAYER_BYTES, 0);
+                    // Male
+                    if (getGender() == GENDER_MALE)
+                    {
+                        switch (skinColor)
+                        {
+                        case 0: // Dark (Black)
+                        case 1:
+                        case 2:
+                            return 50582;
+                        case 3: // White
+                        case 4:
+                        case 5:
+                        case 12:
+                        case 13:
+                        case 14:
+                            return 50581;
+                        case 9: // Light Brown/Grey
+                        case 10:
+                        case 11:
+                        case 15:
+                        case 16:
+                        case 17:
+                            return 50580;
+                        case 18: // Completly White
+                            return 50584;
+                        default: // original - Brown
+                            return 50583;
+                        }
+                    }
+                    // Female
+                    else switch (skinColor)
+                    {
+                    case 0: // Dark (Black)
+                    case 1:
+                        return 50582;
+                    case 2: // White
+                    case 3:
+                        return 50581;
+                    case 6: // Light Brown/Grey
+                    case 7:
+                    case 8:
+                    case 9:
+                        return 50580;
+                    case 10: // Completly White
+                        return 50584;
+                    default: // original - Brown
+                        return 50583;
+                    }
+                }
                 else if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 2281;
                 else
                     return 2289;
+            case FORM_MOONKIN:
+                if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
+                    return 15374;
+                if (getRace() == RACE_TROLL)
+                    return 50590;
+                return 15375;
             case FORM_FLIGHT:
                 if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 20857;
+                if (getRace() == RACE_TROLL)
+                    return 50601;
                 return 20872;
             case FORM_FLIGHT_EPIC:
                 if (Player::TeamIdForRace(getRace()) == TEAM_ALLIANCE)
                     return 21243;
+                if (getRace() == RACE_TROLL)
+                    return 50601;
                 return 21244;
             default:
                 break;
