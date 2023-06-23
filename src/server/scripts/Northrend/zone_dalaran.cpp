@@ -118,7 +118,8 @@ enum spells
     // Sewers Warrior Spells
     SPELL_WARRIOR_BATTLESHOUT       = 9128,
     SPELL_WARRIOR_DISARM            = 6713,
-    SPELL_WARRIOR_SHOUT             = 19134,
+    //SPELL_WARRIOR_SHOUT             = 19134, // Fear faz os mobs ficarem caindo em baixo da arena
+    SPELL_WARRIOR_SHOUT             = 69652,
     SPELL_WARRIOR_HAMSTRING         = 9080,
 
     // Sewers Mage Spells
