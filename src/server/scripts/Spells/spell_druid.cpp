@@ -1129,7 +1129,7 @@ class spell_dru_berserk : public SpellScript
         if (caster->GetTypeId() == TYPEID_PLAYER)
         {
             // Remove tiger fury / mangle(bear)
-            const uint32 TigerFury[6] = { 5217, 6793, 9845, 9846, 50212, 50213 };
+            const uint32 TigerFury[6] = { 5217, 6793, 9845, 9846 }; // 50212, 50213 (tiger fury ultimos ranks)
             const uint32 DireMaul[6] = { 33878, 33986, 33987, 48563, 48564 };
 
             // remove aura
