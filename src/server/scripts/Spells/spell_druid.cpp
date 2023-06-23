@@ -201,7 +201,7 @@ class spell_dru_omen_of_clarity : public AuraScript
             return true;
         }
 
-        // Prevent passive spells to proc. (I.e shapeshift passives & passive talents)
+        /*/ Prevent passive spells to proc. (I.e shapeshift passives & passive talents)
         if (spellInfo->IsPassive())
         {
             return false;
@@ -236,7 +236,37 @@ class spell_dru_omen_of_clarity : public AuraScript
             return false;
         }
 
-        return true;
+        return true;*/
+
+        return spellInfo->SpellFamilyName == SPELLFAMILY_DRUID && spellInfo->Id != 5419 && spellInfo->Id != 21178 && spellInfo->Id != 9635 && // só proca com spells de druid + Travel Passive, Bear Passive, Dire Bear Passive 
+            spellInfo->Id != 5421 && spellInfo->Id != 23218 && spellInfo->Id != 17002 &&                                                   // aquatic passive, Feral 15% Move Speed, Feral Swiftness R1
+            spellInfo->Id != 24866 && spellInfo->Id != 24864 && spellInfo->Id != 24867 &&                                                  // feral swiftness r2, feral swiftness 4% dodge, feral swiftness 2% dodge
+            spellInfo->Id != 24932 && spellInfo->Id != 68285 && spellInfo->Id != 34299 &&                                                  // Leader otPack Buff, LotP mana proc, LotP HP proc party
+            spellInfo->Id != 48411 && spellInfo->Id != 48420 && spellInfo->Id != 48412 &&                                                  // master shapeshifter r1, master shapeshifter buff, master shapeshifter r2
+            spellInfo->Id != 33872 && spellInfo->Id != 47179 && spellInfo->Id != 33873 &&                                                  // Nurturting talent r1, nurturning aura r1, nurturing talent r2
+            spellInfo->Id != 47180 && spellInfo->Id != 17007 && spellInfo->Id != 34297 &&                                                  // NUrturning hidden aura r2, LotPack hidden, imp LotP
+            spellInfo->Id != 34300 && spellInfo->Id != 3025 && spellInfo->Id != 5225 &&                                                    // imp LotP r2, cat passive, track human
+            spellInfo->Id != 62078 && spellInfo->Id != 24907 && spellInfo->Id != 34123 &&                                                  // Swipe Cat, Moonkin Aura(5% crit), Tree of Life AoE
+            spellInfo->Id != 48629 && spellInfo->Id != 58179 && spellInfo->Id != 58180 &&                                                  // Cat Passive e Inf Wounds r1 e r2
+            spellInfo->Id != 58181 && spellInfo->Id != 48485 &&                                                                            // Infected Wounds r3
+            spellInfo->Id != 65139 && spellInfo->Id != 16954 && spellInfo->Id != 16947 &&                                                  // Tree Form, Blood Frenzy (Combo), Feral Instinct r1
+            spellInfo->Id != 16948 && spellInfo->Id != 16949 && spellInfo->Id != 16953 &&                                                  // Feral Instinct R2, Feral Instinct R3, Primal Fury
+            spellInfo->Id != 37117 && spellInfo->Id != 60431 &&                                                                            // talent primal Fury, Earth n Moon r1 Debuff
+            spellInfo->Id != 60432 && spellInfo->Id != 60433 && spellInfo->Id != 48506 &&                                                  // Earth n Moon r2 Debuff, Earth n Moon r3 Debuff, Earth n Moon r1 Passive
+            spellInfo->Id != 48510 && spellInfo->Id != 48511 && spellInfo->Id != 24905 &&                                                  // Earth n Moon r2 Passive, Earth n Moon r3 Passive, moonkin form passive
+            spellInfo->Id != 69366 && spellInfo->Id != 48384 && spellInfo->Id != 48395 &&                                                  // Moonkin Form Passive, Imp Moonkin Form Passiv 1/3, Imp Moonkin Form Passive 2/3
+            spellInfo->Id != 48396 && spellInfo->Id != 50170 && spellInfo->Id != 50171 &&                                                  // Imp Moonkin Form Passive 3/3, Imp Moonkin Form 1/3, Imp Moonkin Form 2/3
+            spellInfo->Id != 50172 && spellInfo->Id != 48421 && spellInfo->Id != 45281 &&                                                  // Imp moonkin form 3/3, master shapeshift balance r1 e r2, Natural Perfection buff
+            spellInfo->Id != 45282 && spellInfo->Id != 45283 && spellInfo->Id != 33881 &&                                                  // Natural Perfection buff r2, Natural Perfection buff r3, natural perf passive r1
+            spellInfo->Id != 33882 && spellInfo->Id != 33883 && spellInfo->Id != 5420 &&                                                   // natural perf passive r2, natural perf passive r3, tree of life hidden
+            spellInfo->Id != 34127 && spellInfo->Id != 48371 &&                                                                            // tree of life, tree of life
+            spellInfo->Id != 53691 && spellInfo->Id != 48535 && spellInfo->Id != 48536 &&                                                  // Tree of Life, improved tree 1, improved tree r2
+            spellInfo->Id != 48537 && spellInfo->Id != 63410 && spellInfo->Id != 63411 &&                                                  // Improved Tree r3, Imrpoved Barkskin 1/2, imp bark 2/2
+            spellInfo->Id != 66530 && spellInfo->Id != 48422 && spellInfo->Id != 63411 &&                                                  // improved barkskin passive, Master Shapeshifter tree
+            spellInfo->Id != 70721 && spellInfo->Id != 57339 && spellInfo->Id != 57878 &&                                                  // Omen of Doom (2 t10 balance), Tank class passive threat, Natural Reaction r1
+            spellInfo->Id != 57880 && spellInfo->Id != 57881 && spellInfo->Id != 57873 &&                                                  // Natural Reaction r2, natural reation r3, Protector of the Pack r1
+            spellInfo->Id != 57876 && spellInfo->Id != 57877 && spellInfo->Id != 62600 &&                                                  // protector of the pack r2 e r3, Savage Defense
+            spellInfo->Id != 62606 && spellInfo->Id != 33859 && spellInfo->Id != 33866 && spellInfo->Id != 33867;                          // savage defense 2, predatory instincts r1, r2 e r3 
     }
 
     void Register() override
