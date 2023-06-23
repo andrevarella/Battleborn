@@ -1030,7 +1030,7 @@ class spell_pal_seal_of_righteousness : public AuraScript
         return ValidateSpellInfo({ SPELL_PALADIN_SEAL_OF_RIGHTEOUSNESS });
     }
 
-    bool CheckProc(ProcEventInfo& eventInfo)
+    /*bool CheckProc(ProcEventInfo& eventInfo)
     {
         Unit* target = eventInfo.GetProcTarget();
         if (!target)
@@ -1044,6 +1044,13 @@ class spell_pal_seal_of_righteousness : public AuraScript
         }
 
         return target->IsAlive() && !eventInfo.GetTriggerAuraSpell() && (damageInfo->GetDamage() || (eventInfo.GetHitMask() & PROC_EX_ABSORB));
+    }
+    */
+
+    bool CheckProc(ProcEventInfo& eventInfo) // agora damage do seal dá dano mesmo se o target tiver com absorb
+    {
+        // xinef: skip divine storm self hit (dummy) and righteous vengeance (0x20000000=
+        return eventInfo.GetActor() != eventInfo.GetProcTarget() && (!eventInfo.GetSpellInfo() || !eventInfo.GetSpellInfo()->SpellFamilyFlags.HasFlag(0x20000000));
     }
 
     void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
