@@ -967,6 +967,39 @@ class spell_sha_item_enhance_custom_bonus : public AuraScript
     }
 };
 
+enum LavaBurstSpell
+{
+    SPELL_LAVA_BURST = 60043,
+};
+
+// 83241 - Lava Burst!
+class spell_gen_lava_burst_cd_reset : public SpellScript
+{
+    PrepareSpellScript(spell_gen_lava_burst_cd_reset);
+
+    bool Load() override
+    {
+        return GetCaster()->GetTypeId() == TYPEID_PLAYER;
+    }
+
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_LAVA_BURST });
+    }
+
+    void HandleScript(SpellEffIndex /*effIndex*/)
+    {
+        Player* caster = GetCaster()->ToPlayer();
+        if (caster->HasSpellCooldown(SPELL_LAVA_BURST))
+            caster->RemoveSpellCooldown(SPELL_LAVA_BURST, true);
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_gen_lava_burst_cd_reset::HandleScript, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 // 60103 - Lava Lash
 class spell_sha_lava_lash : public SpellScript
 {
@@ -1154,6 +1187,7 @@ void AddSC_shaman_spell_scripts()
     RegisterSpellScript(spell_sha_item_mana_surge);
     RegisterSpellScript(spell_sha_item_t10_elemental_2p_bonus);
     RegisterSpellScript(spell_sha_item_enhance_custom_bonus);
+    RegisterSpellScript(spell_gen_lava_burst_cd_reset);
     RegisterSpellScript(spell_sha_lava_lash);
     RegisterSpellScript(spell_sha_mana_spring_totem);
     RegisterSpellScript(spell_sha_mana_tide_totem);
