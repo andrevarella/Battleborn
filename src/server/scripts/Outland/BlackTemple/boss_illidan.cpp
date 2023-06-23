@@ -68,7 +68,8 @@ enum Spells
     SPELL_DRAW_SOUL_HEAL                = 40903,
     SPELL_PARASITIC_SHADOWFIEND         = 41917,
     SPELL_PARASITIC_SHADOWFIEND_TRIGGER = 41914,
-    SPELL_SUMMON_PARASITIC_SHADOWFIENDS = 41915,
+    //SPELL_SUMMON_PARASITIC_SHADOWFIENDS = 41915, // laga demais/pode causar crash
+    SPELL_SUMMON_PARASITIC_SHADOWFIENDS = 47437,
 
     // Phase 2
     SPELL_THROW_GLAIVE                  = 39635,
@@ -85,7 +86,8 @@ enum Spells
     // Phase 3
     SPELL_AGONIZING_FLAMES              = 40932,
     SPELL_SUMMON_MAIEV                  = 40403,
-    SPELL_SHADOW_PRISON                 = 40647,
+    //SPELL_SHADOW_PRISON                 = 40647, // laga demais/pode causar crash
+    SPELL_SHADOW_PRISON                 = 47437,
     SPELL_TELEPORT_VISUAL_ONLY          = 41232,
 
     // Phase 4
