@@ -201,7 +201,7 @@ class spell_dru_omen_of_clarity : public AuraScript
             return true;
         }
 
-        /*/ Prevent passive spells to proc. (I.e shapeshift passives & passive talents)
+        // Prevent passive spells to proc. (I.e shapeshift passives & passive talents)
         if (spellInfo->IsPassive())
         {
             return false;
@@ -236,9 +236,9 @@ class spell_dru_omen_of_clarity : public AuraScript
             return false;
         }
 
-        return true;*/
+        return true;
 
-        return spellInfo->SpellFamilyName == SPELLFAMILY_DRUID && spellInfo->Id != 5419 && spellInfo->Id != 21178 && spellInfo->Id != 9635 && // só proca com spells de druid + Travel Passive, Bear Passive, Dire Bear Passive 
+        /*return spellInfo->SpellFamilyName == SPELLFAMILY_DRUID && spellInfo->Id != 5419 && spellInfo->Id != 21178 && spellInfo->Id != 9635 && // só proca com spells de druid + Travel Passive, Bear Passive, Dire Bear Passive 
             spellInfo->Id != 5421 && spellInfo->Id != 23218 && spellInfo->Id != 17002 &&                                                   // aquatic passive, Feral 15% Move Speed, Feral Swiftness R1
             spellInfo->Id != 24866 && spellInfo->Id != 24864 && spellInfo->Id != 24867 &&                                                  // feral swiftness r2, feral swiftness 4% dodge, feral swiftness 2% dodge
             spellInfo->Id != 24932 && spellInfo->Id != 68285 && spellInfo->Id != 34299 &&                                                  // Leader otPack Buff, LotP mana proc, LotP HP proc party
@@ -266,7 +266,8 @@ class spell_dru_omen_of_clarity : public AuraScript
             spellInfo->Id != 70721 && spellInfo->Id != 57339 && spellInfo->Id != 57878 &&                                                  // Omen of Doom (2 t10 balance), Tank class passive threat, Natural Reaction r1
             spellInfo->Id != 57880 && spellInfo->Id != 57881 && spellInfo->Id != 57873 &&                                                  // Natural Reaction r2, natural reation r3, Protector of the Pack r1
             spellInfo->Id != 57876 && spellInfo->Id != 57877 && spellInfo->Id != 62600 &&                                                  // protector of the pack r2 e r3, Savage Defense
-            spellInfo->Id != 62606 && spellInfo->Id != 33859 && spellInfo->Id != 33866 && spellInfo->Id != 33867;                          // savage defense 2, predatory instincts r1, r2 e r3 
+            spellInfo->Id != 62606 && spellInfo->Id != 33859 && spellInfo->Id != 33866 && spellInfo->Id != 33867;                          // savage defense 2, predatory instincts r1, r2 e r3
+            */
     }
 
     void Register() override
