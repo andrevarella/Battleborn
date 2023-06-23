@@ -60,6 +60,7 @@ enum DruidSpells
     SPELL_DRUID_ENRAGE                      = 5229,
     SPELL_DRUID_ENRAGED_DEFENSE             = 70725,
     SPELL_DRUID_ITEM_T10_FERAL_4P_BONUS     = 70726,
+    SPELL_STARFALL                          = 53201,
 };
 
 enum DruidIcons
@@ -241,6 +242,29 @@ class spell_dru_omen_of_clarity : public AuraScript
     void Register() override
     {
         DoCheckProc += AuraCheckProcFn(spell_dru_omen_of_clarity::CheckProc);
+    }
+};
+
+// 83253 - Custom - Druid Balance -3s Starfall cooldown on Buff proc
+class spell_druid_balance_starfall_custom_cdreduction : public AuraScript
+{
+    PrepareAuraScript(spell_druid_balance_starfall_custom_cdreduction);
+
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_STARFALL });
+    }
+
+    void HandleEffectProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
+    {
+        PreventDefaultAction();
+        if (Player* target = GetTarget()->ToPlayer())
+            target->ModifySpellCooldown(SPELL_STARFALL, -aurEff->GetAmount());
+    }
+
+    void Register() override
+    {
+        OnEffectProc += AuraEffectProcFn(spell_druid_balance_starfall_custom_cdreduction::HandleEffectProc, EFFECT_0, SPELL_AURA_DUMMY);
     }
 };
 
@@ -1201,6 +1225,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_swift_flight_passive);
     RegisterSpellScript(spell_dru_tiger_s_fury);
     RegisterSpellScript(spell_dru_typhoon);
+    RegisterSpellScript(spell_druid_balance_starfall_custom_cdreduction);
     RegisterSpellScript(spell_dru_t10_restoration_4p_bonus);
     RegisterSpellScript(spell_dru_wild_growth);
     RegisterSpellScript(spell_dru_moonkin_form_passive_proc);
