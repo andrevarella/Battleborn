@@ -2304,12 +2304,14 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
 
             if (newTeam == TEAM_ALLIANCE)
             {
-                loc.WorldRelocate(0, -8867.68f, 673.373f, 97.9034f, 0.0f);
+                //loc.WorldRelocate(0, -8867.68f, 673.373f, 97.9034f, 0.0f);
+                loc.WorldRelocate(571, 2944.24f, -2667.01f, 93.21f, 3.0f);
                 zoneId = 1519;
             }
             else
             {
-                loc.WorldRelocate(1, 1633.33f, -4439.11f, 15.7588f, 0.0f);
+                //loc.WorldRelocate(1, 1633.33f, -4439.11f, 15.7588f, 0.0f);
+                loc.WorldRelocate(571, 2944.24f, -2667.01f, 93.21f, 3.0f);
                 zoneId = 1637;
             }
 
