@@ -913,8 +913,8 @@ class spell_pri_mind_control : public AuraScript
         {
             if (Unit* target = GetTarget())
             {
-                caster->SetCombatTimer(0);
-                target->SetCombatTimer(0);
+                caster->SetCombatTimer(5550);
+                target->SetCombatTimer(5550);
             }
         }
     }
