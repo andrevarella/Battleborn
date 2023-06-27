@@ -2726,11 +2726,7 @@ void Spell::EffectDistract(SpellEffIndex /*effIndex*/)
         return;
 
     unitTarget->SetFacingTo(unitTarget->GetAngle(destTarget)); /// @BUG Causes the player to stop moving + interrupts spellcast.
-    //unitTarget->GetMotionMaster()->MoveDistract(damage * IN_MILLISECONDS);
-    unitTarget->ClearUnitState(UNIT_STATE_MOVING);
-
-    if (unitTarget->GetTypeId() == TYPEID_UNIT)
-        unitTarget->GetMotionMaster()->MoveDistract(damage * IN_MILLISECONDS);
+    unitTarget->GetMotionMaster()->MoveDistract(damage * IN_MILLISECONDS);
 }
 
 void Spell::EffectPickPocket(SpellEffIndex /*effIndex*/)
