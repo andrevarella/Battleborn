@@ -1510,14 +1510,14 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;
 
-                   /*case 33357: // Dash (casta Cat Form se nao tiver em Cat ao usar Dash) 
+                   case 83288: // Custom Prowl (ativa Cat se nao tiver em Cat)
                     if (!caster)
                         break;
                     if (caster->GetShapeshiftForm() != FORM_CAT)
                     {
-                        caster->CastSpell(caster, 768, true); // Aqui o ID da forma de gato é passado diretamente para a função CastSpell()
+                        caster->CastSpell(caster, 768, true);
                     }
-                    break;*/
+                    break;
                 }
                 break;
             case SPELLFAMILY_PRIEST:
