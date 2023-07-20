@@ -3191,9 +3191,18 @@ SpellMissInfo Spell::DoSpellHitOnUnit(Unit* unit, uint32 effectMask, bool scaleA
 
                     duration = m_originalCaster->ModSpellDuration(aurSpellInfo, unit, duration, positive, effectMask);
 
-                    // xinef: haste affects duration of those spells twice
+                    // Verifica se o jogador tem a SpellID 83289
+                    bool hasSpellDenyHasteAuraDuration = m_caster->HasSpell(83289);
+
+                    // Dentro do bloco onde a haste afeta a duração
+                    if (!hasSpellDenyHasteAuraDuration && (m_originalCaster->HasAuraTypeWithAffectMask(SPELL_AURA_PERIODIC_HASTE, aurSpellInfo) || m_spellInfo->HasAttribute(SPELL_ATTR5_SPELL_HASTE_AFFECTS_PERIODIC)))
+                    {
+                        duration = int32(duration * m_originalCaster->GetFloatValue(UNIT_MOD_CAST_SPEED));
+                    }
+
+                    /*// xinef: haste affects duration of those spells twice
                     if (m_originalCaster->HasAuraTypeWithAffectMask(SPELL_AURA_PERIODIC_HASTE, aurSpellInfo) || m_spellInfo->HasAttribute(SPELL_ATTR5_SPELL_HASTE_AFFECTS_PERIODIC))
-                        duration = int32(duration * m_originalCaster->GetFloatValue(UNIT_MOD_CAST_SPEED)); // se quiser mudar que haste afete a duraçao de dots, é só remover essa linha acho
+                        duration = int32(duration * m_originalCaster->GetFloatValue(UNIT_MOD_CAST_SPEED)); // se quiser mudar que haste afete a duraçao de dots, é só remover essa linha acho*/
 
                     if (m_spellValue->AuraDuration != 0)
                     {
