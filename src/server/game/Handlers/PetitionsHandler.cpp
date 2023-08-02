@@ -100,24 +100,24 @@ void WorldSession::HandlePetitionBuyOpcode(WorldPacket& recvData)
 
         switch (clientIndex)                                 // arenaSlot+1 as received from client (1 from 3 case)
         {
-            case 1:
-                charterid = ARENA_TEAM_CHARTER_2v2;
-                cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_2v2);
-                type = ARENA_TEAM_CHARTER_2v2_TYPE;
-                break;
-            case 2:
-                charterid = ARENA_TEAM_CHARTER_3v3;
-                cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_3v3);
-                type = ARENA_TEAM_CHARTER_3v3_TYPE;
-                break;
-            case 3:
-                charterid = ARENA_TEAM_CHARTER_5v5;
-                cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_5v5);
-                type = ARENA_TEAM_CHARTER_5v5_TYPE;
-                break;
-            default:
-                LOG_DEBUG("network", "unknown selection at buy arena petition: {}", clientIndex);
-                return;
+        case 1:
+            charterid = ARENA_TEAM_CHARTER_2v2;
+            cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_2v2);
+            type = ARENA_TEAM_CHARTER_2v2_TYPE;
+            break;
+        case 2:
+            charterid = ARENA_TEAM_CHARTER_3v3;
+            cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_3v3);
+            type = ARENA_TEAM_CHARTER_3v3_TYPE;
+            break;
+        case 3:
+            charterid = ARENA_TEAM_CHARTER_5v5;
+            cost = sWorld->getIntConfig(CONFIG_CHARTER_COST_ARENA_5v5);
+            type = ARENA_TEAM_CHARTER_5v5_TYPE;
+            break;
+        default:
+            LOG_DEBUG("network", "unknown selection at buy arena petition: {}", clientIndex);
+            return;
         }
 
         if (_player->GetArenaTeamId(clientIndex - 1))        // arenaSlot+1 as received from client
@@ -300,7 +300,6 @@ void WorldSession::SendPetitionQueryOpcode(ObjectGuid petitionguid)
     }
     else
     {
-        uint32 needed = sWorld->getIntConfig(CONFIG_MIN_PETITION_SIGNS);
         data << uint32(type - 1);
         data << uint32(type - 1);
         data << uint32(type);                               // bypass client - side limitation, a different value is needed here for each petition
@@ -415,11 +414,11 @@ void WorldSession::HandlePetitionSignOpcode(WorldPacket& recvData)
     if (!signatures)
         return;
 
-    // not let enemies sign guild charter
     if (type != GUILD_CHARTER_TYPE)
     {
         if (!sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA) && GetPlayer()->GetTeamId() != sCharacterCache->GetCharacterTeamByGuid(petition->ownerGuid))
         {
+            SendArenaTeamCommandResult(ERR_ARENA_TEAM_INVITE_SS, "", "", ERR_ARENA_TEAM_NOT_ALLIED);
             return;
         }
 
@@ -572,6 +571,7 @@ void WorldSession::HandleOfferPetitionOpcode(WorldPacket& recvData)
     {
         if (GetPlayer()->GetTeamId() != player->GetTeamId() && !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA))
         {
+            SendArenaTeamCommandResult(ERR_ARENA_TEAM_INVITE_SS, "", "", ERR_ARENA_TEAM_NOT_ALLIED);
             return;
         }
 
@@ -724,7 +724,7 @@ void WorldSession::HandleTurnInPetitionOpcode(WorldPacket& recvData)
     if (type == GUILD_CHARTER_TYPE)
         requiredSignatures = sWorld->getIntConfig(CONFIG_MIN_PETITION_SIGNS);
     else
-        requiredSignatures = sWorld->getIntConfig(CONFIG_MIN_PETITION_SIGNS);
+        requiredSignatures = type - 1;
 
     // Notify player if signatures are missing
     if (signs < requiredSignatures)
