@@ -2047,7 +2047,7 @@ GM.LoginState = 2
 #                     0 - (Invisible)
 #                     1 - (Visible)
 
-GM.Visible = 0
+GM.Visible = 2
 
 #
 #    GM.Chat
