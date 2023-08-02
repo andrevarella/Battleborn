@@ -573,6 +573,7 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                     player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
                     player->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
                     player->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
+                    player->RemoveAurasDueToSpell(SPELL_ARENA_PWS);
                     player->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
                     player->CastSpell(player, SPELL_ARENA_DEMENTIA8MIN);  // Dampening/Dementia depois de 8 min
 

@@ -153,6 +153,7 @@ enum BattlegroundSpells
     SPELL_ARENA_SATED               = 57724,                // Debuff Bloodlust (Sated)
     SPELL_ARENA_HIPOTHERMIA         = 41425,                // Mage Hipothermia
     SPELL_ARENA_WEAKENEDSOUL        = 6788,                 // Priest Weakened Soul
+    SPELL_ARENA_PWS                 = 48066,                // Priest Power Word: Shield (se aplicado em pets antes da porta abrir, não é removido ao começar a arena)
     SPELL_ARENA_DEMENTIA8MIN        = 83026,                // Dementia/Dampening custom apply depois de 8min
     SPELL_ARENA_DEMENTIA8SINTERVAL  = 83027,                // Dementia aplica 41406 a cada 8 seg (1 stack +1% dmg/heal)
     SPELL_ARENA_DEMENTIA1PORCENTO   = 41406,                // Dementia +1% dmg/heal
