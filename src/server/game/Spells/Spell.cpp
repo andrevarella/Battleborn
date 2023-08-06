@@ -3579,9 +3579,9 @@ SpellCastResult Spell::prepare(SpellCastTargets const* targets, AuraEffect const
         if (m_caster->ToPlayer()->GetCommandStatus(CHEAT_CASTTIME))
             m_casttime = 0;
 
-    // don't allow channeled spells / spells with cast time to be casted while moving
+    // don't allow channeled spells / spells with cast time to be casted while moving - (Se tiver andando, nao deixa começar o cast de spells. É necessario dar patch no client para castar andando em spells antigas [remover interrupt_flag]) 83292 = novo scorch
     // (even if they are interrupted on moving, spells with almost immediate effect get to have their effect processed before movement interrupter kicks in)
-    if ((m_spellInfo->IsChanneled() || m_casttime) && m_caster->GetTypeId() == TYPEID_PLAYER && m_caster->isMoving() && m_spellInfo->InterruptFlags & SPELL_INTERRUPT_FLAG_MOVEMENT && !IsTriggered())
+    if ((m_spellInfo->IsChanneled() || m_casttime) && m_caster->GetTypeId() == TYPEID_PLAYER && m_caster->isMoving() && m_spellInfo->InterruptFlags & SPELL_INTERRUPT_FLAG_MOVEMENT && !IsTriggered() && m_spellInfo->Id != 83292)
     {
         // 1. Has casttime, 2. Or doesn't have flag to allow action during channel
         if (m_casttime || !m_spellInfo->IsActionAllowedChannel())
@@ -4408,14 +4408,14 @@ void Spell::update(uint32 difftime)
         return;
     }
 
-    // check if the player caster has moved before the spell finished
+    // check if the player caster has moved before the spell finished  - (Cancela o cast se começar a andar após castar)
     // xinef: added preparing state (real cast, skip channels as they have other flags for this)
     if ((m_caster->GetTypeId() == TYPEID_PLAYER && m_timer != 0) &&
             m_caster->isMoving() && (m_spellInfo->InterruptFlags & SPELL_INTERRUPT_FLAG_MOVEMENT) && m_spellState == SPELL_STATE_PREPARING &&
             (m_spellInfo->Effects[0].Effect != SPELL_EFFECT_STUCK || !m_caster->HasUnitMovementFlag(MOVEMENTFLAG_FALLING_FAR)))
     {
-        // don't cancel for melee, autorepeat, triggered and instant spells
-        if (!IsNextMeleeSwingSpell() && !IsAutoRepeat() && !IsTriggered())
+        // don't cancel for melee, autorepeat, triggered and instant spells. - (83292 = novo Scorch) - é necessario dar patch no client para castar andando em spells antigas (remover interrupt_flag)
+        if (!IsNextMeleeSwingSpell() && m_spellInfo->Id != 83292 && !IsAutoRepeat() && !IsTriggered())
             cancel(true);
     }
 
