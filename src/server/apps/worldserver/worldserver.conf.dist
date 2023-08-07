@@ -955,6 +955,7 @@ StartArenaPoints = 0
 
 Arena.LegacyArenaPoints = 1
 
+
 #
 #    RecruitAFriend.MaxLevel
 #        Description: Highest level up to which a character can benefit from the Recruit-A-Friend
@@ -3141,21 +3142,28 @@ Arena.ArenaMatchmakerRatingModifier = 24
 #        Description: Multiplier of Arena Points gained from 2v2.
 #        Default:     1.00f
 
-Arena.2v2.ArenaPointsMulti = 1.10
+Arena.2v2.ArenaPointsMulti = 1
 
 # 
 #        (3v3) Arena.3v3.ArenaPointsMulti
 #        Description: Multiplier of Arena Points gained from 3v3.
 #        Default:     1.00f
 
-Arena.3v3.ArenaPointsMulti = 1.3
+Arena.3v3.ArenaPointsMulti = 1.15
 
 # 
 #        (5v5) Arena.5v5.ArenaPointsMulti
 #        Description: Multiplier of Arena Points gained from 5v5.
 #        Default:     1.00f
 
-Arena.5v5.ArenaPointsMulti = 1.10
+Arena.5v5.ArenaPointsMulti = 1
+
+#
+#   Arena.LegacyArenaPoints
+#        Description: If set 1 uses WoW WotLK Classic Arena Points Formula
+#        Default:     1
+
+Arena.WotlkClassicArenaPoints = 1
 
 #
 ###################################################################################################

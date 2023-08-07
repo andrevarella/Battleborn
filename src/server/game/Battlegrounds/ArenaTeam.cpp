@@ -656,16 +656,35 @@ uint32 ArenaTeam::GetPoints(uint32 memberRating)
 
     uint32 rating = memberRating + 150 < Stats.Rating ? memberRating : Stats.Rating;
 
-    // Calculo Blizzlike de 2009
-    if (rating <= 1500)
+
+    // Arena Points Calc do Wotlk Classic 
+    if (sWorld->getIntConfig(CONFIG_WOTLKCLASSIC_ARENA_POINTS_CALC) == 1)
     {
-        if (sWorld->getIntConfig(CONFIG_ARENA_SEASON_ID) < 6 && sWorld->getIntConfig(CONFIG_LEGACY_ARENA_POINTS_CALC) == 1)
-            points = (float)rating * 0.22f + 14.0f;
+        if (rating <= 150)
+        {
+            points = 595;
+        }
         else
-            points = 344;
+        {
+            points = 1022.00f / (1.0f + 123.0f * std::exp(-0.00412f * static_cast<float>(rating))) + 581.0f;
+        }
     }
     else
-        points = 1511.26f / (1.0f + 1639.28f * std::exp(-0.00412f * (float)rating));
+    // Calculo Blizzlike de 2009
+    { 
+        if (rating <= 1500)
+        {
+            if (sWorld->getIntConfig(CONFIG_ARENA_SEASON_ID) < 6 && sWorld->getIntConfig(CONFIG_LEGACY_ARENA_POINTS_CALC) == 1)
+                points = (float)rating * 0.22f + 14.0f;
+            else
+                points = 344;
+        }
+        else
+        {
+            points = 1511.26f / (1.0f + 1639.28f * std::exp(-0.00412f * (float)rating));
+        }
+    }
+
 
     // Type penalties for teams < 5v5
     if (Type == ARENA_TEAM_2v2)
