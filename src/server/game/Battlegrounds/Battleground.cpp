@@ -1149,6 +1149,7 @@ void Battleground::AddPlayer(Player* player)
     {
         if (GetStatus() == STATUS_WAIT_JOIN)                 // not started yet
             player->CastSpell(player, SPELL_PREPARATION, true);   // reduces all mana cost of spells.
+            player->CastSpell(player, SPELL_ARENA_PREP_HASTEBG, true);   // Buff Prep BG (Sem custo reagent + 50% haste para se preparar mais rapido). Adicionado ao entrar em BG.
     }
 
     // Xinef: reset all map criterias on map enter
