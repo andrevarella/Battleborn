@@ -3159,7 +3159,7 @@ Arena.3v3.ArenaPointsMulti = 1.15
 Arena.5v5.ArenaPointsMulti = 1
 
 #
-#   Arena.LegacyArenaPoints
+#        Arena.WotlkClassicArenaPoints
 #        Description: If set 1 uses WoW WotLK Classic Arena Points Formula
 #        Default:     1
 

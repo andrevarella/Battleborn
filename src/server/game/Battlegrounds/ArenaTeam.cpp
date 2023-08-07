@@ -666,7 +666,7 @@ uint32 ArenaTeam::GetPoints(uint32 memberRating)
         }
         else
         {
-            points = 1022.00f / (1.0f + 123.0f * std::exp(-0.00412f * static_cast<float>(rating))) + 581.0f;
+            points = 1022.00f / (1.0f + 123.0f * std::exp(-0.00412f * (float)rating)) + 581.0f;
         }
     }
     else
