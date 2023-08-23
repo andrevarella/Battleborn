@@ -6867,16 +6867,16 @@ SpellCastResult Spell::CheckPetCast(Unit* target)
 
 uint32 Spell::GetCCDelay(SpellInfo const* _spell)
 {
-    const uint32 delayForRoots = 70;
-    const uint32 delayForStuns = 130;
-    const uint32 delayForDisarms = 70;
-    const uint32 delayForDisorients = 110;
-    const uint32 delayForFears = 120;
-    const uint32 delayForHorrors = 130;
-    const uint32 delayForOpenerStuns = 80;
-    const uint32 delayForBanishes = 130;
-    const uint32 delayForSilences = 130;
-    const uint32 delayForInstantSpells = 100;
+    const uint32 delayForRoots = 60;
+    const uint32 delayForStuns = 110;
+    const uint32 delayForDisarms = 50;
+    const uint32 delayForDisorients = 100;
+    const uint32 delayForFears = 100;
+    const uint32 delayForHorrors = 100;
+    const uint32 delayForOpenerStuns = 70;
+    const uint32 delayForBanishes = 100;
+    const uint32 delayForSilences = 90;
+    const uint32 delayForInstantSpells = 60;
 
     // CCDelay for spell with auras
     uint8 CCDArraySize = 7;
@@ -6911,12 +6911,13 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     case 47996: // Warlock - Pet - Felguard's intercept
     case 47995: // Warlock - Pet - Felguard intercept trigg.
     case 58861: // Shaman - Feral bash
-    case 1833: // Rogue - CheapShot
-    case 9005: // Druid - Pounce R1
-    case 9823: // Pounce R2
-    case 9827: // Pounce R3
-    case 27006: // Pounce R4
-    case 49803: // Pounce R5
+    case 1330:  // Rogue - Garote silence
+    /*case 1833: // Rogue - CheapShot
+        case 9005: // Druid - Pounce R1
+        case 9823: // Pounce R2
+        case 9827: // Pounce R3
+        case 27006: // Pounce R4
+    case 49803: // Pounce R5*/
         return delayForOpenerStuns;
     case 20252: // Warrior - Intercept
     case 20253: // Warrior - Intercept
@@ -6969,7 +6970,6 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
         return delayForDisarms;
     case 34490: // Hunter - Silencing shot
     case 18425: // Rogue - Talent - Silenced - Improved Kick
-    case 1330:  // Rogue - Garote silence
     case 15487: // Priest - Silence
     case 47476: // DK - Strangulate
     //case 24259: // Warlock - Pet - Spell Lock - Silenced
