@@ -4105,9 +4105,9 @@ void Spell::_cast(bool skipCheck)
             m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);
 
     // Arena Preparation Haste nao da GCD (83025)
-    if (m_caster->GetTypeId() == TYPEID_PLAYER)
+    /*if (m_caster->GetTypeId() == TYPEID_PLAYER)
         if (m_caster->ToPlayer()->HasAura(83025))
-            m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);
+            m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);*/
 
     SetExecutedCurrently(false);
 }
