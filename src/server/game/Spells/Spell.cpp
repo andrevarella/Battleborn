@@ -7299,10 +7299,10 @@ SpellCastResult Spell::CheckRange(bool strict)
         max_range += std::min(3.0f, max_range * 0.1f); // 10% but no more than 3yd
 
     if (target)
-    {
+    { 
         if (target != m_caster)
         {
-            // Xinef: Spells with 5yd range can hit target 9yd away?
+            // Xinef: Spells with 5yd range can hit target 9yd away? (Range Hack)
             if (range_type == SPELL_RANGE_MELEE)
             {
                 float real_max_range = max_range;
