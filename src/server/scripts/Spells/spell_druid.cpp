@@ -1228,8 +1228,48 @@ class spell_dru_moonkin_form_passive_proc : public AuraScript
     }
 };
 
+// 83293 - Glyph of Omen of Clarity
+class spell_druid_glyph_omen_of_clarity : public AuraScript
+{
+    PrepareAuraScript(spell_druid_glyph_omen_of_clarity);
+
+
+    bool CheckProc(ProcEventInfo& eventInfo)
+    {
+        Unit* actor = eventInfo.GetActionTarget();
+        SpellInfo const* spellInfo = eventInfo.GetSpellInfo();
+
+        // Verificar se o alvo é um jogador ou pet
+        if (actor && (actor->GetTypeId() == TYPEID_PLAYER || (actor->GetTypeId() == TYPEID_UNIT && actor->IsPet())))
+        {
+            return false;
+        }
+
+        // Verificar se a spell lançada é a 770 (Faerie Fire)
+        if (spellInfo && spellInfo->Id == 770)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+    {
+        // Implemente o comportamento após o proc aqui
+    }
+
+    void Register() override
+    {
+        DoCheckProc += AuraCheckProcFn(spell_druid_glyph_omen_of_clarity::CheckProc);
+        OnEffectProc += AuraEffectProcFn(spell_druid_glyph_omen_of_clarity::HandleProc, EFFECT_0, SPELL_AURA_PROC_TRIGGER_SPELL);
+    }
+};
+
+
 void AddSC_druid_spell_scripts()
 {
+    RegisterSpellScript(spell_druid_glyph_omen_of_clarity);
     RegisterSpellScript(spell_dru_bear_form_passive);
     RegisterSpellScript(spell_dru_t10_balance_4p_bonus);
     RegisterSpellScript(spell_dru_nurturing_instinct);

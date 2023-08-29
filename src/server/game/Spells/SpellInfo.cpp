@@ -1791,7 +1791,7 @@ SpellCastResult SpellInfo::CheckTarget(Unit const* caster, WorldObject const* ta
                 // Glyph of Shattering Throw
                 if (Id == 64382 && caster->HasAura(83296)) {
                     if (target->GetTypeId() == TYPEID_PLAYER || target->GetTypeId() == TYPEID_UNIT && target->ToUnit()->IsPet())
-                        return SPELL_FAILED_BAD_TARGETS;
+                        return SPELL_FAILED_TARGET_IS_PLAYER;
                 }
 
                 // Not allow disarm unarmed player
