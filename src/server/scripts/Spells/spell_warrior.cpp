@@ -604,6 +604,14 @@ class spell_warr_shattering_throw : public SpellScript
     {
         PreventHitDefaultEffect(effIndex);
 
+        if (Unit* caster = GetCaster()) {
+            // Check if the caster has the spell 83296 (Glyph of Shattering Throw)
+            if (caster->HasAura(83296)) {
+                // Do not remove shields, but still display "immune to damage" part
+                return;
+            }
+        }
+
         // remove shields, will still display immune to damage part
         if (Unit* target = GetHitUnit())
             target->RemoveAurasWithMechanic(1 << MECHANIC_IMMUNE_SHIELD, AURA_REMOVE_BY_ENEMY_SPELL);
