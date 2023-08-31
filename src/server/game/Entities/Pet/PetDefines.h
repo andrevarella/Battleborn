@@ -175,6 +175,7 @@ enum PetScalingSpells
     SPELL_SHADOWFIEND_SCALING_04        = 35664,
 
     // Druid
+    SPELL_COWER = 48575, // Cower de Druid Feral - Para nao dar combat em PvP
     SPELL_TREANT_SCALING_01             = 35669,
     SPELL_TREANT_SCALING_02             = 35670,
     SPELL_TREANT_SCALING_03             = 35671,
