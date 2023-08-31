@@ -3583,7 +3583,7 @@ void Player::ResetCooldownsPortaArena(bool removeActivePetCooldowns)
 
 void Player::ResetPlayersRaidSpellCooldowns(bool removeActivePetCooldowns)
 {
-    // remove cooldowns on spells that have < 10 min CD
+    // remove cooldowns on spells that have < 31 min CD
     uint32 infTime = GameTime::GetGameTimeMS().count() + infinityCooldownDelayCheck;
     SpellCooldowns::iterator itr, next;
     for (itr = m_spellCooldowns.begin(); itr != m_spellCooldowns.end(); itr = next)
@@ -3598,8 +3598,8 @@ void Player::ResetPlayersRaidSpellCooldowns(bool removeActivePetCooldowns)
 
         if (spellInfo->HasAttribute(SPELL_ATTR4_IGNORE_DEFAULT_ARENA_RESTRICTIONS))
             RemoveSpellCooldown(itr->first, true);
-        else if (spellInfo->RecoveryTime < 30 * MINUTE * IN_MILLISECONDS && spellInfo->CategoryRecoveryTime < 10 * MINUTE * IN_MILLISECONDS && itr->second.end < infTime// xinef: dont remove active cooldowns - bugz
-            && itr->second.maxduration < 30 * MINUTE * IN_MILLISECONDS) // xinef: dont clear cooldowns that have maxduration > 30 minutes (eg item cooldowns with no spell.dbc cooldown info)
+        else if (spellInfo->RecoveryTime < 31 * MINUTE * IN_MILLISECONDS && spellInfo->CategoryRecoveryTime < 10 * MINUTE * IN_MILLISECONDS && itr->second.end < infTime// xinef: dont remove active cooldowns - bugz
+            && itr->second.maxduration < 31 * MINUTE * IN_MILLISECONDS) // xinef: dont clear cooldowns that have maxduration > 31 minutes (eg item cooldowns with no spell.dbc cooldown info)
             RemoveSpellCooldown(itr->first, true);
     }
 
