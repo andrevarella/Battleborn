@@ -8115,6 +8115,19 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
             {
                 switch (dummySpell->Id)
                 {
+                    // Glyph of Stormstrike passive to proc Stormblast DoT
+                    case 83332:
+                    {
+                        if (!victim)
+                            return false;
+
+                        // 3 damage tick
+                        basepoints0 = triggerAmount * damage / 300;
+                        triggered_spell_id = 83333;
+                        // Add remaining ticks to damage done
+                        victim->CastDelayedSpellWithPeriodicAmount(this, triggered_spell_id, SPELL_AURA_PERIODIC_DAMAGE, basepoints0);
+                        return true;
+                    }
                     // Tidal Force
                     case 55198:
                         {
