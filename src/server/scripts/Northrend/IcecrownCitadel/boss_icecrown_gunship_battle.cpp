@@ -579,6 +579,14 @@ public:
                 return;
             _died = true;
 
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
+            _instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
+
             bool isVictory = me->GetTransport()->GetEntry() == GO_THE_SKYBREAKER_H || me->GetTransport()->GetEntry() == GO_ORGRIMS_HAMMER_A;
             _instance->SetBossState(DATA_ICECROWN_GUNSHIP_BATTLE, isVictory ? DONE : FAIL);
             me->GetMap()->SetZoneMusic(AREA_ICECROWN_CITADEL, 0);

@@ -214,6 +214,13 @@ public:
         {
             _JustDied();
             Talk(SAY_DEATH);
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
 
             if (Is25ManRaid() && me->HasAura(SPELL_SHADOWS_FATE))
                 DoCastAOE(SPELL_BLOOD_INFUSION_CREDIT, true);

@@ -353,6 +353,14 @@ public:
                 _events.ScheduleEvent(EVENT_DREAM_SLIP, 3500ms);
                 _instance->SetBossState(DATA_VALITHRIA_DREAMWALKER, DONE);
 
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
+                _instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
+
                 if (Creature* trigger = ObjectAccessor::GetCreature(*me, _instance->GetGuidData(DATA_VALITHRIA_TRIGGER)))
                     trigger->AI()->EnterEvadeMode();
                 if (Creature* lichKing = ObjectAccessor::GetCreature(*me, _instance->GetGuidData(DATA_VALITHRIA_LICH_KING)))

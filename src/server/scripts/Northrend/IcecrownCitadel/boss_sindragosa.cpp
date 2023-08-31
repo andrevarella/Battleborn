@@ -311,6 +311,14 @@ public:
             instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_ICE_TOMB_UNTARGETABLE);
             instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_ICE_TOMB_DAMAGE);
             instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_ASPHYXIATION);
+
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
         }
 
         void JustEngagedWith(Unit* who) override

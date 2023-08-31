@@ -310,6 +310,13 @@ public:
             _JustDied();
             DoCast(me, SPELL_ACHIEVEMENT, true);
             Talk(SAY_DEATH);
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
+            instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
 
             instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_MARK_OF_THE_FALLEN_CHAMPION);
             if (Creature* creature = ObjectAccessor::GetCreature(*me, instance->GetGuidData(DATA_SAURFANG_EVENT_NPC)))
