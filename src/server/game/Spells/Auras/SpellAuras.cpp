@@ -1522,8 +1522,8 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                    case 5215: // Prowl - Futuro Glyph of Prowl - Usavel fora de Cat, reduz CD, penalty do move speed e ativa Cat Form se usar fora da Cat Form
                     if (!caster)
                         break;
-                    // verifica se o jogador tem a aura 83314 (Glyph of Prowl)
-                    if (caster->HasAura(83314)) {
+                    // verifica se o jogador tem a aura 83342 (Glyph of Prowl 2)
+                    if (caster->HasAura(83342)) {
                         if (caster->GetShapeshiftForm() != FORM_CAT)
                         {
                             caster->CastSpell(caster, 768, true);
