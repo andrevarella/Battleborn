@@ -299,6 +299,13 @@ class spell_dru_omen_of_clarity : public AuraScript
             return false;
         }
 
+        /*
+        // Druid Forms (tem chance de procar Clearcasting)
+        if (spellInfo->Id == 1066 || spellInfo->Id == 768 || spellInfo->Id == 783 || spellInfo->Id == 24858 || spellInfo->Id == 33891 || spellInfo->Id == 9634 || spellInfo->Id == 5487)
+        {
+            return true;
+        }*/
+
         // Exceções: Starfall (Rank 4). Buff = 53201, Damage = 53195, mini AoE = 53190. - Ordem de cima pra baixo em codigo tem prioridade, mesmo que tenha 3 spells com o icon do starfall no script abaixo, se tiver uma exceçaoaqui, as 2 nao funcionarão.
         if (spellInfo->Id == 53190)
         {
