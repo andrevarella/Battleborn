@@ -188,6 +188,7 @@ class spell_dru_feral_swiftness : public AuraScript
     }
 };
 
+/*
 // 16864 - Omen of Clarity
 class spell_dru_omen_of_clarity : public AuraScript
 {
@@ -272,6 +273,88 @@ class spell_dru_omen_of_clarity : public AuraScript
         }
 
         return true;
+    }
+
+    void Register() override
+    {
+        DoCheckProc += AuraCheckProcFn(spell_dru_omen_of_clarity::CheckProc);
+    }
+};*/
+
+// 16864 - Omen of Clarity
+class spell_dru_omen_of_clarity : public AuraScript
+{
+    PrepareAuraScript(spell_dru_omen_of_clarity);
+
+    bool CheckProc(ProcEventInfo& eventInfo)
+    {
+        SpellInfo const* spellInfo = eventInfo.GetSpellInfo();
+        if (!spellInfo)
+        {
+            return true;
+        }
+
+        if (spellInfo->IsPassive())
+        {
+            return false;
+        }
+
+        // Exceções: Starfall (Rank 4). Buff = 53201, Damage = 53195, mini AoE = 53190. - Ordem de cima pra baixo em codigo tem prioridade, mesmo que tenha 3 spells com o icon do starfall no script abaixo, se tiver uma exceçaoaqui, as 2 nao funcionarão.
+        if (spellInfo->Id == 53190)
+        {
+            return false;
+        }
+
+        #include <unordered_set>
+
+        // Balance Spell Icons
+        const uint32 balanceIconIDsToInclude[] =
+        {
+            689, 174, 20, 109, 2258, 44, 220,   // Bark, Cyclone, Root, Faerie Fire, Force of Nature, Hibernate, Hurricane. - Force of Nature n proca
+            62, 1771, 225, 168, 2854, 1485, 53, // Innervate, Insect Swarm, Moonfire, Nature's Grasp, Starfall, Starfire, Thorns.
+            15, 263,                            // Typhoon Dazzle/Damage, Wrath.                                            Add Earth and Moon? Eclipse? PvP set proc?
+        };
+
+        // Feral Spell Icons
+        const uint32 feralIconIDsToInclude[] =
+        {
+            473, 2852, 957, 262, 958, 959, 960,   // Bash, Berserk, ChallengingR, Claw, Cower, Dash, DemoRoar.              - Cower, demo roar, charge cat n procam
+            961, 1559, 3930, 1680, 50, 201, 2246, // Enrage, ChargeBear, ChargeCat, Bite, FrenzRegen, Growl, Lacerate.
+            1681, 2312, 261, 495, 103, 494, 1531, // Maim, MangleCatBear, Maul, Pounce, Prowl, Rake, Ravage.
+            108, 2865, 147, 3707, 1562, 1181,     // Rip, SavageRoar, Shred, SurvivalInstinct, SwipeBearCat, TigerFury.     Add Savage Defense? Infected Wounds? Primal Fury?
+        };
+
+        // Resto Spell Icons
+        const uint32 restoIconIDsToInclude[] =
+        {
+            265, 194, 2435, 962, 2101, 123, // Abolish, CurePoison, Gift, HealingTouch, Lifeblooom, Mark.
+            112, 2863, 24, 197, 64, 236,    // NS, nourish, rebirth, regrow, rejuv, remove curse.
+            2256, 1917, 100, 2864,          // revive, swiftmend, tranquility, wild growth.                                 Add living seed?
+        };
+
+        std::unordered_set<uint32> SpellIconsToProc;
+
+        for (const uint32 iconID : balanceIconIDsToInclude)
+        {
+            SpellIconsToProc.insert(iconID);
+        }
+        for (const uint32 iconID : feralIconIDsToInclude)
+        {
+            SpellIconsToProc.insert(iconID);
+        }
+        for (const uint32 iconID : restoIconIDsToInclude)
+        {
+            SpellIconsToProc.insert(iconID);
+        }
+        if (SpellIconsToProc.find(spellInfo->SpellIconID) != SpellIconsToProc.end())
+        {
+            if (spellInfo->SpellFamilyName == SPELLFAMILY_DRUID) // Só tem chance de procar os icons acima se forem de spellfamily_druid
+            {
+                return true;
+            }
+        }
+        // Retorna falso para todas as outras condições, impedindo o proc.
+        return false;
     }
 
     void Register() override
