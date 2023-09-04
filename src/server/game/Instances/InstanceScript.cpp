@@ -631,7 +631,7 @@ void InstanceScript::DoRemoveAurasDueToSpellOnPlayers(uint32 spell)
 // Remove Auras e CDs due to Spell on all players in instance (Para resetar CDs e BL ao matar bosses)
 void InstanceScript::DoRemoveAurasDueToSpellOnPlayersCD(uint32 spell)
 {
-    if (sWorld->getIntConfig(CONFIG_REMOVE_AURAS_DUE_TO_SPELL_ON_PLAYERS_CD) == 1)
+    if (sWorld->getIntConfig(CONFIG_RESETCDSAOMATARBOSS) == 1)
     {
         Map::PlayerList const& PlayerList = instance->GetPlayers();
         if (!PlayerList.IsEmpty())

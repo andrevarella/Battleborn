@@ -3165,9 +3165,9 @@ Arena.5v5.ArenaPointsMulti = 1
 
 Arena.WotlkClassicArenaPoints = 1
 
-# Ativar ou desativar Script para resetar CDs e remover alguns debuffs em raids
+# Ativar ou desativar Script para resetar CDs e remover alguns debuffs em raids ao matar bosses
 # 0 - Desativado, 1 - Ativado
-InstanceScript.RemoveAurasDueToSpellOnPlayersCD = 1
+ResetCDsAoMatarBoss = 1
 
 #
 ###################################################################################################

@@ -1182,7 +1182,7 @@ void World::LoadConfigSettings(bool reload)
     _int_configs[CONFIG_LEGACY_ARENA_POINTS_CALC]                   = sConfigMgr->GetOption<uint32>("Arena.LegacyArenaPoints", 1);
 
     _int_configs[CONFIG_WOTLKCLASSIC_ARENA_POINTS_CALC]             = sConfigMgr->GetOption<uint32>("Arena.WotlkClassicArenaPoints", 1);
-    _int_configs[CONFIG_REMOVE_AURAS_DUE_TO_SPELL_ON_PLAYERS_CD]    = sConfigMgr->GetOption<uint32>("InstanceScript.RemoveAurasDueToSpellOnPlayersCD", 1);
+    _int_configs[CONFIG_RESETCDSAOMATARBOSS]                        = sConfigMgr->GetOption<uint32>("ResetCDsAoMatarBoss", 1);
 
     _int_configs[CONFIG_ARENA_START_PERSONAL_RATING]                = sConfigMgr->GetOption<uint32>("Arena.ArenaStartPersonalRating", 1000);
     _int_configs[CONFIG_ARENA_START_MATCHMAKER_RATING]              = sConfigMgr->GetOption<uint32>("Arena.ArenaStartMatchmakerRating", 1500);
