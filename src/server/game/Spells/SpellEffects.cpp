@@ -1097,6 +1097,14 @@ void Spell::EffectTriggerRitualOfSummoning(SpellEffIndex effIndex)
     if (effectHandleMode != SPELL_EFFECT_HANDLE_HIT)
         return;
 
+
+    // do not allow summoning in bgs and donor malls
+    if (m_caster->ToPlayer()->InBattleground()) /* || m_caster->GetMapId() == 13 || m_caster->GetMapId() == 598)*/
+    {
+        SendCastResult(SPELL_FAILED_NOT_HERE);
+        return;
+    }
+
     uint32 triggered_spell_id = m_spellInfo->Effects[effIndex].TriggerSpell;
     SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(triggered_spell_id);
 
@@ -5456,6 +5464,13 @@ void Spell::EffectTransmitted(SpellEffIndex effIndex)
 {
     if (effectHandleMode != SPELL_EFFECT_HANDLE_HIT)
         return;
+
+    // do not allow summoning in bgs and donor malls
+    if (m_caster->ToPlayer()->InBattleground()) /* || m_caster->GetMapId() == 13 || m_caster->GetMapId() == 598)*/
+    {
+        SendCastResult(SPELL_FAILED_NOT_HERE);
+        return;
+    }
 
     uint32 name_id = m_spellInfo->Effects[effIndex].MiscValue;
 
