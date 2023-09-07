@@ -213,7 +213,7 @@ void WorldSession::HandleWhoOpcode(WorldPacket& recvData)
 {
     LOG_DEBUG("network", "WORLD: Recvd CMSG_WHO Message");
 
-    if (GetPlayer()->InArena())
+    if (GetPlayer()->InArena() && !GetPlayer()->IsSpectator())
     {
         if (!GetPlayer()->IsGameMaster() && sWorld->getIntConfig(CONFIG_ENABLE_FAKE_WHO_ON_ARENA))
         {
