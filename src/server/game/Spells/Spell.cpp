@@ -3572,10 +3572,14 @@ SpellCastResult Spell::prepare(SpellCastTargets const* targets, AuraEffect const
     // calculate cast time (calculated after first CheckCast check to prevent charge counting for first CheckCast fail)
     m_casttime = (_triggeredCastFlags & TRIGGERED_CAST_DIRECTLY) ? 0 : m_spellInfo->CalcCastTime(m_caster, this);
 
-    // Arena Preparation haste deixa o cast Instant(83025) - colocar exceção p spells de profissao
-    if (m_caster->GetTypeId() == TYPEID_PLAYER)
-        if (m_caster->ToPlayer()->HasAura(83025))
+    // Instant casts com Arena Preparation (+exceções p profissoes)
+    if (Player* plCaster = m_caster->ToPlayer())
+    {
+        Battleground* bg = plCaster->GetBattleground();
+        if (bg && bg->GetStatus() == STATUS_WAIT_JOIN)
+        if (!m_spellInfo->HasEffect(SPELL_EFFECT_CREATE_ITEM) && !m_spellInfo->HasEffect(SPELL_EFFECT_ENCHANT_ITEM) && !m_spellInfo->HasEffect(SPELL_EFFECT_MILLING) && !m_spellInfo->HasEffect(SPELL_EFFECT_DISENCHANT))
             m_casttime = 0;
+    }
 
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
         if (m_caster->ToPlayer()->GetCommandStatus(CHEAT_CASTTIME))
