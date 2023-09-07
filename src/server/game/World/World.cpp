@@ -1183,6 +1183,7 @@ void World::LoadConfigSettings(bool reload)
 
     _int_configs[CONFIG_WOTLKCLASSIC_ARENA_POINTS_CALC]             = sConfigMgr->GetOption<uint32>("Arena.WotlkClassicArenaPoints", 1);
     _int_configs[CONFIG_RESETCDSAOMATARBOSS]                        = sConfigMgr->GetOption<uint32>("ResetCDsAoMatarBoss", 1);
+    _int_configs[CONFIG_ENABLE_FAKE_WHO_ON_ARENA]                   = sConfigMgr->GetOption<uint32>("Arena.FakeWho", 1);
 
     _int_configs[CONFIG_ARENA_START_PERSONAL_RATING]                = sConfigMgr->GetOption<uint32>("Arena.ArenaStartPersonalRating", 1000);
     _int_configs[CONFIG_ARENA_START_MATCHMAKER_RATING]              = sConfigMgr->GetOption<uint32>("Arena.ArenaStartMatchmakerRating", 1500);

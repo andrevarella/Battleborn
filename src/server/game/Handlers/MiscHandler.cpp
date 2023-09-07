@@ -213,6 +213,16 @@ void WorldSession::HandleWhoOpcode(WorldPacket& recvData)
 {
     LOG_DEBUG("network", "WORLD: Recvd CMSG_WHO Message");
 
+    if (GetPlayer()->InArena())
+    {
+        if (!GetPlayer()->IsGameMaster() && sWorld->getIntConfig(CONFIG_ENABLE_FAKE_WHO_ON_ARENA))
+        {
+            GetPlayer()->GetSession()->SendAreaTriggerMessage("You may not use the who list in arena.");
+            ChatHandler(this).PSendSysMessage("You may not use the who list in arena.");
+            return;
+        }
+    }
+
     uint32 matchCount = 0;
 
     uint32 levelMin, levelMax, racemask, classmask, zonesCount, strCount;
