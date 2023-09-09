@@ -3165,12 +3165,18 @@ Arena.5v5.ArenaPointsMulti = 1
 
 Arena.WotlkClassicArenaPoints = 1
 
-# Ativar ou desativar Script para resetar CDs e remover alguns debuffs em raids ao matar bosses
-# 0 - Desativado, 1 - Ativado
+#
+#        ResetCDsAoMatarBoss = 1
+#        Description: Ativar ou desativar Script para resetar CDs e remover alguns debuffs em raids ao matar bosses
+#        Default:     1 - Ativado  (0 = Desativado)
+
 ResetCDsAoMatarBoss = 1
 
 #
-#
+#        Arena.FakeWho
+#        Description: Ativar ou desativar /Who para players dentro de arena (exceção para spectators)
+#        Default:     1 - Ativado  (0 = Desativado)
+
 Arena.FakeWho = 1
 
 
