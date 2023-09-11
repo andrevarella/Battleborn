@@ -4735,6 +4735,30 @@ enum Mounts
     SPELL_DF_S6_GLAD_100 = 85074,
     SPELL_DF_S6_GLAD_310 = 85075,
 
+    // Highland Drake Grey
+    SPELL_HIGHLAND_DRAKE_GREY_100 = 85150,
+    SPELL_HIGHLAND_DRAKE_GREY_310 = 85151,
+
+    // Highland Drake Yellow
+    SPELL_HIGHLAND_DRAKE_YELLOW_100 = 85153,
+    SPELL_HIGHLAND_DRAKE_YELLOW_310 = 85154,
+
+    // Highland Drake Red
+    SPELL_HIGHLAND_DRAKE_RED_100 = 85156,
+    SPELL_HIGHLAND_DRAKE_RED_310 = 85157,
+
+    // Highland Drake Blue
+    SPELL_HIGHLAND_DRAKE_BLUE_100 = 85159,
+    SPELL_HIGHLAND_DRAKE_BLUE_310 = 85160,
+
+    // Highland Drake Black
+    SPELL_HIGHLAND_DRAKE_BLACK_100 = 85166,
+    SPELL_HIGHLAND_DRAKE_BLACK_310 = 85167,
+
+    // Highland Drake Green
+    SPELL_HIGHLAND_DRAKE_GREEN_100 = 85169,
+    SPELL_HIGHLAND_DRAKE_GREEN_310 = 85170,
+
     // --------------------------------------------------------------------------------------- \\
     // --------------------------------------------------------------------------------------- \\
     // Mounts Cata 1:
@@ -6468,6 +6492,13 @@ void AddSC_generic_spell_scripts()
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_SQUEAKERS", 0, 0, SPELL_SQUEAKERS_100, 0, SPELL_SQUEAKERS_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_ASTRALCLOUD", 0, 0, SPELL_ASTRALCLOUD_100, 0, SPELL_ASTRALCLOUD_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PURPLEDREADRAVEN", 0, 0, SPELL_PURPLEDREADRAVEN_100, 0, SPELL_PURPLEDREADRAVEN_310, 0);
+
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_GREY", 0, 0, SPELL_HIGHLAND_DRAKE_GREY_100, 0, SPELL_HIGHLAND_DRAKE_GREY_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_YELLOW", 0, 0, SPELL_HIGHLAND_DRAKE_YELLOW_100, 0, SPELL_HIGHLAND_DRAKE_YELLOW_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_RED", 0, 0, SPELL_HIGHLAND_DRAKE_RED_100, 0, SPELL_HIGHLAND_DRAKE_RED_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_BLUE", 0, 0, SPELL_HIGHLAND_DRAKE_BLUE_100, 0, SPELL_HIGHLAND_DRAKE_BLUE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_BLACK", 0, 0, SPELL_HIGHLAND_DRAKE_BLACK_100, 0, SPELL_HIGHLAND_DRAKE_BLACK_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_GREEN", 0, 0, SPELL_HIGHLAND_DRAKE_GREEN_100, 0, SPELL_HIGHLAND_DRAKE_GREEN_310, 0);
 
     RegisterSpellScript(spell_gen_upper_deck_create_foam_sword);
     RegisterSpellScript(spell_gen_bonked);
