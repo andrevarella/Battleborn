@@ -1519,11 +1519,42 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;*/
 
+                   case 83350:
+                    if (!caster)
+                        break;
+
+                    if (caster->GetDisplayId() == 918) // Travel Form - Default 
+                    {
+                        caster->CastSpell(caster, 83347, true); // Som Travel/Cat Form
+                    }
+
+                    else if (caster->GetDisplayId() == 50504 || caster->GetDisplayId() == 50505 || caster->GetDisplayId() == 50676) // Travel Form (Stag - Night Elf/Tauren/HighTauren)
+                    {
+                        caster->CastSpell(caster, 83349, true);
+                    }
+
+                    else if (caster->GetDisplayId() == 50677) // Travel Form (Raptor - Troll)
+                    {
+                        caster->CastSpell(caster, 83348, true);
+                    }
+
+                    else if (caster->GetDisplayId() == 2428) // Aquatic Form - Default
+                    {
+                        caster->CastSpell(caster, 83346, true);
+                    }
+                    else if (caster->GetDisplayId() == 50494) // Aquatic Form - Orca
+                    {
+                        caster->CastSpell(caster, 83351, true);
+                    }
+                    break;
+
+
                    case 5215: // Prowl - Futuro Glyph of Prowl - Usavel fora de Cat, reduz CD, penalty do move speed e ativa Cat Form se usar fora da Cat Form
                     if (!caster)
                         break;
                     // verifica se o jogador tem a aura 83342 (Glyph of Prowl 2)
-                    if (caster->HasAura(83342)) {
+                    if (caster->HasAura(83342))
+                    {
                         if (caster->GetShapeshiftForm() != FORM_CAT)
                         {
                             caster->CastSpell(caster, 768, true);
