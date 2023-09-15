@@ -1492,9 +1492,10 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 }
                 switch (GetId())
                 {
-                   case 83029: // Skull Bash (Cat) Old Code - not working ATM
+                   case 83354: // Skull Bash - castar SB proca 83054, que ativa Cat Form (se nao tiver em Cat)
                     if (!caster)
-                        break;
+                      break;
+
                     if (caster->GetShapeshiftForm() != FORM_CAT && caster->GetShapeshiftForm() != FORM_DIREBEAR)
                     {
                         caster->CastSpell(caster, 768, true);
