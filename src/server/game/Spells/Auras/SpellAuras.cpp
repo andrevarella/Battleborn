@@ -1502,6 +1502,15 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;
 
+                    case 83355: // Dash - castar SB proca 83055, que ativa Cat Form (se nao tiver em Cat)
+                     if (!caster)
+                         break;
+                     if (caster->GetShapeshiftForm() != FORM_CAT)
+                     {
+                         caster->CastSpell(caster, 768, true);
+                     }
+                    break;
+
                    case 83214: // Stampeding Roar (Cat) 
                     if (!caster)
                         break;
@@ -1510,15 +1519,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                         caster->CastSpell(caster, 768, true);
                     }
                     break;
-
-                   /*case 83288: // Custom Prowl (ativa Cat se nao tiver em Cat)
-                    if (!caster)
-                        break;
-                    if (caster->GetShapeshiftForm() != FORM_CAT)
-                    {
-                        caster->CastSpell(caster, 768, true);
-                    }
-                    break;*/
 
                    case 83350:
                     if (!caster)

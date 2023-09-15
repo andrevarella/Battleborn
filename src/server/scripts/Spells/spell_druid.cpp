@@ -1318,6 +1318,38 @@ class spell_dru_moonkin_form_passive_proc : public AuraScript
     }
 };
 
+// 83028 - Skull Bash
+class spell_druid_skull_bash : public SpellScript
+{
+    PrepareSpellScript(spell_druid_skull_bash);
+
+    SpellCastResult CheckCast()
+    {
+        Unit* caster = GetCaster();
+        Unit* target = GetExplTargetUnit();
+
+        if (caster && caster->HasUnitState(UNIT_STATE_ROOT))
+        {
+            if (target && caster->GetDistance(target) < 1.25f)
+            {
+                return SPELL_CAST_OK;
+            }
+            else
+            {
+                return SPELL_FAILED_OUT_OF_RANGE;
+            }
+        }
+        return SPELL_CAST_OK;
+    }
+
+    void Register() override
+    {
+        OnCheckCast += SpellCheckCastFn(spell_druid_skull_bash::CheckCast);
+    }
+};
+
+
+
 // 83293 - Glyph of Omen of Clarity
 class spell_druid_glyph_omen_of_clarity : public AuraScript
 {
@@ -1360,6 +1392,7 @@ class spell_druid_glyph_omen_of_clarity : public AuraScript
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_druid_glyph_omen_of_clarity);
+    RegisterSpellScript(spell_druid_skull_bash);
     RegisterSpellScript(spell_dru_bear_form_passive);
     RegisterSpellScript(spell_dru_t10_balance_4p_bonus);
     RegisterSpellScript(spell_dru_nurturing_instinct);
