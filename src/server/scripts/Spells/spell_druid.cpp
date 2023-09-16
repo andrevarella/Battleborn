@@ -1348,8 +1348,6 @@ class spell_druid_skull_bash : public SpellScript
     }
 };
 
-
-
 // 83293 - Glyph of Omen of Clarity
 class spell_druid_glyph_omen_of_clarity : public AuraScript
 {
