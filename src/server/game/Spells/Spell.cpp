@@ -6008,6 +6008,24 @@ SpellCastResult Spell::CheckCast(bool strict)
             if (mapEntry->IsBattleArena())
                 return SPELL_FAILED_NOT_IN_ARENA;
 
+    // Novas Traps, Portals e Pedra de Warlock nao pode usar em BG
+    if (m_spellInfo->Id == 83357 || m_spellInfo->Id == 83361 || m_spellInfo->Id == 83363 || m_spellInfo->Id == 83365    // Novas Traps
+        || m_spellInfo->Id == 61993 || m_spellInfo->Id == 53142 || m_spellInfo->Id == 11419 || m_spellInfo->Id == 32266 /* ritual of summoning, portal dalaran, portal darnassus, portal exodar */
+        || m_spellInfo->Id == 11416 || m_spellInfo->Id == 33691 || m_spellInfo->Id == 10059 || m_spellInfo->Id == 49360 /* portal ironforge, portal shattrath, portal stormwind, portal theramore */
+        || m_spellInfo->Id == 11417 || m_spellInfo->Id == 35717 || m_spellInfo->Id == 32267 || m_spellInfo->Id == 49361 /* portal orgrimmar, shattrath, silvermoon, stonard */
+        || m_spellInfo->Id == 11420 || m_spellInfo->Id == 11418)                                                        // /* portal thunder bluff, undercity */
+    {
+        if (m_caster->IsPlayer() && m_caster->ToPlayer()->InBattleground())
+        {
+            return SPELL_FAILED_NOT_HERE;
+
+        }
+        else
+        {
+            return SPELL_CAST_OK;
+        }
+    }
+
     // zone check
     if (m_caster->GetTypeId() == TYPEID_UNIT || !m_caster->ToPlayer()->IsGameMaster())
     {

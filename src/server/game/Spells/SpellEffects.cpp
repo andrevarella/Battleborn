@@ -5465,17 +5465,6 @@ void Spell::EffectTransmitted(SpellEffIndex effIndex)
     if (effectHandleMode != SPELL_EFFECT_HANDLE_HIT)
         return;
 
-
-    // nao pode usar Summon e Portals em BG e Arenas
-    if (m_caster->ToPlayer()->InBattleground() && (m_spellInfo->Id == 61993 || m_spellInfo->Id == 53142 || m_spellInfo->Id == 11419 || m_spellInfo->Id == 32266 /* ritual of summoning, portal dalaran, portal darnassus, portal exodar */
-        || m_spellInfo->Id == 11416 || m_spellInfo->Id == 33691 || m_spellInfo->Id == 10059 || m_spellInfo->Id == 49360 /* portal ironforge, portal shattrath, portal stormwind, portal theramore */
-        || m_spellInfo->Id == 11417 || m_spellInfo->Id == 35717 || m_spellInfo->Id == 32267 || m_spellInfo->Id == 49361 /* portal orgrimmar, shattrath, silvermoon, stonard */
-        || m_spellInfo->Id == 11420 || m_spellInfo->Id == 11418)) /* portal thunder bluff, undercity */
-    {
-        SendCastResult(SPELL_FAILED_NOT_HERE);
-        return;
-    }
-
     /*// do not allow summoning in bgs and donor malls
     if (m_caster->GetMapId() == 13 || m_caster->GetMapId() == 598)
     {
