@@ -473,6 +473,12 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->Effects[EFFECT_0].BasePoints = 0; // force seat 0, vehicle doesn't have the required seat flags for "no seat specified (-1)"
     });
 
+    // Cloak of Shadows 100%
+    ApplySpellFix({ 31224 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->Effects[EFFECT_0].BasePoints = -750;
+    });
+
     ApplySpellFix({
         64745,  // Item - Death Knight T8 Tank 4P Bonus
         64936   // Item - Warrior T8 Protection 4P Bonus
