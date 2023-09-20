@@ -3199,7 +3199,7 @@ SpellMissInfo Unit::MeleeSpellHitResult(Unit* victim, SpellInfo const* spellInfo
             }
 
             // Can`t parry or block
-            canParry = false;
+            canParry = false; //
             canBlock = false;
         }
     }
@@ -3249,9 +3249,18 @@ SpellMissInfo Unit::MeleeSpellHitResult(Unit* victim, SpellInfo const* spellInfo
         dodgeChance = int32(float(dodgeChance) * GetTotalAuraMultiplier(SPELL_AURA_MOD_ENEMY_DODGE));
         // Reduce dodge chance by attacker expertise rating
         if (GetTypeId() == TYPEID_PLAYER)
-            dodgeChance -= int32(ToPlayer()->GetExpertiseDodgeOrParryReduction(attType) * 100.0f);
+            dodgeChance -= int32(ToPlayer()->GetExpertiseDodgeOrParryReduction(attType) * 100.0f); // futuro fix aqui?
         else
             dodgeChance -= GetTotalAuraModifier(SPELL_AURA_MOD_EXPERTISE) * 25;
+
+        /*
+        // Verifica se ambos atacante e alvo são jogadores
+        if (GetTypeId() == TYPEID_PLAYER && victim->GetTypeId() == TYPEID_PLAYER)
+        {
+            // Reduz a chance de dodge em 50%
+            dodgeChance = int32(dodgeChance * 0.5);
+            //dodgeChance -= 5
+        }*/
 
         // xinef: cant dodge while casting or while stunned
         if (dodgeChance < 0 || victim->IsNonMeleeSpellCast(false, false, true) || victim->HasUnitState(UNIT_STATE_CONTROLLED))
