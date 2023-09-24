@@ -1492,15 +1492,15 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 }
                 switch (GetId())
                 {
-                   case 83354: // Skull Bash - castar SB proca 83054, que ativa Cat Form (se nao tiver em Cat)
-                    if (!caster)
-                      break;
+                    case 83354: // Skull Bash - castar SB proca 83054, que ativa Cat Form (se nao tiver em Cat)
+                     if (!caster)
+                       break;
 
-                    if (caster->GetShapeshiftForm() != FORM_CAT && caster->GetShapeshiftForm() != FORM_DIREBEAR)
-                    {
-                        caster->CastSpell(caster, 768, true);
-                    }
-                    break;
+                     if (caster->GetShapeshiftForm() != FORM_CAT && caster->GetShapeshiftForm() != FORM_DIREBEAR)
+                     {
+                         caster->CastSpell(caster, 768, true);
+                     }
+                     break;
 
                     case 83355: // Dash - castar SB proca 83055, que ativa Cat Form (se nao tiver em Cat)
                      if (!caster)
@@ -1520,9 +1520,9 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;
 
-                   case 83350:
-                    if (!caster)
-                        break;
+                   case 83350: // Spell Passiva p procar Custom Sounds (Druid Form Transmog) - ganha a spell ao castar aquatic/travel
+                       if (!caster)
+                           break;
 
                     if (caster->GetDisplayId() == 918) // Travel Form - Default 
                     {
@@ -1549,12 +1549,10 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;
 
-
                    case 5215: // Prowl - Futuro Glyph of Prowl - Usavel fora de Cat, reduz CD, penalty do move speed e ativa Cat Form se usar fora da Cat Form
                     if (!caster)
                         break;
-                    // verifica se o jogador tem a aura 83342 (Glyph of Prowl 2)
-                    if (caster->HasAura(83342))
+                    if (caster->HasAura(83342)) // Glyph of Prowl
                     {
                         if (caster->GetShapeshiftForm() != FORM_CAT)
                         {
