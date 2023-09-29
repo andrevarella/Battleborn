@@ -680,7 +680,7 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx4 |= SPELL_ATTR4_ALLOW_ENETRING_ARENA;
     });
 
-    // Ultrasafe Toshley Station - reseta cd ao entrar em arena 
+    // Ultrasafe Toshley Station - reseta cd ao entrar em arena e o debuff continua ao entrar em arena (eu acho)
     ApplySpellFix({ 36941, 36897 }, [](SpellInfo* spellInfo)
     {
         spellInfo->AttributesEx4 |= SPELL_ATTR4_ALLOW_ENETRING_ARENA;
