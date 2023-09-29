@@ -1492,6 +1492,16 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 }
                 switch (GetId())
                 {
+                    /*
+                    case 48451: // Clearcasting - pode stackar até 2 com (Futura Passive Spell - Set/Glyph ?) - Nao funciona direito - modifica a quantidade de stacks on Apply só (testado com lifebloom dá 4 stacks de uma vez)
+
+                    if (caster->HasAura(83078))
+                    {
+                        m_stackAmount = 2;
+                        //m_procCharges = 0;
+                    }
+                    break;*/
+
                     case 83354: // Skull Bash - castar SB proca 83054, que ativa Cat Form (se nao tiver em Cat)
                      if (!caster)
                        break;
