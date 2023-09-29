@@ -9243,6 +9243,13 @@ bool Unit::HandleProcTriggerSpell(Unit* victim, uint32 damage, AuraEffect* trigg
                 {
                     switch (auraSpellInfo->Id)
                     {
+                        // Omen of Clarity / Clearcasting - Glyph/Set? para procar outra Spell no lugar (Exemplo de spell q poderia usar: Ascendance (em vez de procar Windfury Weapon, proca um windfury que da dano magic etc)
+                        case 16864:
+                            if (HasAura(83078)) // id temporario
+                            {
+                                trigger_spell_id = 83120;
+                            }
+                            break;
                         // Druid Forms Trinket
                         case 37336:
                             {
