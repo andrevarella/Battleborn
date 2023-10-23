@@ -2362,9 +2362,9 @@ Rate.BuyValue.Item.Heirloom         = 1
 #                     1 - (Rate.XP.Pet)
 
 Rate.XP.Kill      = 2
-Rate.XP.Quest     = 9
-Rate.XP.Quest.DF  = 6
-Rate.XP.Explore   = 4
+Rate.XP.Quest     = 5
+Rate.XP.Quest.DF  = 5
+Rate.XP.Explore   = 3
 Rate.XP.Pet       = 4
 
 #
@@ -2373,12 +2373,12 @@ Rate.XP.Pet       = 4
 #                     Only works if Battleground.GiveXPForKills = 1
 #        Default:     1
 
-Rate.XP.BattlegroundKillAV   = 9
-Rate.XP.BattlegroundKillWSG  = 9
-Rate.XP.BattlegroundKillAB   = 9
-Rate.XP.BattlegroundKillEOTS = 9
-Rate.XP.BattlegroundKillSOTA = 9
-Rate.XP.BattlegroundKillIC   = 9
+Rate.XP.BattlegroundKillAV   = 8
+Rate.XP.BattlegroundKillWSG  = 8
+Rate.XP.BattlegroundKillAB   = 8
+Rate.XP.BattlegroundKillEOTS = 8
+Rate.XP.BattlegroundKillSOTA = 8
+Rate.XP.BattlegroundKillIC   = 8
 
 #
 #    Rate.RepairCost
