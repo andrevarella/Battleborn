@@ -5085,6 +5085,52 @@ enum Mounts
     SPELL_RAGINGTEMPESTRESTO_310 = 84298,
 
 
+
+    // Paladin Highlord Blue
+    SPELL_PALADINHIGHLORDBLUE_100 = 85127,
+    SPELL_PALADINHIGHLORDBLUE_310 = 85128,
+
+    // Paladin Highlord Purple
+    SPELL_PALADINHIGHLORDPURPLE_100 = 85121,
+    SPELL_PALADINHIGHLORDPURPLE_310 = 85122,
+
+    // Paladin Highlord Yellow
+    SPELL_PALADINHIGHLORDYELLOW_100 = 85131,
+    SPELL_PALADINHIGHLORDYELLOW_310 = 85132,
+
+    // Paladin Highlord Red
+    SPELL_PALADINHIGHLORDRED_100 = 85124,
+    SPELL_PALADINHIGHLORDRED_310 = 85125,
+
+    // Black Serpent of Nzoth
+    SPELL_NZOTHSERP_100 = 85162,
+    SPELL_NZOTHSERP_310 = 85163,
+
+    // Sunwarmed Furline
+    SPELL_SUNWARMEDFURLINE_100 = 85114,
+    SPELL_SUNWARMEDFURLINE_310 = 85115,
+
+    // Divine kiss of ohn ahra
+    SPELL_DIVINEKISSOFOHNAHRA_100 = 85111,
+    SPELL_DIVINEKISSOFOHNAHRA_310 = 85112,
+
+    // Zenet Hatclhing
+    SPELL_ZENETHATCHLING_100 = 85137,
+    SPELL_ZENETHATCHLING_310 = 85138,
+
+    // Zenet Hatclhing (Blue)
+    SPELL_ZENETHATCHLINGBLUE_100 = 85142,
+    SPELL_ZENETHATCHLINGBLUE_310 = 85143,
+
+    // Vulpine Familiar
+    SPELL_VULPINEFAMILIAR_100 = 85117,
+    SPELL_VULPINEFAMILIAR_310 = 85118,
+
+    // Vulpine Familiar (Yellow Recolor)
+    SPELL_VULPINEFAMILIARYELLOW_100 = 85134,
+    SPELL_VULPINEFAMILIARYELLOW_310 = 85135,
+
+
     // --------------------------------------------------------------------------------------- \\
 	// Mounts BFA 1:
 
@@ -6492,13 +6538,25 @@ void AddSC_generic_spell_scripts()
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_SQUEAKERS", 0, 0, SPELL_SQUEAKERS_100, 0, SPELL_SQUEAKERS_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_ASTRALCLOUD", 0, 0, SPELL_ASTRALCLOUD_100, 0, SPELL_ASTRALCLOUD_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PURPLEDREADRAVEN", 0, 0, SPELL_PURPLEDREADRAVEN_100, 0, SPELL_PURPLEDREADRAVEN_310, 0);
-
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_GREY", 0, 0, SPELL_HIGHLAND_DRAKE_GREY_100, 0, SPELL_HIGHLAND_DRAKE_GREY_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_YELLOW", 0, 0, SPELL_HIGHLAND_DRAKE_YELLOW_100, 0, SPELL_HIGHLAND_DRAKE_YELLOW_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_RED", 0, 0, SPELL_HIGHLAND_DRAKE_RED_100, 0, SPELL_HIGHLAND_DRAKE_RED_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_BLUE", 0, 0, SPELL_HIGHLAND_DRAKE_BLUE_100, 0, SPELL_HIGHLAND_DRAKE_BLUE_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_BLACK", 0, 0, SPELL_HIGHLAND_DRAKE_BLACK_100, 0, SPELL_HIGHLAND_DRAKE_BLACK_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_HIGHLAND_DRAKE_GREEN", 0, 0, SPELL_HIGHLAND_DRAKE_GREEN_100, 0, SPELL_HIGHLAND_DRAKE_GREEN_310, 0);
+
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PALADINHIGHLORDBLUE", 0, 0, SPELL_PALADINHIGHLORDBLUE_100, 0, SPELL_PALADINHIGHLORDBLUE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PALADINHIGHLORDPURPLE", 0, 0, SPELL_PALADINHIGHLORDPURPLE_100, 0, SPELL_PALADINHIGHLORDPURPLE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PALADINHIGHLORDYELLOW", 0, 0, SPELL_PALADINHIGHLORDYELLOW_100, 0, SPELL_PALADINHIGHLORDYELLOW_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_PALADINHIGHLORDRED", 0, 0, SPELL_PALADINHIGHLORDRED_100, 0, SPELL_PALADINHIGHLORDRED_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_NZOTHSERP", 0, 0, SPELL_NZOTHSERP_100, 0, SPELL_NZOTHSERP_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_SUNWARMEDFURLINE", 0, 0, SPELL_SUNWARMEDFURLINE_100, 0, SPELL_SUNWARMEDFURLINE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_DIVINEKISSOFOHNAHRA", 0, 0, SPELL_DIVINEKISSOFOHNAHRA_100, 0, SPELL_DIVINEKISSOFOHNAHRA_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_ZENETHATCHLING", 0, 0, SPELL_ZENETHATCHLING_100, 0, SPELL_ZENETHATCHLING_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_ZENETHATCHLINGBLUE", 0, 0, SPELL_ZENETHATCHLINGBLUE_100, 0, SPELL_ZENETHATCHLINGBLUE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_VULPINEFAMILIAR", 0, 0, SPELL_VULPINEFAMILIAR_100, 0, SPELL_VULPINEFAMILIAR_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_VULPINEFAMILIARYELLOW", 0, 0, SPELL_VULPINEFAMILIARYELLOW_100, 0, SPELL_VULPINEFAMILIARYELLOW_310, 0);
+
 
     RegisterSpellScript(spell_gen_upper_deck_create_foam_sword);
     RegisterSpellScript(spell_gen_bonked);
