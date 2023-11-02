@@ -277,11 +277,14 @@ public:
 
         instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
         instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
-        instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom Reincarnation
         instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
         instance->DoRemoveAurasDueToSpellOnPlayersCD(66233);  // Ardent Defender
         instance->DoRemoveAurasDueToSpellOnPlayersCD(25771);  // Forbearance
         instance->DoRemoveAurasDueToSpellOnPlayersCD(61987);  // Avenging Wrath Marker
+        instance->DoRemoveAurasDueToSpellOnPlayersCD(79503);  // Custom - Reincarnation
+        instance->DoRemoveAurasDueToSpellOnPlayersCD(79500);  // Custom - Cheated Death
+        instance->DoRemoveAurasDueToSpellOnPlayersCD(79501);  // Custom - Forbearance
+        instance->DoRemoveAurasDueToSpellOnPlayersCD(79502);  // Custom - Nature's Guardian
     }
 
     void JustReachedHome() override
