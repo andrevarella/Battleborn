@@ -2490,7 +2490,7 @@ float Pet::GetNativeObjectScale() const
 
     // hackfix: Edge case where DBC scale values for DEVILSAUR pets make them too small.
     // Therefore we take data from spirit beast instead.
-    if (ctFamily && (ctFamily == CREATURE_FAMILY_DEVILSAUR || ctFamily == CREATURE_FAMILY_RHINO || ctFamily == CREATURE_FAMILY_CORE_HOUND))
+    if (ctFamily && (ctFamily == CREATURE_FAMILY_DEVILSAUR || ctFamily == CREATURE_FAMILY_RHINO || ctFamily == CREATURE_FAMILY_CORE_HOUND || CREATURE_FAMILY_CROCOLISK))
         ctFamily = CREATURE_FAMILY_SPIRIT_BEAST;
 
 

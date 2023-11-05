@@ -5212,6 +5212,50 @@ enum Mounts
     SPELL_VENGEANCE_100 = 84204,
     SPELL_VENGEANCE_310 = 84205,
 
+    // Mechagon Peacekeeper
+    SPELL_MECHAGONPEACEK_100 = 85173,
+    SPELL_MECHAGONPEACEK_310 = 85174,
+
+    // Grotto Netherwing Drake
+    SPELL_GROTTONETHERWING_100 = 85205,
+    SPELL_GROTTONETHERWING_310 = 85206,
+
+    // Elementium Drake
+    SPELL_ELEMENTIUMDRAKE_100 = 85199,
+    SPELL_ELEMENTIUMDRAKE_310 = 85200,
+
+    // Azure Worldchiller
+    SPELL_AZUREWORLDCH_100 = 85178,
+    SPELL_AZUREWORLDCH_310 = 85179,
+
+    // Amalgam of Rage
+    SPELL_AMALGAMRAGE_100 = 85196,
+    SPELL_AMALGAMRAGE_310 = 85197,
+
+    // Pale Gravewing
+    SPELL_GRAVEWINGPALE_100 = 85202,
+    SPELL_GRAVEWINGPALE_310 = 85203,
+
+    // Sinfall Gravewing
+    SPELL_GRAVEWINGSINFALL_100 = 85181,
+    SPELL_GRAVEWINGSINFALL_310 = 85182,
+
+    // Obsidian Gravewing
+    SPELL_GRAVEWINGOBSIDIAN_100 = 85184,
+    SPELL_GRAVEWINGOBSIDIAN_310 = 85185,
+
+    // Raptora Swooper
+    SPELL_RAPTORASWOOPER_100 = 85190,
+    SPELL_RAPTORASWOOPER_310 = 85191,
+
+    // Mawdapted Raptora
+    SPELL_MAWDAPTEDRAPTORA_100 = 85187,
+    SPELL_MAWDAPTEDRAPTORA_310 = 85188,
+
+    // Desertwing Hunter
+    SPELL_DESERTWINGHUNTER_100 = 85193,
+    SPELL_DESERTWINGHUNTER_310 = 85194,
+
     // SOULTWISTED DEATHWALKER
     SPELL_SOULTWISTEDDEATHWALKER_100 = 84279,
     SPELL_SOULTWISTEDDEATHWALKER_310 = 84280,
@@ -6557,6 +6601,17 @@ void AddSC_generic_spell_scripts()
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_VULPINEFAMILIAR", 0, 0, SPELL_VULPINEFAMILIAR_100, 0, SPELL_VULPINEFAMILIAR_310, 0);
     RegisterSpellScriptWithArgs(spell_gen_mount, "spell_VULPINEFAMILIARYELLOW", 0, 0, SPELL_VULPINEFAMILIARYELLOW_100, 0, SPELL_VULPINEFAMILIARYELLOW_310, 0);
 
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_MECHAGONPEACEK", 0, 0, SPELL_MECHAGONPEACEK_100, 0, SPELL_MECHAGONPEACEK_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_GROTTONETHERWING", 0, 0, SPELL_GROTTONETHERWING_100, 0, SPELL_GROTTONETHERWING_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_ELEMENTIUMDRAKE", 0, 0, SPELL_ELEMENTIUMDRAKE_100, 0, SPELL_ELEMENTIUMDRAKE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_AZUREWORLDCH", 0, 0, SPELL_AZUREWORLDCH_100, 0, SPELL_AZUREWORLDCH_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_AMALGAMRAGE", 0, 0, SPELL_AMALGAMRAGE_100, 0, SPELL_AMALGAMRAGE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_GRAVEWINGPALE", 0, 0, SPELL_GRAVEWINGPALE_100, 0, SPELL_GRAVEWINGPALE_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_GRAVEWINGSINFALL", 0, 0, SPELL_GRAVEWINGSINFALL_100, 0, SPELL_GRAVEWINGSINFALL_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_GRAVEWINGOBSIDIAN", 0, 0, SPELL_GRAVEWINGOBSIDIAN_100, 0, SPELL_GRAVEWINGOBSIDIAN_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_RAPTORASWOOPER", 0, 0, SPELL_RAPTORASWOOPER_100, 0, SPELL_RAPTORASWOOPER_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_MAWDAPTEDRAPTORA", 0, 0, SPELL_MAWDAPTEDRAPTORA_100, 0, SPELL_MAWDAPTEDRAPTORA_310, 0);
+    RegisterSpellScriptWithArgs(spell_gen_mount, "spell_DESERTWINGHUNTER", 0, 0, SPELL_DESERTWINGHUNTER_100, 0, SPELL_DESERTWINGHUNTER_310, 0);
 
     RegisterSpellScript(spell_gen_upper_deck_create_foam_sword);
     RegisterSpellScript(spell_gen_bonked);
