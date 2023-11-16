@@ -59,7 +59,6 @@ enum ShamanSpells
     SPELL_SHAMAN_TOTEM_HEALING_STREAM_HEAL      = 52042,
     SPELL_SHAMAN_BLESSING_OF_THE_ETERNALS_R1    = 51554,
     SPELL_SHAMAN_STORMSTRIKE                    = 17364,
-    SPELL_SHAMAN_FERAL_SPIRIT                   = 51533,
     SPELL_SHAMAN_LAVA_LASH                      = 60103
 };
 
@@ -944,61 +943,10 @@ class spell_sha_item_t10_elemental_2p_bonus : public AuraScript
     }
 };
 
-// 83252 - Item - Shaman Custom Tier Set or Item Bonus (-4s cooldown sec no Feral Spirit ao usar Stormstrike)
-class spell_sha_item_enhance_custom_bonus : public AuraScript
-{
-    PrepareAuraScript(spell_sha_item_enhance_custom_bonus);
 
-    bool Validate(SpellInfo const* /*spellInfo*/) override
-    {
-        return ValidateSpellInfo({ SPELL_SHAMAN_FERAL_SPIRIT });
-    }
 
-    void HandleEffectProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
-    {
-        PreventDefaultAction();
-        if (Player* target = GetTarget()->ToPlayer())
-            target->ModifySpellCooldown(SPELL_SHAMAN_FERAL_SPIRIT, -aurEff->GetAmount());
-    }
 
-    void Register() override
-    {
-        OnEffectProc += AuraEffectProcFn(spell_sha_item_enhance_custom_bonus::HandleEffectProc, EFFECT_0, SPELL_AURA_DUMMY);
-    }
-};
 
-enum LavaBurstSpell
-{
-    SPELL_LAVA_BURST = 60043,
-};
-
-// 83241 - Lava Burst!
-class spell_gen_lava_burst_cd_reset : public SpellScript
-{
-    PrepareSpellScript(spell_gen_lava_burst_cd_reset);
-
-    bool Load() override
-    {
-        return GetCaster()->GetTypeId() == TYPEID_PLAYER;
-    }
-
-    bool Validate(SpellInfo const* /*spellInfo*/) override
-    {
-        return ValidateSpellInfo({ SPELL_LAVA_BURST });
-    }
-
-    void HandleScript(SpellEffIndex /*effIndex*/)
-    {
-        Player* caster = GetCaster()->ToPlayer();
-        if (caster->HasSpellCooldown(SPELL_LAVA_BURST))
-            caster->RemoveSpellCooldown(SPELL_LAVA_BURST, true);
-    }
-
-    void Register() override
-    {
-        OnEffectHitTarget += SpellEffectFn(spell_gen_lava_burst_cd_reset::HandleScript, EFFECT_0, SPELL_EFFECT_DUMMY);
-    }
-};
 
 // 60103 - Lava Lash
 class spell_sha_lava_lash : public SpellScript
@@ -1186,8 +1134,6 @@ void AddSC_shaman_spell_scripts()
     RegisterSpellScript(spell_sha_item_lightning_shield_trigger);
     RegisterSpellScript(spell_sha_item_mana_surge);
     RegisterSpellScript(spell_sha_item_t10_elemental_2p_bonus);
-    RegisterSpellScript(spell_sha_item_enhance_custom_bonus);
-    RegisterSpellScript(spell_gen_lava_burst_cd_reset);
     RegisterSpellScript(spell_sha_lava_lash);
     RegisterSpellScript(spell_sha_mana_spring_totem);
     RegisterSpellScript(spell_sha_mana_tide_totem);

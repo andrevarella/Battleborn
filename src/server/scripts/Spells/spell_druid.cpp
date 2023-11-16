@@ -370,29 +370,6 @@ class spell_dru_omen_of_clarity : public AuraScript
     }
 };
 
-// 83253 - Custom - Druid Balance -3s Starfall cooldown on Buff proc
-class spell_druid_balance_starfall_custom_cdreduction : public AuraScript
-{
-    PrepareAuraScript(spell_druid_balance_starfall_custom_cdreduction);
-
-    bool Validate(SpellInfo const* /*spellInfo*/) override
-    {
-        return ValidateSpellInfo({ SPELL_STARFALL });
-    }
-
-    void HandleEffectProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
-    {
-        PreventDefaultAction();
-        if (Player* target = GetTarget()->ToPlayer())
-            target->ModifySpellCooldown(SPELL_STARFALL, -aurEff->GetAmount());
-    }
-
-    void Register() override
-    {
-        OnEffectProc += AuraEffectProcFn(spell_druid_balance_starfall_custom_cdreduction::HandleEffectProc, EFFECT_0, SPELL_AURA_DUMMY);
-    }
-};
-
 // 50419 - Brambles
 class spell_dru_brambles_treant : public AuraScript
 {
@@ -1318,140 +1295,12 @@ class spell_dru_moonkin_form_passive_proc : public AuraScript
     }
 };
 
-// 83028 - Skull Bash
-class spell_druid_skull_bash : public SpellScript
-{
-    PrepareSpellScript(spell_druid_skull_bash);
-
-    SpellCastResult CheckCast()
-    {
-        Unit* caster = GetCaster();
-        Unit* target = GetExplTargetUnit();
-
-        if (caster && caster->HasUnitState(UNIT_STATE_ROOT))
-        {
-            if (target && caster->GetDistance(target) < 1.25f)
-            {
-                return SPELL_CAST_OK;
-            }
-            else
-            {
-                return SPELL_FAILED_OUT_OF_RANGE;
-            }
-        }
-        return SPELL_CAST_OK;
-    }
-
-    void Register() override
-    {
-        OnCheckCast += SpellCheckCastFn(spell_druid_skull_bash::CheckCast);
-    }
-};
-
-// 83369 - Wild Charge
-class spell_druid_wild_charge : public SpellScript
-{
-    PrepareSpellScript(spell_druid_wild_charge);
-
-    SpellCastResult CheckCast()
-    {
-        Unit* caster = GetCaster();
-        Unit* target = GetExplTargetUnit();
-
-        if (caster && caster->HasUnitState(UNIT_STATE_ROOT))
-        {
-            return SPELL_FAILED_ROOTED;
-        }
-
-        if (caster->GetShapeshiftForm() == FORM_NONE)  // Intervene
-        {
-            caster->CastSpell(target, 83374, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_AQUA) // Sprint Aquatic
-        {
-            caster->CastSpell(target, 83370, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_CAT) // Charge Cat
-        {
-            caster->CastSpell(target, 49376, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_BEAR || caster->GetShapeshiftForm() == FORM_DIREBEAR) // Charge Bear
-        {
-            caster->CastSpell(target, 16979, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_TRAVEL) // Disengage Travel
-        {
-            caster->CastSpell(caster, 83371, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_MOONKIN) // Disengage Moonkin
-        {
-            caster->CastSpell(caster, 83372, true);
-        }
-        else if (caster->GetShapeshiftForm() == FORM_TREE)
-        {
-            return SPELL_FAILED_NOT_SHAPESHIFT;
-        }
-        else if (caster->GetShapeshiftForm() == FORM_FLIGHT || caster->GetShapeshiftForm() == FORM_FLIGHT_EPIC)
-        {
-            return SPELL_FAILED_NOT_FLYING;
-        }
-
-        return SPELL_FAILED_DONT_REPORT;
-    }
-
-    void Register() override
-    {
-        OnCheckCast += SpellCheckCastFn(spell_druid_wild_charge::CheckCast);
-    }
-};
 
 
-// 83293 - Glyph of Omen of Clarity
-class spell_druid_glyph_omen_of_clarity : public AuraScript
-{
-    PrepareAuraScript(spell_druid_glyph_omen_of_clarity);
-
-
-    bool CheckProc(ProcEventInfo& eventInfo)
-    {
-        Unit* actor = eventInfo.GetActionTarget();
-        SpellInfo const* spellInfo = eventInfo.GetSpellInfo();
-
-        // Verificar se o alvo é um jogador ou pet
-        if (actor && (actor->GetTypeId() == TYPEID_PLAYER || (actor->GetTypeId() == TYPEID_UNIT && actor->IsPet())))
-        {
-            return false;
-        }
-
-        // Verificar se a spell lançada é a 770 (Faerie Fire)
-        if (spellInfo && spellInfo->Id == 770)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
-    {
-        // Implemente o comportamento após o proc aqui
-    }
-
-    void Register() override
-    {
-        DoCheckProc += AuraCheckProcFn(spell_druid_glyph_omen_of_clarity::CheckProc);
-        OnEffectProc += AuraEffectProcFn(spell_druid_glyph_omen_of_clarity::HandleProc, EFFECT_0, SPELL_AURA_PROC_TRIGGER_SPELL);
-    }
-};
 
 
 void AddSC_druid_spell_scripts()
 {
-    RegisterSpellScript(spell_druid_glyph_omen_of_clarity);
-    RegisterSpellScript(spell_druid_skull_bash);
-    RegisterSpellScript(spell_druid_balance_starfall_custom_cdreduction);
-    RegisterSpellScript(spell_druid_wild_charge);
-
     RegisterSpellScript(spell_dru_bear_form_passive);
     RegisterSpellScript(spell_dru_t10_balance_4p_bonus);
     RegisterSpellScript(spell_dru_nurturing_instinct);
