@@ -7077,9 +7077,9 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
     case 27088:
     case 42917: // Frost Nova R6
     case 33395: // Mage - Pet - Freeze
-    case 19185: // Entrapment
-    case 64803: // Entrapment
-    case 64804: // Entrapment
+    //case 19185: // Entrapment
+    //case 64803: // Entrapment
+    //case 64804: // Entrapment
     case 339:   // Druid - Entangling roots
     case 1062:
     case 5195:

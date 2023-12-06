@@ -275,6 +275,7 @@ public:
         Talk(SAY_DEATH);
         _JustDied();
 
+        /*
         instance->DoRemoveAurasDueToSpellOnPlayersCD(57723);  // Sated
         instance->DoRemoveAurasDueToSpellOnPlayersCD(57724);  // Sated
         instance->DoRemoveAurasDueToSpellOnPlayersCD(41425);  // Hipothermia
@@ -285,6 +286,7 @@ public:
         instance->DoRemoveAurasDueToSpellOnPlayersCD(79500);  // Custom - Cheated Death
         instance->DoRemoveAurasDueToSpellOnPlayersCD(79501);  // Custom - Forbearance
         instance->DoRemoveAurasDueToSpellOnPlayersCD(79502);  // Custom - Nature's Guardian
+        */
     }
 
     void JustReachedHome() override
