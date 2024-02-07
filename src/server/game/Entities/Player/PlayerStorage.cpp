@@ -1868,6 +1868,7 @@ InventoryResult Player::CanEquipItem(uint8 slot, uint16& dest, Item* pItem, bool
                 if (HasUnitState(UNIT_STATE_STUNNED))
                     return EQUIP_ERR_YOU_ARE_STUNNED;
 
+                /*
                 // Proíbe de equipar items ILVL X em arena, antes e depois de abrir a porta.
                 if (Battleground* bg = GetBattleground())
                 {
@@ -1904,13 +1905,17 @@ InventoryResult Player::CanEquipItem(uint8 slot, uint16& dest, Item* pItem, bool
                             }
                         }
                     }
-                }
+                }*/
 
                 // do not allow equipping gear except weapons, offhands, projectiles, relics in combat
                 if (!pProto->CanChangeEquipStateInCombat())
                 {
                     if (IsInCombat())
                         return EQUIP_ERR_NOT_IN_COMBAT;
+
+                    if (Battleground* bg = GetBattleground())
+                        if (bg->isArena() && bg->GetStatus() == STATUS_IN_PROGRESS)
+                            return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
                 }
 
                 if (IsInCombat() && (pProto->Class == ITEM_CLASS_WEAPON || pProto->InventoryType == INVTYPE_RELIC) && m_weaponChangeTimer != 0)
