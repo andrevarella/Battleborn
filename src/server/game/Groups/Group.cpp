@@ -1929,6 +1929,29 @@ GroupJoinBattlegroundResult Group::CanJoinBattlegroundQueue(Battleground const* 
     {
         Player* member = itr->GetSource();
 
+        // Ao joinar Arena, verifica se o player tem algum item equipado com ILVL maior que 272, excluindo shirt e tabards.
+        // 251 = Relentless. || 258 = Toc 25H/Relentless T2. || 264 = iCC 10H/25N/OffSet S8. || 270 = Set Wrathful. || 271 = Ruby 10h/25n/LK 10H. || 272 = Capa Toc 25H. || 277 = ICC 25HC/Arma LK 25N/T2. || 284 = Tudo liberado.
+        bool hasHighItemLevel = false;
+
+        for (int i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; ++i)
+        {
+            Item* item = member->GetItemByPos(INVENTORY_SLOT_BAG_0, i);
+            if (item)
+            {
+                ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(item->GetEntry());
+                if (itemTemplate && itemTemplate->ItemLevel > 264 && itemTemplate->InventoryType != INVTYPE_BODY && itemTemplate->InventoryType != INVTYPE_TABARD)
+                {
+                    hasHighItemLevel = true;
+                    break;
+                }
+            }
+        }
+        if (isRated && hasHighItemLevel)
+        {
+            member->GetSession()->SendNotification("Você não pode joinar arena com um item equipado de ilvl acima de 284.");
+            return ERR_BATTLEGROUND_NONE;
+        }
+
         // don't let join with offline members
         if (!member)
             return ERR_BATTLEGROUND_JOIN_FAILED;

@@ -1868,17 +1868,49 @@ InventoryResult Player::CanEquipItem(uint8 slot, uint16& dest, Item* pItem, bool
                 if (HasUnitState(UNIT_STATE_STUNNED))
                     return EQUIP_ERR_YOU_ARE_STUNNED;
 
-                // do not allow equipping gear except weapons, offhands, projectiles, relics in
-                // - combat
-                // - in-progress arenas
+                // Proíbe de equipar items ILVL X em arena, antes e depois de abrir a porta.
+                if (Battleground* bg = GetBattleground())
+                {
+                    if (bg->isArena())
+                    {
+                        // Após abrir a porta de Arena.
+                        if (bg->GetStatus() == STATUS_IN_PROGRESS)
+                        {
+                            // items com ilvl > 284 e q NAO é weapon ou projetil ou relic ou shield (luva 277 etc)
+                            if ((pProto->ItemLevel > 284) && !(pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_PROJECTILE || pProto->InventoryType == INVTYPE_RELIC || pProto->InventoryType == INVTYPE_SHIELD || pProto->InventoryType == INVTYPE_HOLDABLE))
+                            {
+                                return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
+                            }
+                            // items com ilvl > 284 e q é weapon ou projetil ou relic ou shield (polearm 277 etc)
+                            else if ((pProto->ItemLevel > 284) && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_PROJECTILE || pProto->InventoryType == INVTYPE_RELIC || pProto->InventoryType == INVTYPE_SHIELD || pProto->InventoryType == INVTYPE_HOLDABLE))
+                            {
+                                GetSession()->SendNotification("Você não pode equipar um item de ilvl acima de 284 dentro de arena.");
+                                return EQUIP_ERR_NONE;
+                            }
+                            // items q NAO é weapon ou projetil ou relic ou shield retorna "EQUIP_ERR_NOT_DURING_ARENA_MATCH" (uma luva <= 264 por exemplo)
+                            else if (!(pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_PROJECTILE || pProto->InventoryType == INVTYPE_RELIC || pProto->InventoryType == INVTYPE_SHIELD || pProto->InventoryType == INVTYPE_HOLDABLE))
+                            {
+                                return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
+                            }
+                        }
+                        // Antes de abrir a porta de Arena.
+                        else
+                        {
+                            // Permitir qualquer item desde que o ilvl seja menor ou igual a 284 (exceção p Shirt e Tabards)
+                            if (pProto->ItemLevel > 284 && pProto->InventoryType != INVTYPE_BODY && pProto->InventoryType != INVTYPE_TABARD)
+                            {
+                                GetSession()->SendNotification("Você não pode equipar um item de ilvl acima de 284 dentro de arena.");
+                                return EQUIP_ERR_NONE;
+                            }
+                        }
+                    }
+                }
+
+                // do not allow equipping gear except weapons, offhands, projectiles, relics in combat
                 if (!pProto->CanChangeEquipStateInCombat())
                 {
                     if (IsInCombat())
                         return EQUIP_ERR_NOT_IN_COMBAT;
-
-                    if (Battleground* bg = GetBattleground())
-                        if (bg->isArena() && bg->GetStatus() == STATUS_IN_PROGRESS)
-                            return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
                 }
 
                 if (IsInCombat() && (pProto->Class == ITEM_CLASS_WEAPON || pProto->InventoryType == INVTYPE_RELIC) && m_weaponChangeTimer != 0)

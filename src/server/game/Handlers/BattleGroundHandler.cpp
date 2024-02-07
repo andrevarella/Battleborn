@@ -411,6 +411,24 @@ void WorldSession::HandleBattleFieldPortOpcode(WorldPacket& recvData)
         return;
     }
 
+    // Ao tentar entrar em arena, verifica se o jogador tem um item equipado com ILVL maior que 284
+    if (arenaType > 0)
+    {
+        for (int i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; ++i)
+        {
+            Item* item = _player->GetItemByPos(INVENTORY_SLOT_BAG_0, i);
+            if (item)
+            {
+                ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(item->GetEntry());
+                if (itemTemplate && itemTemplate->ItemLevel > 264 && itemTemplate->InventoryType != INVTYPE_BODY && itemTemplate->InventoryType != INVTYPE_TABARD)
+                {
+                    _player->GetSession()->SendNotification("Você não pode entrar na arena com um item equipado de ilvl acima de 284.");
+                    return;
+                }
+            }
+        }
+    }
+
     if (_player->GetCharmGUID() || _player->IsInCombat())
     {
         _player->GetSession()->SendNotification(LANG_YOU_IN_COMBAT);
