@@ -457,6 +457,53 @@ inline void Battleground::_ProcessJoin(uint32 diff)
     // *********************************************************
     ModifyStartDelayTime(diff);
 
+
+    // Começa a BG antes do timer se castar SPELL_BG_STARTBG
+    bool startBGCast = false;
+    for (const auto& player : GetPlayers())
+    {
+        if (player.second->HasAura(SPELL_BG_STARTBG))
+        {
+            startBGCast = true;
+            break;
+        }
+    }
+    if (startBGCast && GetStatus() != STATUS_IN_PROGRESS)
+    {
+        StartingEventOpenDoors();
+
+        if (StartMessageIds[BG_STARTING_EVENT_FOURTH])
+            SendBroadcastText(StartMessageIds[BG_STARTING_EVENT_FOURTH], CHAT_MSG_BG_SYSTEM_NEUTRAL);
+
+        SetStatus(STATUS_IN_PROGRESS);
+        SetStartDelayTime(StartDelayTimes[BG_STARTING_EVENT_FOURTH]);
+
+        PlaySoundToAll(SOUND_BG_START);
+
+        for (BattlegroundPlayerMap::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
+        {
+            itr->second->RemoveAurasDueToSpell(SPELL_PREPARATION);
+            itr->second->ResetAllPowers();
+            itr->second->ResetCooldownsPortaArena(); // Reset Cooldowns ao abrir a porta de BG
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);  // remover Sated debuff em bg ao abrir a porta
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTEBG);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
+            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
+        }
+        // Announce BG starting
+        if (sWorld->getBoolConfig(CONFIG_BATTLEGROUND_QUEUE_ANNOUNCER_ENABLE))
+            sWorld->SendWorldText(LANG_BG_STARTED_ANNOUNCE_WORLD, GetName().c_str(), std::min(GetMinLevel(), (uint32)80), std::min(GetMaxLevel(), (uint32)80));
+
+        sScriptMgr->OnBattlegroundStart(this);
+    }
+
     if (m_ResetStatTimer > 5000)
     {
         m_ResetStatTimer = 0;
@@ -1147,8 +1194,15 @@ void Battleground::AddPlayer(Player* player)
     }
     else
     {
-        if (GetStatus() == STATUS_WAIT_JOIN)                 // not started yet
+        player->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);
+        player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
+        player->ResetAllPowers();
+        player->ResetCooldownsPortaArena();
+
+        if (GetStatus() == STATUS_WAIT_JOIN)                      // not started yet
             player->CastSpell(player, SPELL_PREPARATION, true);   // reduces all mana cost of spells.
+
+        if (GetStatus() != STATUS_IN_PROGRESS)
             player->CastSpell(player, SPELL_ARENA_PREP_HASTEBG, true);   // Buff Prep BG (Sem custo reagent + 50% haste para se preparar mais rapido). Adicionado ao entrar em BG.
     }
 

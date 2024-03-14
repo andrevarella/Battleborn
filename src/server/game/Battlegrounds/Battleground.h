@@ -141,6 +141,7 @@ enum BattlegroundSpells
     SPELL_HONORABLE_DEFENDER_25Y    = 68652,                // +50% honor when standing at a capture point that you control, 25yards radius (added in 3.2)
     SPELL_HONORABLE_DEFENDER_60Y    = 66157,                // +50% honor when standing at a capture point that you control, 60yards radius (added in 3.2), probably for 40+ player battlegrounds
 
+    SPELL_BG_STARTBG                = 83400,                // Spell para começar a BG
     SPELL_ARENA_PREP_HASTE          = 83025,                // Preparation Haste 70s, 500% Haste + 50.000 Mana Regen + No reagent cost
     SPELL_ARENA_PREP_HASTEBG        = 83008,                // Preparation BG Haste 40s, 50% Haste
     SPELL_ARENA_BLOODLUST           = 2825,                 // Bloodlust
