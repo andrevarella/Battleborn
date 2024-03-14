@@ -1971,6 +1971,16 @@ bool SpellInfo::CheckTargetCreatureType(Unit const* target) const
         else
             return true;
     }
+
+    // Immolation Trap / Frost Trap / Snake Trap (Trap Launcher) nao funcionam vs Players (em World PvP/Duel)
+    if (Id == 83391 || Id == 83392 || Id == 83393)
+    {
+        if (target && (target->IsPlayer() || (target->GetOwner() && target->GetOwner()->IsPlayer())))
+            return false;
+        else
+            return true;
+    }
+
     uint32 creatureType = target->GetCreatureTypeMask();
     return !TargetCreatureType || !creatureType || (creatureType & TargetCreatureType);
 }

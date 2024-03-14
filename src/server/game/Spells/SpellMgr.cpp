@@ -3160,6 +3160,7 @@ void SpellMgr::LoadSpellInfoCustomAttributes()
         {
             // Xinef: additional spells which should be binary
             case 45145: // Snake Trap Effect
+            case 83393: // Snake Trap Effect (custom, do Trap Launcher)
                 spellInfo->AttributesCu |= SPELL_ATTR0_CU_BINARY_SPELL;
                 break;
             case 1776: // Gouge
