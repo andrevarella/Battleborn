@@ -313,7 +313,48 @@ void Battleground::Update(uint32 diff)
     PostUpdateImpl(diff);
 
     sScriptMgr->OnBattlegroundUpdate(this, diff);
+
+
+    // Dementia / dampening - Add Stacks on pet based on player stacks
+    for (BattlegroundPlayerMap::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
+    {
+        if (Player* player = ObjectAccessor::FindPlayer(itr->first))
+        {
+            if (player->InArena() && GetArenaType() == ARENA_TYPE_2v2 || GetArenaType() == ARENA_TYPE_3v3)
+            {
+                Aura* demAura = player->GetAura(41406);          // Dementia
+                float startTimer = 2 * MINUTE * IN_MILLISECONDS; // tempo que começa o dampening?
+
+                if (!player->IsSpectator() && !player->IsGameMaster())
+                {
+                    if ((GetStartTime() >= 3 * MINUTE * IN_MILLISECONDS)) /* &&
+                        (GetStartTime() <= 3.1 * MINUTE * IN_MILLISECONDS))*/
+                    {
+                        if (Pet* pet = player->GetPet())
+                        {
+                            Aura* pemAura = pet->GetAura(41406);                           // Checa se o pet possui a aura. Se sim, modifica a quantidade de stacks para corresponder ao jogador.
+                            if (pemAura)
+                            {
+                                int32 playerStackAmount = demAura->GetStackAmount();                    // Pega a quantidade de stacks do player
+                                pemAura->ModStackAmount(playerStackAmount - pemAura->GetStackAmount()); // Ajusta a quantidade de stacks do pet para corresponder.
+                            }
+                            else // Se o pet não possuir a aura, adiciona a aura e em seguida ajusta o número de stacks como necessário.
+                            {
+                                pet->AddAura(41406, pet);                                  
+                                if (Aura* newPetAura = pet->GetAura(41406))
+                                {
+                                    newPetAura->SetStackAmount(demAura->GetStackAmount()); // Ajusta para ter a mesma quantia de stacks que o jogador.
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //else if (player->InArena() && GetArenaType() == ARENA_TYPE_SOLO3V3)
+        }
+    }
 }
+
 
 inline void Battleground::_CheckSafePositions(uint32 diff)
 {
