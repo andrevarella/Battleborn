@@ -57,3 +57,11 @@ void ScriptMgr::OnSetArenaMaxPlayersPerTeam(const uint8 arenaType, uint32& maxPl
         script->OnSetArenaMaxPlayersPerTeam(arenaType, maxPlayerPerTeam);
     });
 }
+
+void ScriptMgr::OnSetArenaMinPlayersPerTeam(const uint8 arenaType, uint32& minPlayerPerTeam)
+{
+    ExecuteScript<ArenaTeamScript>([&](ArenaTeamScript* script)
+    {
+        script->OnSetArenaMinPlayersPerTeam(arenaType, minPlayerPerTeam);
+    });
+}

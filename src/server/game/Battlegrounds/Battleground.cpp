@@ -1350,6 +1350,14 @@ void Battleground::ReadyMarkerClicked(Player* p)
     readyMarkerClickedSet.insert(p->GetGUID());
     uint32 count = readyMarkerClickedSet.size();
     uint32 req = ArenaTeam::GetReqPlayersForType(GetArenaType());
+
+    /*
+    if (BATTLEGROUND_QUEUE_SOLO3V3)
+    {
+        req = 6;
+        return;
+    }*/
+
     if (p->GetSession()->GetSecurity() >= SEC_GAMEMASTER)
     {
         // GMs of level MODERATOR or higher count as 3 players

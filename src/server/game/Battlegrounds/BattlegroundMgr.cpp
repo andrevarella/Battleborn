@@ -403,8 +403,11 @@ Battleground* BattlegroundMgr::CreateNewBattleground(BattlegroundTypeId original
     if (bg->isArena())
     {
         uint32 maxPlayersPerTeam = ArenaTeam::GetReqPlayersForType(arenaType) / 2;
+        uint32 minPlayersFerTeam = ArenaTeam::GetReqPlayersForType(arenaType);
         sScriptMgr->OnSetArenaMaxPlayersPerTeam(arenaType, maxPlayersPerTeam);
+        sScriptMgr->OnSetArenaMinPlayersPerTeam(arenaType, minPlayersFerTeam);
         bg->SetMaxPlayersPerTeam(maxPlayersPerTeam);
+        bg->SetMinPlayersPerTeam(minPlayersFerTeam);
     }
 
     return bg;
@@ -1055,12 +1058,14 @@ std::unordered_map<uint32, BattlegroundQueueTypeId> BattlegroundMgr::ArenaTypeTo
 {
     { ARENA_TYPE_2v2, BATTLEGROUND_QUEUE_2v2 },
     { ARENA_TYPE_3v3, BATTLEGROUND_QUEUE_3v3 },
-    { ARENA_TYPE_5v5, BATTLEGROUND_QUEUE_5v5 }
+    { ARENA_TYPE_5v5, BATTLEGROUND_QUEUE_5v5 },
+    { ARENA_TYPE_SOLO3V3, BATTLEGROUND_QUEUE_SOLO3V3 }
 };
 
 std::unordered_map<uint32, ArenaType> BattlegroundMgr::QueueToArenaType =
 {
     { BATTLEGROUND_QUEUE_2v2, ARENA_TYPE_2v2 },
     { BATTLEGROUND_QUEUE_3v3, ARENA_TYPE_3v3 },
-    { BATTLEGROUND_QUEUE_5v5, ARENA_TYPE_5v5 }
+    { BATTLEGROUND_QUEUE_5v5, ARENA_TYPE_5v5 },
+    { BATTLEGROUND_QUEUE_SOLO3V3, ARENA_TYPE_SOLO3V3 }
 };
