@@ -107,6 +107,11 @@ public:
         SetValidData(index, vec);
     }
 
+    inline void SetBinary(const uint8 index, const std::vector<uint8>& value)
+    {
+        statement_data[index].data = value;
+    }
+
     // Set duration
     template<class _Rep, class _Period>
     inline void SetData(const uint8 index, std::chrono::duration<_Rep, _Period> const& value, bool convertToUin32 = true)

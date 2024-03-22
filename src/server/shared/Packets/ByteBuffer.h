@@ -421,6 +421,11 @@ public:
         return *this;
     }
 
+    std::vector<uint8> contentsAsVector()
+    {
+        return _storage;
+    }
+
     uint8* contents()
     {
         if (_storage.empty())

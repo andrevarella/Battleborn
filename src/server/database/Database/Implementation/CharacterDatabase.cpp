@@ -575,6 +575,13 @@ void CharacterDatabaseConnection::DoPrepareStatements()
     PrepareStatement(CHAR_SEL_PVPSTATS_FACTIONS_OVERALL, "SELECT winner_faction, COUNT(*) AS count FROM pvpstats_battlegrounds WHERE DATEDIFF(NOW(), date) < 7 GROUP BY winner_faction ORDER BY winner_faction ASC", CONNECTION_SYNCH);
     PrepareStatement(CHAR_SEL_PVPSTATS_BRACKET_MONTH, "SELECT character_guid, COUNT(character_guid) AS count, characters.name as character_name FROM pvpstats_players INNER JOIN pvpstats_battlegrounds ON pvpstats_players.battleground_id = pvpstats_battlegrounds.id AND bracket_id = ? AND MONTH(date) = MONTH(NOW()) AND YEAR(date) = YEAR(NOW()) INNER JOIN characters ON pvpstats_players.character_guid = characters.guid AND characters.deleteDate IS NULL WHERE pvpstats_players.winner = 1 GROUP BY character_guid ORDER BY count(character_guid) DESC LIMIT 0, ?", CONNECTION_SYNCH);
 
+    
+    // bg replays
+    PrepareStatement(CHAR_INS_ARENA_REPLAYS, "INSERT INTO character_bg_replays (arenaTypeId, typeId, contentSize, contents, mapId) VALUES (?, ?, ?, ?, ?)", CONNECTION_ASYNC);
+    PrepareStatement(CHAR_SEL_ARENA_REPLAYS, "SELECT id, arenaTypeId, typeId, contentSize, contents, mapId FROM character_bg_replays where id =  ?", CONNECTION_SYNCH);
+    PrepareStatement(CHAR_SEL_LAST_10_ARENA_REPLAYS, "SELECT id, arenaTypeId, typeId, contentSize, contents, mapId FROM character_bg_replays order by id desc limit 10", CONNECTION_SYNCH);
+    PrepareStatement(CHAR_INS_BG_REPLAYS, "INSERT INTO character_bg_replays (arenaTypeId, typeId, contentSize, contents, mapId) VALUES (?, ?, ?, ?, ?)", CONNECTION_ASYNC);
+
     // Deserter tracker
     PrepareStatement(CHAR_INS_DESERTER_TRACK, "INSERT INTO battleground_deserters (guid, type, datetime) VALUES (?, ?, NOW())", CONNECTION_ASYNC);
 

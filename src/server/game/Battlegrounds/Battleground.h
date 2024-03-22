@@ -150,7 +150,7 @@ enum BattlegroundSpells
     SPELL_ARENA_FORBEARANCESERVERSIDE = 61998,              // forbearance serverside
     SPELL_ARENA_AVENGINGFORBCUSTOM  = 79501,                // Avenging Wrath Custom (30s)
     SPELL_ARENA_AVENGINGSERVERSIDE  = 61987,                // Avenging Wrath Serverside
-    SPELL_ARENA_SATEDALLY           = 57723,                // Debuff Heroism (Exhaustion)
+    SPELL_ARENA_SATEDALLY           = 57723,                // Debuff Heroism (Exhaustion)Get
     SPELL_ARENA_SATED               = 57724,                // Debuff Bloodlust (Sated)
     SPELL_ARENA_HIPOTHERMIA         = 41425,                // Mage Hipothermia
     SPELL_ARENA_WEAKENEDSOUL        = 6788,                 // Priest Weakened Soul
@@ -351,6 +351,15 @@ public:
     [[nodiscard]] int32 GetStartDelayTime() const     { return m_StartDelayTime; }
     [[nodiscard]] uint8 GetArenaType() const          { return m_ArenaType; }
     [[nodiscard]] PvPTeamId GetWinner() const         { return m_WinnerId; }
+
+    // ReplayStuff
+    uint32 GetFightId() const                         { return m_FightId; }
+    uint32 GetReplayId() const                        { return m_ReplayId; }
+    bool IsReplay() const                             { return m_IsReplay; }
+    void SetReplay(bool isReplay)                     { m_IsReplay = isReplay; }
+    void SetFightId(uint32 FightId)                   { m_FightId = FightId; }
+    void SetReplayId(uint32 ReplayId)                 { m_ReplayId = ReplayId; }
+
     [[nodiscard]] uint32 GetScriptId() const          { return ScriptId; }
     [[nodiscard]] uint32 GetBonusHonorFromKill(uint32 kills) const;
 
@@ -392,6 +401,8 @@ public:
     [[nodiscard]] uint32 GetFreeSlotsForTeam(TeamId teamId) const;
     [[nodiscard]] uint32 GetMaxFreeSlots() const;
 
+
+    void SaveReplay();
     typedef std::set<Player*> SpectatorList;
     typedef std::map<ObjectGuid, ObjectGuid> ToBeTeleportedMap;
     void AddSpectator(Player* p) { m_Spectators.insert(p); }
@@ -401,6 +412,13 @@ public:
     void AddToBeTeleported(ObjectGuid spectator, ObjectGuid participant) { m_ToBeTeleported[spectator] = participant; }
     void RemoveToBeTeleported(ObjectGuid spectator) { ToBeTeleportedMap::iterator itr = m_ToBeTeleported.find(spectator); if (itr != m_ToBeTeleported.end()) m_ToBeTeleported.erase(itr); }
     void SpectatorsSendPacket(WorldPacket& data);
+
+    // Replay Arena
+    //typedef std::set<Player*> SpectatorList;
+    //void AddSpectator(Player* p) { m_Spectators.insert(p); }
+    //void RemoveSpectator(Player* p) { m_Spectators.erase(p); }
+    //bool HaveSpectators() { return !m_Spectators.empty(); }
+    //[[nodiscard]] const SpectatorList& GetSpectators() const { return m_Spectators; }
 
     [[nodiscard]] bool isArena() const        { return m_IsArena; }
     [[nodiscard]] bool isBattleground() const { return !m_IsArena; }
@@ -428,6 +446,9 @@ public:
     void RelocateDeadPlayers(ObjectGuid queueIndex);
 
     void StartBattleground();
+
+    // Replay Arena
+    void toggleReplay(uint32 replayId) { m_IsReplay = true; m_ReplayId = replayId; }
 
     GameObject* GetBGObject(uint32 type);
     Creature* GetBGCreature(uint32 type);
@@ -580,6 +601,8 @@ public:
     // because BattleGrounds with different types and same level range has different m_BracketId
     [[nodiscard]] uint8 GetUniqueBracketId() const;
 
+
+
     BattlegroundAV* ToBattlegroundAV() { if (GetBgTypeID(true) == BATTLEGROUND_AV) return reinterpret_cast<BattlegroundAV*>(this); else return nullptr; }
     [[nodiscard]] BattlegroundAV const* ToBattlegroundAV() const { if (GetBgTypeID(true) == BATTLEGROUND_AV) return reinterpret_cast<const BattlegroundAV*>(this); else return nullptr; }
 
@@ -631,6 +654,7 @@ protected:
 
     // Player lists, those need to be accessible by inherited classes
     BattlegroundPlayerMap m_Players;
+    //SpectatorList m_Spectators;
     // Spirit Guide guid + Player list GUIDS
     std::map<ObjectGuid, GuidVector> m_ReviveQueue;
 
@@ -675,6 +699,9 @@ private:
     bool   m_IsRated;                                   // is this battle rated?
     bool   m_PrematureCountDown;
     uint32 m_PrematureCountDownTimer;
+    bool   m_IsReplay;
+    uint32 m_ReplayId;
+    uint32 m_FightId;
     std::string m_Name{};
 
     /* Pre- and post-update hooks */

@@ -252,7 +252,7 @@ void Battleground::Update(uint32 diff)
     if (!PreUpdateImpl(diff))
         return;
 
-    if (!GetPlayersSize())
+    if (!GetPlayersSize() && !IsReplay())
     {
         //BG is empty
         // if there are no players invited, delete BG
