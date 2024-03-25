@@ -336,6 +336,7 @@ public:
     [[nodiscard]] BattlegroundTypeId GetBgTypeID(bool GetRandom = false) const { return GetRandom ? m_RandomTypeID : m_RealTypeID; }
     [[nodiscard]] BattlegroundBracketId GetBracketId() const { return m_BracketId; }
     [[nodiscard]] uint32 GetInstanceID() const        { return m_InstanceID; }
+    [[nodiscard]] uint32 GetReplayID() const          { return m_ReplayID; }  // ArenaReplay
     [[nodiscard]] BattlegroundStatus GetStatus() const { return m_Status; }
     [[nodiscard]] uint32 GetClientInstanceID() const  { return m_ClientInstanceID; }
     [[nodiscard]] uint32 GetStartTime() const         { return m_StartTime; }
@@ -352,16 +353,17 @@ public:
     [[nodiscard]] uint8 GetArenaType() const          { return m_ArenaType; }
     [[nodiscard]] PvPTeamId GetWinner() const         { return m_WinnerId; }
 
+    /*
     // ReplayStuff
     uint32 GetFightId() const                         { return m_FightId; }
     uint32 GetReplayId() const                        { return m_ReplayId; }
     bool IsReplay() const                             { return m_IsReplay; }
     void SetReplay(bool isReplay)                     { m_IsReplay = isReplay; }
     void SetFightId(uint32 FightId)                   { m_FightId = FightId; }
-    void SetReplayId(uint32 ReplayId)                 { m_ReplayId = ReplayId; }
+    void SetReplayId(uint32 ReplayId)                 { m_ReplayId = ReplayId; }*/
 
-    [[nodiscard]] uint32 GetScriptId() const          { return ScriptId; }
-    [[nodiscard]] uint32 GetBonusHonorFromKill(uint32 kills) const;
+    uint32 GetScriptId() const          { return ScriptId; }
+    uint32 GetBonusHonorFromKill(uint32 kills) const;
 
     bool IsRandom() { return m_IsRandom; }
 
@@ -371,6 +373,7 @@ public:
     void SetRandomTypeID(BattlegroundTypeId TypeID) { m_RandomTypeID = TypeID; }
     void SetBracket(PvPDifficultyEntry const* bracketEntry);
     void SetInstanceID(uint32 InstanceID) { m_InstanceID = InstanceID; }
+    void SetReplayID(uint32 ReplayID) { m_ReplayID = ReplayID; }
     void SetStatus(BattlegroundStatus Status) { m_Status = Status; }
     void SetClientInstanceID(uint32 InstanceID) { m_ClientInstanceID = InstanceID; }
     void SetStartTime(uint32 Time) { m_StartTime = Time; }
@@ -402,7 +405,6 @@ public:
     [[nodiscard]] uint32 GetMaxFreeSlots() const;
 
 
-    void SaveReplay();
     typedef std::set<Player*> SpectatorList;
     typedef std::map<ObjectGuid, ObjectGuid> ToBeTeleportedMap;
     void AddSpectator(Player* p) { m_Spectators.insert(p); }
@@ -448,7 +450,7 @@ public:
     void StartBattleground();
 
     // Replay Arena
-    void toggleReplay(uint32 replayId) { m_IsReplay = true; m_ReplayId = replayId; }
+    //void toggleReplay(uint32 replayId) { m_IsReplay = true; m_ReplayId = replayId; }
 
     GameObject* GetBGObject(uint32 type);
     Creature* GetBGCreature(uint32 type);
@@ -481,6 +483,8 @@ public:
     template<class Do>
     void BroadcastWorker(Do& _do);
 
+
+    //void SaveReplay();
     void PlaySoundToAll(uint32 soundId);
     void CastSpellOnTeam(uint32 spellId, TeamId teamId);
     void RemoveAuraOnTeam(uint32 spellId, TeamId teamId);
@@ -682,6 +686,7 @@ private:
     BattlegroundTypeId m_RealTypeID;
     BattlegroundTypeId m_RandomTypeID;                  // TypeID created from Random Battleground list
     uint32 m_InstanceID;                                // Battleground Instance's GUID!
+    uint32 m_ReplayID;
     BattlegroundStatus m_Status;
     uint32 m_ClientInstanceID;                          // the instance-id which is sent to the client and without any other internal use
     uint32 m_StartTime;
@@ -699,9 +704,9 @@ private:
     bool   m_IsRated;                                   // is this battle rated?
     bool   m_PrematureCountDown;
     uint32 m_PrematureCountDownTimer;
-    bool   m_IsReplay;
-    uint32 m_ReplayId;
-    uint32 m_FightId;
+    //bool   m_IsReplay;
+    //uint32 m_ReplayId;
+    //uint32 m_FightId;
     std::string m_Name{};
 
     /* Pre- and post-update hooks */

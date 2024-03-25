@@ -193,7 +193,8 @@ void Arena::RemovePlayerAtLeave(Player* player)
 
 void Arena::CheckWinConditions()
 {
-    if (IsReplay())
+    
+    if (GetReplayID() > 0)
     {
         return;
     }

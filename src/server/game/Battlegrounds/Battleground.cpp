@@ -252,7 +252,7 @@ void Battleground::Update(uint32 diff)
     if (!PreUpdateImpl(diff))
         return;
 
-    if (!GetPlayersSize() && !IsReplay())
+    if (!GetPlayersSize()/* && !IsReplay()*/)
     {
         //BG is empty
         // if there are no players invited, delete BG
@@ -313,46 +313,6 @@ void Battleground::Update(uint32 diff)
     PostUpdateImpl(diff);
 
     sScriptMgr->OnBattlegroundUpdate(this, diff);
-
-
-    // Dementia / dampening - Add Stacks on pet based on player stacks
-    for (BattlegroundPlayerMap::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
-    {
-        if (Player* player = ObjectAccessor::FindPlayer(itr->first))
-        {
-            if (player->InArena() && GetArenaType() == ARENA_TYPE_2v2 || GetArenaType() == ARENA_TYPE_3v3)
-            {
-                Aura* demAura = player->GetAura(41406);          // Dementia
-                float startTimer = 2 * MINUTE * IN_MILLISECONDS; // tempo que começa o dampening?
-
-                if (!player->IsSpectator() && !player->IsGameMaster())
-                {
-                    if ((GetStartTime() >= 3 * MINUTE * IN_MILLISECONDS)) /* &&
-                        (GetStartTime() <= 3.1 * MINUTE * IN_MILLISECONDS))*/
-                    {
-                        if (Pet* pet = player->GetPet())
-                        {
-                            Aura* pemAura = pet->GetAura(41406);                           // Checa se o pet possui a aura. Se sim, modifica a quantidade de stacks para corresponder ao jogador.
-                            if (pemAura)
-                            {
-                                int32 playerStackAmount = demAura->GetStackAmount();                    // Pega a quantidade de stacks do player
-                                pemAura->ModStackAmount(playerStackAmount - pemAura->GetStackAmount()); // Ajusta a quantidade de stacks do pet para corresponder.
-                            }
-                            else // Se o pet não possuir a aura, adiciona a aura e em seguida ajusta o número de stacks como necessário.
-                            {
-                                pet->AddAura(41406, pet);                                  
-                                if (Aura* newPetAura = pet->GetAura(41406))
-                                {
-                                    newPetAura->SetStackAmount(demAura->GetStackAmount()); // Ajusta para ter a mesma quantia de stacks que o jogador.
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            //else if (player->InArena() && GetArenaType() == ARENA_TYPE_SOLO3V3)
-        }
-    }
 }
 
 
@@ -499,51 +459,7 @@ inline void Battleground::_ProcessJoin(uint32 diff)
     ModifyStartDelayTime(diff);
 
 
-    // Começa a BG antes do timer se castar SPELL_BG_STARTBG
-    bool startBGCast = false;
-    for (const auto& player : GetPlayers())
-    {
-        if (player.second->HasAura(SPELL_BG_STARTBG))
-        {
-            startBGCast = true;
-            break;
-        }
-    }
-    if (startBGCast && GetStatus() != STATUS_IN_PROGRESS)
-    {
-        StartingEventOpenDoors();
 
-        if (StartMessageIds[BG_STARTING_EVENT_FOURTH])
-            SendBroadcastText(StartMessageIds[BG_STARTING_EVENT_FOURTH], CHAT_MSG_BG_SYSTEM_NEUTRAL);
-
-        SetStatus(STATUS_IN_PROGRESS);
-        SetStartDelayTime(StartDelayTimes[BG_STARTING_EVENT_FOURTH]);
-
-        PlaySoundToAll(SOUND_BG_START);
-
-        for (BattlegroundPlayerMap::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
-        {
-            itr->second->RemoveAurasDueToSpell(SPELL_PREPARATION);
-            itr->second->ResetAllPowers();
-            itr->second->ResetCooldownsPortaArena(); // Reset Cooldowns ao abrir a porta de BG
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);  // remover Sated debuff em bg ao abrir a porta
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTEBG);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
-            itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
-        }
-        // Announce BG starting
-        if (sWorld->getBoolConfig(CONFIG_BATTLEGROUND_QUEUE_ANNOUNCER_ENABLE))
-            sWorld->SendWorldText(LANG_BG_STARTED_ANNOUNCE_WORLD, GetName().c_str(), std::min(GetMinLevel(), (uint32)80), std::min(GetMaxLevel(), (uint32)80));
-
-        sScriptMgr->OnBattlegroundStart(this);
-    }
 
     if (m_ResetStatTimer > 5000)
     {
@@ -649,21 +565,6 @@ inline void Battleground::_ProcessJoin(uint32 diff)
 
                     player->RemoveAurasDueToSpell(SPELL_ARENA_PREPARATION);
                     player->ResetAllPowers();
-                    player->ResetCooldownsPortaArena(); // Reset CDs ao começar a arena
-
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTE); // Preparation Arena Haste
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_PWS);
-                    player->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
-                    player->CastSpell(player, SPELL_ARENA_DEMENTIA8MIN);  // Dampening/Dementia depois de 8 min
 
                     // remove auras with duration lower than 30s
                     Unit::AuraApplicationMap& auraMap = player->GetAppliedAuras();
@@ -679,8 +580,12 @@ inline void Battleground::_ProcessJoin(uint32 diff)
                             player->RemoveAura(iter);
                         else
                             ++iter;
+
+
                     }
 
+                    // Hook necessario para resetar cds e remover debuffs ao abrir a porta de arena (anteriormente ele só é chamado em BG)
+                    sScriptMgr->OnBattlegroundStart(this);
                     player->UpdateObjectVisibility(true);
                 }
 
@@ -718,18 +623,6 @@ inline void Battleground::_ProcessJoin(uint32 diff)
             {
                 itr->second->RemoveAurasDueToSpell(SPELL_PREPARATION);
                 itr->second->ResetAllPowers();
-                itr->second->ResetCooldownsPortaArena(); // Reset Cooldowns ao abrir a porta de BG
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);  // remover Sated debuff em bg ao abrir a porta
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_PREP_HASTEBG);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_BLOODLUST);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HEROISM);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCE);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_FORBEARANCESERVERSIDE);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGSERVERSIDE);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_HIPOTHERMIA);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_WEAKENEDSOUL);
-                itr->second->RemoveAurasDueToSpell(SPELL_ARENA_AVENGINGFORBCUSTOM);
             }
 
             // Announce BG starting
@@ -1229,22 +1122,12 @@ void Battleground::AddPlayer(Player* player)
         if (GetStatus() == STATUS_WAIT_JOIN)                 // not started yet
         {
             player->CastSpell(player, SPELL_ARENA_PREPARATION, true);
-            player->CastSpell(player, SPELL_ARENA_PREP_HASTE, true);   // reduces all mana cost of spells. Adicionado ao entrar em arena.
-            player->ResetAllPowers();
         }
     }
     else
     {
-        player->RemoveAurasDueToSpell(SPELL_ARENA_SATEDALLY);
-        player->RemoveAurasDueToSpell(SPELL_ARENA_SATED);
-        player->ResetAllPowers();
-        player->ResetCooldownsPortaArena();
-
         if (GetStatus() == STATUS_WAIT_JOIN)                      // not started yet
             player->CastSpell(player, SPELL_PREPARATION, true);   // reduces all mana cost of spells.
-
-        if (GetStatus() != STATUS_IN_PROGRESS)
-            player->CastSpell(player, SPELL_ARENA_PREP_HASTEBG, true);   // Buff Prep BG (Sem custo reagent + 50% haste para se preparar mais rapido). Adicionado ao entrar em BG.
     }
 
     // Xinef: reset all map criterias on map enter
@@ -1391,13 +1274,6 @@ void Battleground::ReadyMarkerClicked(Player* p)
     readyMarkerClickedSet.insert(p->GetGUID());
     uint32 count = readyMarkerClickedSet.size();
     uint32 req = ArenaTeam::GetReqPlayersForType(GetArenaType());
-
-    /*
-    if (BATTLEGROUND_QUEUE_SOLO3V3)
-    {
-        req = 6;
-        return;
-    }*/
 
     if (p->GetSession()->GetSecurity() >= SEC_GAMEMASTER)
     {
