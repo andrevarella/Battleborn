@@ -578,6 +578,8 @@ void CharacterDatabaseConnection::DoPrepareStatements()
     
     // bg replay
     PrepareStatement(CHAR_INS_BG_REPLAYS, "INSERT INTO character_bg_replays (arenaTypeId, typeId, contentSize, contents, mapId) VALUES (?, ?, ?, ?, ?)", CONNECTION_ASYNC);
+    //PrepareStatement(CHAR_INS_BG_REPLAYS, "INSERT INTO character_bg_replays (arenaTypeId, typeId, contentSize, contents, mapId, teamWinnerId, winnerRating) VALUES (?, ?, ?, ?, ?, ?, ?)", CONNECTION_ASYNC);
+
 
     // Deserter tracker
     PrepareStatement(CHAR_INS_DESERTER_TRACK, "INSERT INTO battleground_deserters (guid, type, datetime) VALUES (?, ?, NOW())", CONNECTION_ASYNC);

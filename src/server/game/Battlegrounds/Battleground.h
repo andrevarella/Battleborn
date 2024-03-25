@@ -353,15 +353,6 @@ public:
     [[nodiscard]] uint8 GetArenaType() const          { return m_ArenaType; }
     [[nodiscard]] PvPTeamId GetWinner() const         { return m_WinnerId; }
 
-    /*
-    // ReplayStuff
-    uint32 GetFightId() const                         { return m_FightId; }
-    uint32 GetReplayId() const                        { return m_ReplayId; }
-    bool IsReplay() const                             { return m_IsReplay; }
-    void SetReplay(bool isReplay)                     { m_IsReplay = isReplay; }
-    void SetFightId(uint32 FightId)                   { m_FightId = FightId; }
-    void SetReplayId(uint32 ReplayId)                 { m_ReplayId = ReplayId; }*/
-
     uint32 GetScriptId() const          { return ScriptId; }
     uint32 GetBonusHonorFromKill(uint32 kills) const;
 
@@ -483,8 +474,6 @@ public:
     template<class Do>
     void BroadcastWorker(Do& _do);
 
-
-    //void SaveReplay();
     void PlaySoundToAll(uint32 soundId);
     void CastSpellOnTeam(uint32 spellId, TeamId teamId);
     void RemoveAuraOnTeam(uint32 spellId, TeamId teamId);
@@ -704,9 +693,6 @@ private:
     bool   m_IsRated;                                   // is this battle rated?
     bool   m_PrematureCountDown;
     uint32 m_PrematureCountDownTimer;
-    //bool   m_IsReplay;
-    //uint32 m_ReplayId;
-    //uint32 m_FightId;
     std::string m_Name{};
 
     /* Pre- and post-update hooks */
